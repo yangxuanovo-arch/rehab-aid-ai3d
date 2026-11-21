@@ -86,6 +86,28 @@ test('fallback intent stays at template defaults without model confidence', () =
   assert.notEqual(generateAIModel('右手握力弱，握笔器').provenance.support.source, 'default');
 });
 
+test('English clinical shorthand and target phrases select the requested side', () => {
+  assert.equal(readRuleIntent('Wrist splint, L wrist, circumference 160 mm.').side, 'left');
+  assert.equal(readRuleIntent('Pen grip: side R; not for the left hand.').side, 'right');
+  assert.equal(readRuleIntent('I injured my left wrist last year. Make a brace for my right wrist.').side, 'right');
+  assert.equal(readRuleIntent("I'm right-handed, but need a pen grip for my non-dominant hand.").side, 'left');
+  assert.equal(readRuleIntent('I already use a brace on my left wrist; I need another for the other hand.').side, 'right');
+});
+
+test('ambiguous or incidental English mentions do not orient a brace or claim model provenance', () => {
+  for (const description of ['A wrist brace for my dominant hand.', 'Brace for either hand, left or right.',
+    'Brace, not for my left wrist.', 'Brace; the image on the left is the right size.']) {
+    const model = generateAIModel(description);
+    assert.equal(model.params.side, 'neutral', description);
+    assert.equal(model.extracted.side, undefined, description);
+    assert.deepEqual(model.provenance.side, { source: 'default' }, description);
+  }
+  const left = generateAIModel('Wrist brace, L wrist');
+  const right = generateAIModel('Wrist brace, R wrist');
+  assert.deepEqual([left.params.side, right.params.side], ['left', 'right']);
+  assert.notDeepEqual(binarySTL(left), binarySTL(right));
+});
+
 test('signed negative and zero dimensions are clamped to the lower limits', () => {
   const description = 'pen length -999mm, diameter 999cm, bore 0.01mm';
   assert.equal(readRuleIntent(description).length, -999);

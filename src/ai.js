@@ -74,7 +74,7 @@ export function predictSketch(strokes) {
 }
 
 export function understandText(description, selected = 'auto') {
-  const { raw, dimensions, blocked } = readRuleEvidence(description, selected);
+  const { raw, dimensions, blocked, sideBlocked } = readRuleEvidence(description, selected);
   const provenance = Object.fromEntries([...intentFields, ...dimensionFields]
     .map(key => [key, { source: raw[key] === undefined ? 'default' : 'rule' }]));
   const claimed = new Set(blocked);
@@ -95,6 +95,7 @@ export function understandText(description, selected = 'auto') {
     for (const [key, { value, confidence }] of Object.entries(text.intent)) {
       if (requestEvidence && confidence >= minTextConfidence && value !== defaultIntent[key]
         && (key !== 'kind' || selected === 'auto')
+        && (key !== 'side' || !sideBlocked)
         && raw[key] === undefined) {
         raw[key] = value;
         provenance[key] = { source: 'text', confidence };

@@ -1,0 +1,32 @@
+language	kind	fields	description
+en	pen	{"side":"left","diameter":26}	Pencil grip in a lefty version, diameter 26 mm.
+en	utensil	{"side":"right","length":90}	A right-handed spoon handle, 90 mm long.
+en	brace	{"side":"left","wall":3}	Wrist splint: side L; 3 mm wall.
+en	brace	{"side":"right","length":66}	Wrist brace, R wrist, length 66 mm.
+en	pen	{"side":"right"}	Pen grip for the right hand, not the left.
+en	utensil	{"side":"left"}	A fork handle for my left hand rather than my right.
+en	brace	{"side":"right"}	Not for the left wrist; please make the right wrist brace.
+en	brace	{"side":"left"}	I injured my right wrist last year. A brace for my left wrist this time, please.
+en	utensil	{"side":"right"}	My sister is left-handed; this spoon handle is for my right hand.
+en	pen	{"side":"right"}	The pen is on the left of the photo. Make a grip for the right hand.
+en	brace	{"side":"left"}	Brace for the affected side after left-sided weakness.
+en	brace	{"side":"neutral"}	A wrist brace for the affected side.
+en	pen	{"side":"neutral"}	A pen grip for my dominant hand.
+en	utensil	{"side":"neutral"}	Fork handle for the non-dominant hand.
+en	utensil	{"side":"left"}	I'm right-handed. Spoon handle for my non-dominant hand.
+en	pen	{"side":"left"}	I'm left-handed. A pencil grip for my dominant hand.
+en	brace	{"side":"left"}	I use a brace on my right wrist already; I need a wrist brace for the other hand.
+en	pen	{"side":"neutral"}	Pen grip for my other hand.
+en	brace	{"side":"neutral"}	A wrist brace that either hand can use.
+en	utensil	{"side":"neutral"}	Spoon handle for both hands, usable on the left and right.
+en	pen	{"side":"neutral"}	Pen grip: picture on the left shows the right size.
+en	utensil	{"side":"neutral"}	A spoon handle that's just the right size for me.
+en	brace	{"side":"neutral"}	Bilateral wrist brace request.
+en	pen	{"side":"neutral"}	Pencil grip, not for the left hand.
+en	brace	{"side":"left"}	Either hand is possible, but I need this wrist brace for my left wrist.
+en	brace	{"side":"neutral"}	Wrist brace for the left or right wrist.
+en	brace	{"side":"neutral"}	Wrist brace; my father injured his right wrist, but this one is for me.
+zh	pen	{"side":"left","length":50}	左手握笔器，长度50毫米。
+zh	utensil	{"side":"right","diameter":29}	右手勺柄，外径29毫米。
+zh	brace	{"side":"left","wall":4}	给左腕做护具，壁厚4毫米。
+zh	brace	{"side":"right","circumference":172}	右侧腕护具，周长172毫米。
