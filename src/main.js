@@ -355,7 +355,10 @@ $('parameter-editor').onsubmit = event => {
     [key, key === 'side' ? value : ['finger', 'support'].includes(key) ? value === 'true' : Number(value)]));
   const start = performance.now();
   model = currentAid.custom ? buildAidModel(currentAid.id, edits) : updateModelParameters(model, edits);
-  if (model.params.kind === 'brace') currentAid = aidById(model.params.finger ? 'finger' : 'wrist');
+  if (model.params.kind === 'brace') {
+    currentAid = aidById(model.params.finger ? 'finger' : 'wrist');
+    if ($('family').value !== 'auto') $('family').value = currentAid.id;
+  }
   model.aidId = currentAid.id;
   renderModel(performance.now() - start);
 };
