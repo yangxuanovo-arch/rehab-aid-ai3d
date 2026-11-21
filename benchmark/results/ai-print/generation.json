@@ -1,0 +1,4780 @@
+{
+  "measurement": "performance.now, 15 warmup invocations, 3 samples per case",
+  "records": [
+    {
+      "id": "pen-01",
+      "kind": "pen",
+      "description": "右手握力弱，握笔器直径28mm，孔径10mm，长度45mm",
+      "strokes": [
+        [
+          [
+            0.33899999999999997,
+            0.15
+          ],
+          [
+            0.3022,
+            0.29
+          ],
+          [
+            0.27,
+            0.42999999999999994
+          ],
+          [
+            0.29069999999999996,
+            0.57
+          ],
+          [
+            0.2792,
+            0.71
+          ],
+          [
+            0.3413,
+            0.85
+          ],
+          [
+            0.6587000000000001,
+            0.85
+          ],
+          [
+            0.7208,
+            0.71
+          ],
+          [
+            0.7093,
+            0.57
+          ],
+          [
+            0.73,
+            0.42999999999999994
+          ],
+          [
+            0.6978,
+            0.29
+          ],
+          [
+            0.661,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.15
+          ]
+        ]
+      ],
+      "representative": true,
+      "success": true,
+      "durationsMs": [
+        56.04607499999997,
+        48.183697999999936,
+        44.80731000000003
+      ],
+      "medianMs": 48.183697999999936,
+      "params": {
+        "kind": "pen",
+        "side": "right",
+        "support": true,
+        "finger": false,
+        "length": 45,
+        "warnings": [],
+        "diameter": 28,
+        "bore": 10
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.7918399809911555
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.8255125064712828
+        },
+        "support": {
+          "source": "rule"
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "text",
+          "confidence": 0.8777596184796221
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          28,
+          28,
+          45
+        ],
+        "fits": true,
+        "minWall": 6.973341939328929,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 20776.287256684027,
+        "mass": 25.762596198288193,
+        "minutes": 63.33690904634452,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.5163921979051392,
+          "factor": 67.77794115012843,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-01.stl"
+    },
+    {
+      "id": "pen-02",
+      "kind": "pen",
+      "description": "left pen grip for tremor diameter 32mm bore 9mm length 44mm",
+      "strokes": [
+        [
+          [
+            0.3045,
+            0.15
+          ],
+          [
+            0.27,
+            0.29
+          ],
+          [
+            0.31599999999999995,
+            0.42999999999999994
+          ],
+          [
+            0.33899999999999997,
+            0.57
+          ],
+          [
+            0.3045,
+            0.71
+          ],
+          [
+            0.2953,
+            0.85
+          ],
+          [
+            0.7047,
+            0.85
+          ],
+          [
+            0.6955,
+            0.71
+          ],
+          [
+            0.661,
+            0.57
+          ],
+          [
+            0.684,
+            0.42999999999999994
+          ],
+          [
+            0.73,
+            0.29
+          ],
+          [
+            0.6955,
+            0.15
+          ],
+          [
+            0.3045,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        24.426036000000067,
+        24.086020000000076,
+        20.189705000000004
+      ],
+      "medianMs": 24.086020000000076,
+      "params": {
+        "kind": "pen",
+        "side": "left",
+        "support": true,
+        "finger": false,
+        "length": 44,
+        "warnings": [],
+        "diameter": 32,
+        "bore": 9
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.8883465896342349
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9182465620255308
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9839200456036079
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          30.935694835282032,
+          30.935694835282032,
+          44
+        ],
+        "fits": true,
+        "minWall": 8.784384488786694,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 25474.130200384596,
+        "mass": 31.587921448476898,
+        "minutes": 76.2614727788461,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.3632336258143432,
+          "factor": 96.35671786039237,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-02.stl"
+    },
+    {
+      "id": "pen-03",
+      "kind": "pen",
+      "description": "铅笔握笔器 外径21毫米 内径8毫米 长度35毫米",
+      "strokes": [
+        [
+          [
+            0.33899999999999997,
+            0.15
+          ],
+          [
+            0.31599999999999995,
+            0.29
+          ],
+          [
+            0.293,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.2999,
+            0.71
+          ],
+          [
+            0.3206,
+            0.85
+          ],
+          [
+            0.6794,
+            0.85
+          ],
+          [
+            0.7001,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7070000000000001,
+            0.42999999999999994
+          ],
+          [
+            0.684,
+            0.29
+          ],
+          [
+            0.661,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        47.586460999999986,
+        22.221684000000096,
+        31.786052999999924
+      ],
+      "medianMs": 31.786052999999924,
+      "params": {
+        "kind": "pen",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 35,
+        "warnings": [],
+        "diameter": 21,
+        "bore": 8
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9057788774854005
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9376591074455425
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9983765949557565
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "text",
+          "confidence": 0.7721043774487338
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          21,
+          21,
+          35
+        ],
+        "fits": true,
+        "minWall": 4.9081752633988955,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 8770.687740123009,
+        "mass": 10.875652797752531,
+        "minutes": 28.73802150034169,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.9856599659031408,
+          "factor": 35.50920318441684,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-03.stl"
+    },
+    {
+      "id": "pen-04",
+      "kind": "pen",
+      "description": "pencil grip 4cm diameter, length 50 mm",
+      "strokes": [
+        [
+          [
+            0.293,
+            0.15
+          ],
+          [
+            0.2815,
+            0.29
+          ],
+          [
+            0.27,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.27690000000000003,
+            0.71
+          ],
+          [
+            0.2838,
+            0.85
+          ],
+          [
+            0.7162,
+            0.85
+          ],
+          [
+            0.7231,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.73,
+            0.42999999999999994
+          ],
+          [
+            0.7185,
+            0.29
+          ],
+          [
+            0.7070000000000001,
+            0.15
+          ],
+          [
+            0.293,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        17.264794999999935,
+        16.74490200000014,
+        17.70939599999997
+      ],
+      "medianMs": 17.264794999999935,
+      "params": {
+        "kind": "pen",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 50,
+        "warnings": [],
+        "diameter": 40,
+        "bore": 10
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9179555439727516
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.7980410576312529
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.8664052746672044
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "default"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          39.80009233511744,
+          39.80009233511744,
+          50
+        ],
+        "fits": true,
+        "minWall": 13.359203934999835,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 54160.767538721484,
+        "mass": 67.15935174801464,
+        "minutes": 156.69657649644856,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.15516923546842165,
+          "factor": 225.56017560016153,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-04.stl"
+    },
+    {
+      "id": "pen-05",
+      "kind": "pen",
+      "description": "左手握笔器 直径24mm 孔径11mm 长46mm",
+      "strokes": [
+        [
+          [
+            0.2976,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.29
+          ],
+          [
+            0.2999,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.29069999999999996,
+            0.71
+          ],
+          [
+            0.2815,
+            0.85
+          ],
+          [
+            0.7185,
+            0.85
+          ],
+          [
+            0.7093,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7001,
+            0.42999999999999994
+          ],
+          [
+            0.661,
+            0.29
+          ],
+          [
+            0.7024,
+            0.15
+          ],
+          [
+            0.2976,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        9.635713000000123,
+        33.51401800000008,
+        20.175433999999996
+      ],
+      "medianMs": 20.175433999999996,
+      "params": {
+        "kind": "pen",
+        "side": "left",
+        "support": false,
+        "finger": false,
+        "length": 46,
+        "warnings": [],
+        "diameter": 24,
+        "bore": 11
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.8373649257431075
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9548608953916979
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9828132219485157
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9341999960072112
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "text",
+          "confidence": 0.8517319449052708
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          23.952041715374705,
+          23.952041715374705,
+          46
+        ],
+        "fits": true,
+        "minWall": 5.2152241563378725,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 14267.536667592756,
+        "mass": 17.691745467815018,
+        "minutes": 45.382046298868765,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.7673593896077308,
+          "factor": 45.61096205246381,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-05.stl"
+    },
+    {
+      "id": "pen-06",
+      "kind": "pen",
+      "description": "pen grip diameter 16mm bore 11mm length 34mm",
+      "strokes": [
+        [
+          [
+            0.27,
+            0.15
+          ],
+          [
+            0.27,
+            0.29
+          ],
+          [
+            0.34819999999999995,
+            0.42999999999999994
+          ],
+          [
+            0.34819999999999995,
+            0.57
+          ],
+          [
+            0.27,
+            0.71
+          ],
+          [
+            0.27,
+            0.85
+          ],
+          [
+            0.73,
+            0.85
+          ],
+          [
+            0.73,
+            0.71
+          ],
+          [
+            0.6518,
+            0.57
+          ],
+          [
+            0.6518,
+            0.42999999999999994
+          ],
+          [
+            0.73,
+            0.29
+          ],
+          [
+            0.73,
+            0.15
+          ],
+          [
+            0.27,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        19.958106000000043,
+        28.69668300000012,
+        25.0189519999999
+      ],
+      "medianMs": 25.0189519999999,
+      "params": {
+        "kind": "pen",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 34,
+        "warnings": [],
+        "diameter": 16,
+        "bore": 11
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9046943060296028
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.7272406666755313
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.7851402504691656
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          16,
+          16,
+          34
+        ],
+        "fits": true,
+        "minWall": 1.6771602323665842,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 2971.918146494519,
+        "mass": 3.6851785016532035,
+        "minutes": 12.505328184706999,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 2.6809385857367225,
+          "factor": 13.055129343957722,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-06.stl"
+    },
+    {
+      "id": "pen-07",
+      "kind": "pen",
+      "description": "右手笔套 外径45mm 内径12mm 长度60mm",
+      "strokes": [
+        [
+          [
+            0.33899999999999997,
+            0.15
+          ],
+          [
+            0.3022,
+            0.29
+          ],
+          [
+            0.27,
+            0.42999999999999994
+          ],
+          [
+            0.29069999999999996,
+            0.57
+          ],
+          [
+            0.2792,
+            0.71
+          ],
+          [
+            0.3413,
+            0.85
+          ],
+          [
+            0.6587000000000001,
+            0.85
+          ],
+          [
+            0.7208,
+            0.71
+          ],
+          [
+            0.7093,
+            0.57
+          ],
+          [
+            0.73,
+            0.42999999999999994
+          ],
+          [
+            0.6978,
+            0.29
+          ],
+          [
+            0.661,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        20.00475399999982,
+        14.870499999999993,
+        21.730353999999807
+      ],
+      "medianMs": 20.00475399999982,
+      "params": {
+        "kind": "pen",
+        "side": "right",
+        "support": false,
+        "finger": false,
+        "length": 60,
+        "warnings": [],
+        "diameter": 45,
+        "bore": 12
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.7464487533529878
+        },
+        "side": {
+          "source": "rule"
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9983088603625212
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "text",
+          "confidence": 0.7721043774487338
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          45,
+          45,
+          60
+        ],
+        "fits": true,
+        "minWall": 12.784460222103032,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 75389.40040869085,
+        "mass": 93.48285650677666,
+        "minutes": 216.91500113525237,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.17470315295036115,
+          "factor": 200.33983021442458,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-07.stl"
+    },
+    {
+      "id": "pen-08",
+      "kind": "pen",
+      "description": "pen grip diameter 54mm bore 7mm length 23mm",
+      "strokes": [
+        [
+          [
+            0.3045,
+            0.15
+          ],
+          [
+            0.27,
+            0.29
+          ],
+          [
+            0.31599999999999995,
+            0.42999999999999994
+          ],
+          [
+            0.33899999999999997,
+            0.57
+          ],
+          [
+            0.3045,
+            0.71
+          ],
+          [
+            0.2953,
+            0.85
+          ],
+          [
+            0.7047,
+            0.85
+          ],
+          [
+            0.6955,
+            0.71
+          ],
+          [
+            0.661,
+            0.57
+          ],
+          [
+            0.684,
+            0.42999999999999994
+          ],
+          [
+            0.73,
+            0.29
+          ],
+          [
+            0.6955,
+            0.15
+          ],
+          [
+            0.3045,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        34.90721400000007,
+        30.60953100000006,
+        18.554701000000023
+      ],
+      "medianMs": 30.60953100000006,
+      "params": {
+        "kind": "pen",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 23,
+        "warnings": [],
+        "diameter": 54,
+        "bore": 7
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9046943060296028
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.7272406666755313
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.7851402504691656
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          51.82511553296763,
+          51.82511553296763,
+          23
+        ],
+        "fits": true,
+        "minWall": 17.95069873795542,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 39160.63462841154,
+        "mass": 48.559186939230315,
+        "minutes": 111.6545406344765,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.04453616404145732,
+          "factor": 785.8781903043916,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-08.stl"
+    },
+    {
+      "id": "pen-09",
+      "kind": "pen",
+      "description": "握笔器外径3.1厘米，长度4.9厘米",
+      "strokes": [
+        [
+          [
+            0.33899999999999997,
+            0.15
+          ],
+          [
+            0.31599999999999995,
+            0.29
+          ],
+          [
+            0.293,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.2999,
+            0.71
+          ],
+          [
+            0.3206,
+            0.85
+          ],
+          [
+            0.6794,
+            0.85
+          ],
+          [
+            0.7001,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7070000000000001,
+            0.42999999999999994
+          ],
+          [
+            0.684,
+            0.29
+          ],
+          [
+            0.661,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        21.71157100000005,
+        27.982046000000082,
+        25.296347999999853
+      ],
+      "medianMs": 25.296347999999853,
+      "params": {
+        "kind": "pen",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 49,
+        "warnings": [],
+        "diameter": 31,
+        "bore": 10
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9277936867856301
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9854230609051773
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9881529403337298
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "default"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          31,
+          31,
+          49
+        ],
+        "fits": true,
+        "minWall": 7.92859081010591,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 27846.23335897523,
+        "mass": 34.529329365129286,
+        "minutes": 83.47564821937564,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.4429651697293822,
+          "factor": 79.01298429712277,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-09.stl"
+    },
+    {
+      "id": "pen-10",
+      "kind": "pen",
+      "description": "left pen for weak grip, 12mm bore, 4cm length",
+      "strokes": [
+        [
+          [
+            0.293,
+            0.15
+          ],
+          [
+            0.2815,
+            0.29
+          ],
+          [
+            0.27,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.27690000000000003,
+            0.71
+          ],
+          [
+            0.2838,
+            0.85
+          ],
+          [
+            0.7162,
+            0.85
+          ],
+          [
+            0.7231,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.73,
+            0.42999999999999994
+          ],
+          [
+            0.7185,
+            0.29
+          ],
+          [
+            0.7070000000000001,
+            0.15
+          ],
+          [
+            0.293,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        23.074837000000116,
+        62.20220900000004,
+        39.44187499999998
+      ],
+      "medianMs": 39.44187499999998,
+      "params": {
+        "kind": "pen",
+        "side": "left",
+        "support": true,
+        "finger": false,
+        "length": 40,
+        "warnings": [],
+        "diameter": 32,
+        "bore": 12
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "rule"
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.8729099211613921
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9072569184313278
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.8827173495127136
+        },
+        "diameter": {
+          "source": "default"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          31.866728223411627,
+          31.866728223411627,
+          40
+        ],
+        "fits": true,
+        "minWall": 8.906135956666558,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 25609.315270098792,
+        "mass": 31.755550934922503,
+        "minutes": 76.13698686138554,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.23687491902585842,
+          "factor": 147.75730644652688,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-10.stl"
+    },
+    {
+      "id": "pen-11",
+      "kind": "pen",
+      "description": "加长握笔器 外径28mm 长度75mm",
+      "strokes": [
+        [
+          [
+            0.2976,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.29
+          ],
+          [
+            0.2999,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.29069999999999996,
+            0.71
+          ],
+          [
+            0.2815,
+            0.85
+          ],
+          [
+            0.7185,
+            0.85
+          ],
+          [
+            0.7093,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7001,
+            0.42999999999999994
+          ],
+          [
+            0.661,
+            0.29
+          ],
+          [
+            0.7024,
+            0.15
+          ],
+          [
+            0.2976,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        23.13705700000014,
+        14.316084000000046,
+        31.447400000000016
+      ],
+      "medianMs": 23.13705700000014,
+      "params": {
+        "kind": "pen",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 75,
+        "warnings": [],
+        "diameter": 28,
+        "bore": 10
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.819505598025026
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9459426022495422
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9982723073449098
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "default"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          27.933596221288052,
+          27.933596221288052,
+          75
+        ],
+        "fits": true,
+        "minWall": 7.221079601083209,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 34622.72379764245,
+        "mass": 42.93217750907664,
+        "minutes": 105.54923277122903,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.8073759947117377,
+          "factor": 43.35031042444637,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-11.stl"
+    },
+    {
+      "id": "pen-12",
+      "kind": "pen",
+      "description": "pencil grip diameter 23mm bore 14mm length 40mm",
+      "strokes": [],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        22.128824000000122,
+        21.95647699999995,
+        19.10234700000001
+      ],
+      "medianMs": 21.95647699999995,
+      "params": {
+        "kind": "pen",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 40,
+        "warnings": [],
+        "diameter": 23,
+        "bore": 14
+      },
+      "usedSketch": false,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9130479685155622
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.7807126645941487
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.6876202890536686
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "default"
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          23,
+          23,
+          40
+        ],
+        "fits": true,
+        "minWall": 3.5507178468093876,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 9476.770230789482,
+        "mass": 11.751195086178956,
+        "minutes": 31.324361752193003,
+        "printable": true,
+        "structure": {
+          "load": 15,
+          "stress": 0.8067723405427379,
+          "factor": 43.38274658307514,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "pen-12.stl"
+    },
+    {
+      "id": "utensil-01",
+      "kind": "utensil",
+      "description": "左手轻微震颤，需要勺子手柄，直径36mm，孔径13mm，长度95mm",
+      "strokes": [
+        [
+          [
+            0.3505,
+            0.15
+          ],
+          [
+            0.31599999999999995,
+            0.29
+          ],
+          [
+            0.27,
+            0.42999999999999994
+          ],
+          [
+            0.2884,
+            0.57
+          ],
+          [
+            0.30910000000000004,
+            0.71
+          ],
+          [
+            0.3413,
+            0.85
+          ],
+          [
+            0.6587000000000001,
+            0.85
+          ],
+          [
+            0.6909,
+            0.71
+          ],
+          [
+            0.7116,
+            0.57
+          ],
+          [
+            0.73,
+            0.42999999999999994
+          ],
+          [
+            0.684,
+            0.29
+          ],
+          [
+            0.6495,
+            0.15
+          ],
+          [
+            0.3505,
+            0.15
+          ]
+        ]
+      ],
+      "representative": true,
+      "success": true,
+      "durationsMs": [
+        8.449411999999938,
+        22.825559000000112,
+        18.60238400000003
+      ],
+      "medianMs": 18.60238400000003,
+      "params": {
+        "kind": "utensil",
+        "side": "left",
+        "support": true,
+        "finger": false,
+        "length": 95,
+        "warnings": [],
+        "diameter": 36,
+        "bore": 13
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "rule"
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.8577889905062607
+        },
+        "support": {
+          "source": "rule"
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "text",
+          "confidence": 0.7798603019737391
+        },
+        "bore": {
+          "source": "text",
+          "confidence": 0.8777596184796221
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          35.935319426063266,
+          35.935319426063266,
+          95
+        ],
+        "fits": true,
+        "minWall": 8.379287328477345,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 69715.272741271,
+        "mass": 86.44693819917603,
+        "minutes": 205.52853539241943,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 0.7621298696545195,
+          "factor": 45.92393159431715,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-01.stl"
+    },
+    {
+      "id": "utensil-02",
+      "kind": "utensil",
+      "description": "right spoon handle diameter 32mm bore 10mm length 82mm",
+      "strokes": [
+        [
+          [
+            0.3045,
+            0.15
+          ],
+          [
+            0.27,
+            0.29
+          ],
+          [
+            0.31599999999999995,
+            0.42999999999999994
+          ],
+          [
+            0.33899999999999997,
+            0.57
+          ],
+          [
+            0.3045,
+            0.71
+          ],
+          [
+            0.2953,
+            0.85
+          ],
+          [
+            0.7047,
+            0.85
+          ],
+          [
+            0.6955,
+            0.71
+          ],
+          [
+            0.661,
+            0.57
+          ],
+          [
+            0.684,
+            0.42999999999999994
+          ],
+          [
+            0.73,
+            0.29
+          ],
+          [
+            0.6955,
+            0.15
+          ],
+          [
+            0.3045,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        18.85274699999991,
+        20.71324800000002,
+        19.663272000000006
+      ],
+      "medianMs": 19.663272000000006,
+      "params": {
+        "kind": "utensil",
+        "side": "right",
+        "support": false,
+        "finger": false,
+        "length": 82,
+        "warnings": [],
+        "diameter": 32,
+        "bore": 10
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.6747005484660034
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.7551086189881079
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.8366739245039687
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          30.981968972878466,
+          30.981968972878466,
+          82
+        ],
+        "fits": true,
+        "minWall": 8.402454728404663,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 46787.8481733478,
+        "mass": 58.01693173495127,
+        "minutes": 140.2162449259661,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 0.8844962611461576,
+          "factor": 39.57054601298813,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-02.stl"
+    },
+    {
+      "id": "utensil-03",
+      "kind": "utensil",
+      "description": "叉子手柄 直径38mm 孔径15mm 长度110mm",
+      "strokes": [
+        [
+          [
+            0.33899999999999997,
+            0.15
+          ],
+          [
+            0.31599999999999995,
+            0.29
+          ],
+          [
+            0.293,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.2999,
+            0.71
+          ],
+          [
+            0.3206,
+            0.85
+          ],
+          [
+            0.6794,
+            0.85
+          ],
+          [
+            0.7001,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7070000000000001,
+            0.42999999999999994
+          ],
+          [
+            0.684,
+            0.29
+          ],
+          [
+            0.661,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        32.00427500000001,
+        28.618819999999914,
+        39.20250799999985
+      ],
+      "medianMs": 32.00427500000001,
+      "params": {
+        "kind": "utensil",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 110,
+        "warnings": [],
+        "diameter": 38,
+        "bore": 15
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.7198415514024692
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.8085682928625028
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.989372519246193
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          38,
+          38,
+          110
+        ],
+        "fits": true,
+        "minWall": 8.683694696782663,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 89269.32981856653,
+        "mass": 110.6939689750225,
+        "minutes": 261.72036060712924,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 0.6928005180709483,
+          "factor": 50.51959270679373,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-03.stl"
+    },
+    {
+      "id": "utensil-04",
+      "kind": "utensil",
+      "description": "utensil for tremor length 12cm bore 14mm",
+      "strokes": [
+        [
+          [
+            0.293,
+            0.15
+          ],
+          [
+            0.2815,
+            0.29
+          ],
+          [
+            0.27,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.27690000000000003,
+            0.71
+          ],
+          [
+            0.2838,
+            0.85
+          ],
+          [
+            0.7162,
+            0.85
+          ],
+          [
+            0.7231,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.73,
+            0.42999999999999994
+          ],
+          [
+            0.7185,
+            0.29
+          ],
+          [
+            0.7070000000000001,
+            0.15
+          ],
+          [
+            0.293,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        18.723027000000002,
+        25.450448999999935,
+        13.44918800000005
+      ],
+      "medianMs": 18.723027000000002,
+      "params": {
+        "kind": "utensil",
+        "side": "neutral",
+        "support": true,
+        "finger": false,
+        "length": 120,
+        "warnings": [],
+        "diameter": 38,
+        "bore": 14
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "rule"
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.7810405782988109
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9200724232118133
+        },
+        "length": {
+          "source": "rule"
+        },
+        "diameter": {
+          "source": "default"
+        },
+        "bore": {
+          "source": "text",
+          "confidence": 0.8925926070516136
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          37.84007386809395,
+          37.84007386809395,
+          120
+        ],
+        "fits": true,
+        "minWall": 10.68736314799987,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 108917.16052762483,
+        "mass": 135.0572790542548,
+        "minutes": 317.5476681322912,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 0.5661339862317385,
+          "factor": 61.822820836043704,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-04.stl"
+    },
+    {
+      "id": "utensil-05",
+      "kind": "utensil",
+      "description": "左手餐具手柄 直径27mm 孔径12mm 长度71mm",
+      "strokes": [
+        [
+          [
+            0.2976,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.29
+          ],
+          [
+            0.2999,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.29069999999999996,
+            0.71
+          ],
+          [
+            0.2815,
+            0.85
+          ],
+          [
+            0.7185,
+            0.85
+          ],
+          [
+            0.7093,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7001,
+            0.42999999999999994
+          ],
+          [
+            0.661,
+            0.29
+          ],
+          [
+            0.7024,
+            0.15
+          ],
+          [
+            0.2976,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        23.259053000000222,
+        17.848735999999917,
+        7.89176899999984
+      ],
+      "medianMs": 17.848735999999917,
+      "params": {
+        "kind": "utensil",
+        "side": "left",
+        "support": false,
+        "finger": false,
+        "length": 71,
+        "warnings": [],
+        "diameter": 27,
+        "bore": 12
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.7583281371806847
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9061293396498034
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9809920247258808
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          26.944663517740043,
+          26.944663517740043,
+          71
+        ],
+        "fits": true,
+        "minWall": 6.017566334236007,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 28277.25538720085,
+        "mass": 35.06379668012905,
+        "minutes": 87.42293163111347,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 1.1107305614925815,
+          "factor": 31.510792277982855,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-05.stl"
+    },
+    {
+      "id": "utensil-06",
+      "kind": "utensil",
+      "description": "fork handle diameter 19mm bore 14mm length 55mm",
+      "strokes": [
+        [
+          [
+            0.27,
+            0.15
+          ],
+          [
+            0.27,
+            0.29
+          ],
+          [
+            0.34819999999999995,
+            0.42999999999999994
+          ],
+          [
+            0.34819999999999995,
+            0.57
+          ],
+          [
+            0.27,
+            0.71
+          ],
+          [
+            0.27,
+            0.85
+          ],
+          [
+            0.73,
+            0.85
+          ],
+          [
+            0.73,
+            0.71
+          ],
+          [
+            0.6518,
+            0.57
+          ],
+          [
+            0.6518,
+            0.42999999999999994
+          ],
+          [
+            0.73,
+            0.29
+          ],
+          [
+            0.73,
+            0.15
+          ],
+          [
+            0.27,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        18.25885900000003,
+        7.855621000000156,
+        27.22200100000009
+      ],
+      "medianMs": 18.25885900000003,
+      "params": {
+        "kind": "utensil",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 55,
+        "warnings": [],
+        "diameter": 19,
+        "bore": 14
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.7894651689694872
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.7944749240502742
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.7204369906615438
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          19,
+          19,
+          55
+        ],
+        "fits": true,
+        "minWall": 1.6771602323665842,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 5903.7012860373325,
+        "mass": 7.320589594686292,
+        "minutes": 23.27417023899259,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 3.7187023124729213,
+          "factor": 9.411885399540129,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-06.stl"
+    },
+    {
+      "id": "utensil-07",
+      "kind": "utensil",
+      "description": "右手勺柄直径4.8厘米长度10厘米",
+      "strokes": [
+        [
+          [
+            0.3505,
+            0.15
+          ],
+          [
+            0.31599999999999995,
+            0.29
+          ],
+          [
+            0.27,
+            0.42999999999999994
+          ],
+          [
+            0.2884,
+            0.57
+          ],
+          [
+            0.30910000000000004,
+            0.71
+          ],
+          [
+            0.3413,
+            0.85
+          ],
+          [
+            0.6587000000000001,
+            0.85
+          ],
+          [
+            0.6909,
+            0.71
+          ],
+          [
+            0.7116,
+            0.57
+          ],
+          [
+            0.73,
+            0.42999999999999994
+          ],
+          [
+            0.684,
+            0.29
+          ],
+          [
+            0.6495,
+            0.15
+          ],
+          [
+            0.3505,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        7.591797000000042,
+        18.01605100000006,
+        18.46277199999986
+      ],
+      "medianMs": 18.01605100000006,
+      "params": {
+        "kind": "utensil",
+        "side": "right",
+        "support": false,
+        "finger": false,
+        "length": 100,
+        "warnings": [],
+        "diameter": 48,
+        "bore": 13
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "rule"
+        },
+        "side": {
+          "source": "rule"
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9996692099781745
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "default"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          47.90157303966149,
+          47.90157303966149,
+          100
+        ],
+        "fits": true,
+        "minWall": 12.751089412900308,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 137266.35219013767,
+        "mass": 170.2102767157707,
+        "minutes": 393.7954227503824,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 0.3616225998655458,
+          "factor": 96.78598631007377,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-07.stl"
+    },
+    {
+      "id": "utensil-08",
+      "kind": "utensil",
+      "description": "utensil handle diameter 51mm bore 18mm length 130mm",
+      "strokes": [
+        [
+          [
+            0.3045,
+            0.15
+          ],
+          [
+            0.27,
+            0.29
+          ],
+          [
+            0.31599999999999995,
+            0.42999999999999994
+          ],
+          [
+            0.33899999999999997,
+            0.57
+          ],
+          [
+            0.3045,
+            0.71
+          ],
+          [
+            0.2953,
+            0.85
+          ],
+          [
+            0.7047,
+            0.85
+          ],
+          [
+            0.6955,
+            0.71
+          ],
+          [
+            0.661,
+            0.57
+          ],
+          [
+            0.684,
+            0.42999999999999994
+          ],
+          [
+            0.73,
+            0.29
+          ],
+          [
+            0.6955,
+            0.15
+          ],
+          [
+            0.3045,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        17.468521000000237,
+        18.74442399999998,
+        18.843529999999646
+      ],
+      "medianMs": 18.74442399999998,
+      "params": {
+        "kind": "utensil",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 130,
+        "warnings": [],
+        "diameter": 51,
+        "bore": 18
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.8179747535383047
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.6826553756673008
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9063615655515459
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          49.472953459317694,
+          49.472953459317694,
+          130
+        ],
+        "fits": true,
+        "minWall": 12.603682092606999,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 184082.63366395084,
+        "mass": 228.26246574329903,
+        "minutes": 527.5906490665301,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 0.3385183787621264,
+          "factor": 103.39172758650767,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-08.stl"
+    },
+    {
+      "id": "utensil-09",
+      "kind": "utensil",
+      "description": "餐具手柄 孔径9mm 长度120mm",
+      "strokes": [
+        [
+          [
+            0.33899999999999997,
+            0.15
+          ],
+          [
+            0.31599999999999995,
+            0.29
+          ],
+          [
+            0.293,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.2999,
+            0.71
+          ],
+          [
+            0.3206,
+            0.85
+          ],
+          [
+            0.6794,
+            0.85
+          ],
+          [
+            0.7001,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7070000000000001,
+            0.42999999999999994
+          ],
+          [
+            0.684,
+            0.29
+          ],
+          [
+            0.661,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        9.34127800000033,
+        17.309684999999718,
+        18.947649000000183
+      ],
+      "medianMs": 17.309684999999718,
+      "params": {
+        "kind": "utensil",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 120,
+        "warnings": [],
+        "diameter": 34,
+        "bore": 9
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.7388894698188547
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.8989915752643781
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9782004334032139
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "default"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          34,
+          34,
+          120
+        ],
+        "fits": true,
+        "minWall": 9.438798583459416,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 84493.42194495308,
+        "mass": 104.77184321174182,
+        "minutes": 249.70394984709188,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 1.140745785996518,
+          "factor": 30.681682483205627,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-09.stl"
+    },
+    {
+      "id": "utensil-10",
+      "kind": "utensil",
+      "description": "left spoon handle for weak grip, diameter 39mm, length 90mm",
+      "strokes": [
+        [
+          [
+            0.293,
+            0.15
+          ],
+          [
+            0.2815,
+            0.29
+          ],
+          [
+            0.27,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.27690000000000003,
+            0.71
+          ],
+          [
+            0.2838,
+            0.85
+          ],
+          [
+            0.7162,
+            0.85
+          ],
+          [
+            0.7231,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.73,
+            0.42999999999999994
+          ],
+          [
+            0.7185,
+            0.29
+          ],
+          [
+            0.7070000000000001,
+            0.15
+          ],
+          [
+            0.293,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        17.75926299999992,
+        18.915950000000066,
+        12.438079000000016
+      ],
+      "medianMs": 17.75926299999992,
+      "params": {
+        "kind": "utensil",
+        "side": "left",
+        "support": true,
+        "finger": false,
+        "length": 90,
+        "warnings": [],
+        "diameter": 39,
+        "bore": 13
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.736689392005514
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.8601982671130802
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9257162241361152
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "diameter": {
+          "source": "text",
+          "confidence": 0.9339197345239774
+        },
+        "bore": {
+          "source": "default"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          38.826746690435115,
+          38.826746690435115,
+          90
+        ],
+        "fits": true,
+        "minWall": 11.577976743666524,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 88321.6474637232,
+        "mass": 109.51884285501677,
+        "minutes": 256.5879096214534,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 0.3945053084934777,
+          "factor": 88.71870478411738,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-10.stl"
+    },
+    {
+      "id": "utensil-11",
+      "kind": "utensil",
+      "description": "加长餐具柄 外径30mm 长度140mm",
+      "strokes": [
+        [
+          [
+            0.2976,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.29
+          ],
+          [
+            0.2999,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.29069999999999996,
+            0.71
+          ],
+          [
+            0.2815,
+            0.85
+          ],
+          [
+            0.7185,
+            0.85
+          ],
+          [
+            0.7093,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7001,
+            0.42999999999999994
+          ],
+          [
+            0.661,
+            0.29
+          ],
+          [
+            0.7024,
+            0.15
+          ],
+          [
+            0.2976,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        15.438105000000178,
+        18.808031000000028,
+        18.186681000000135
+      ],
+      "medianMs": 18.186681000000135,
+      "params": {
+        "kind": "utensil",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 140,
+        "warnings": [],
+        "diameter": 30,
+        "bore": 13
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "rule"
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9486339668872885
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.9971994354737983
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "default"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          29.93728532010538,
+          29.93728532010538,
+          140
+        ],
+        "fits": true,
+        "minWall": 6.819908512134141,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 69600.8867166189,
+        "mass": 86.30509952860744,
+        "minutes": 210.83579643505252,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 1.599257960905897,
+          "factor": 21.88514977294489,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-11.stl"
+    },
+    {
+      "id": "utensil-12",
+      "kind": "utensil",
+      "description": "fork handle diameter 24mm bore 16mm length 73mm",
+      "strokes": [],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        16.828369000000293,
+        28.551142999999684,
+        17.609645999999884
+      ],
+      "medianMs": 17.609645999999884,
+      "params": {
+        "kind": "utensil",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 73,
+        "warnings": [],
+        "diameter": 24,
+        "bore": 16
+      },
+      "usedSketch": false,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.7894651689694872
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.7944749240502742
+        },
+        "support": {
+          "source": "text",
+          "confidence": 0.7204369906615438
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "diameter": {
+          "source": "rule"
+        },
+        "bore": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "default"
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          24,
+          24,
+          73
+        ],
+        "fits": true,
+        "minWall": 3.156193641608345,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 16672.583197373348,
+        "mass": 20.674003164742953,
+        "minutes": 55.437731103814855,
+        "printable": true,
+        "structure": {
+          "load": 20,
+          "stress": 1.8200589700991854,
+          "factor": 19.230146151853887,
+          "model": "空心悬臂梁近似"
+        }
+      },
+      "vertices": 3200,
+      "triangles": 6400,
+      "stl": "utensil-12.stl"
+    },
+    {
+      "id": "brace-01",
+      "kind": "brace",
+      "description": "右侧 wrist brace，前臂周长18cm，长度65mm，壁厚4mm",
+      "strokes": [
+        [
+          [
+            0.34819999999999995,
+            0.15
+          ],
+          [
+            0.3298,
+            0.29
+          ],
+          [
+            0.2976,
+            0.42999999999999994
+          ],
+          [
+            0.27459999999999996,
+            0.57
+          ],
+          [
+            0.27,
+            0.71
+          ],
+          [
+            0.30910000000000004,
+            0.85
+          ],
+          [
+            0.6909,
+            0.85
+          ],
+          [
+            0.73,
+            0.71
+          ],
+          [
+            0.7254,
+            0.57
+          ],
+          [
+            0.7024,
+            0.42999999999999994
+          ],
+          [
+            0.6702,
+            0.29
+          ],
+          [
+            0.6518,
+            0.15
+          ],
+          [
+            0.34819999999999995,
+            0.15
+          ]
+        ]
+      ],
+      "representative": true,
+      "success": true,
+      "durationsMs": [
+        31.29367400000001,
+        35.414584000000104,
+        19.097639000000072
+      ],
+      "medianMs": 31.29367400000001,
+      "params": {
+        "kind": "brace",
+        "side": "right",
+        "support": false,
+        "finger": false,
+        "length": 65,
+        "warnings": [],
+        "circumference": 180,
+        "wall": 4
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9927359557331873
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.7759383307229357
+        },
+        "finger": {
+          "source": "text",
+          "confidence": 0.9858735038587162
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "circumference": {
+          "source": "text",
+          "confidence": 0.918408976796415
+        },
+        "wall": {
+          "source": "text",
+          "confidence": 0.9434176966717226
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          64.97115630292893,
+          67.66319764762369,
+          65
+        ],
+        "fits": true,
+        "minWall": 3.809405079086421,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 42463.7910520526,
+        "mass": 52.65510090454522,
+        "minutes": 126.07997514459056,
+        "printable": true,
+        "structure": {
+          "load": 30,
+          "stress": 5.609975859045046,
+          "factor": 6.2388860272132876,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-01.stl"
+    },
+    {
+      "id": "brace-02",
+      "kind": "brace",
+      "description": "left wrist brace circumference 16cm length 55mm wall 3mm",
+      "strokes": [
+        [
+          [
+            0.3045,
+            0.15
+          ],
+          [
+            0.27,
+            0.29
+          ],
+          [
+            0.31599999999999995,
+            0.42999999999999994
+          ],
+          [
+            0.33899999999999997,
+            0.57
+          ],
+          [
+            0.3045,
+            0.71
+          ],
+          [
+            0.2953,
+            0.85
+          ],
+          [
+            0.7047,
+            0.85
+          ],
+          [
+            0.6955,
+            0.71
+          ],
+          [
+            0.661,
+            0.57
+          ],
+          [
+            0.684,
+            0.42999999999999994
+          ],
+          [
+            0.73,
+            0.29
+          ],
+          [
+            0.6955,
+            0.15
+          ],
+          [
+            0.3045,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        33.394972999999936,
+        7.66491300000007,
+        18.252352999999857
+      ],
+      "medianMs": 18.252352999999857,
+      "params": {
+        "kind": "brace",
+        "side": "left",
+        "support": false,
+        "finger": false,
+        "length": 55,
+        "warnings": [],
+        "circumference": 160,
+        "wall": 3
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.968778888231609
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9087846550444119
+        },
+        "finger": {
+          "source": "text",
+          "confidence": 0.8527000648041849
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.8735903872777052
+        },
+        "circumference": {
+          "source": "text",
+          "confidence": 0.7146397056322875
+        },
+        "wall": {
+          "source": "text",
+          "confidence": 0.909656682953995
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          56.58149908160816,
+          58.92591995296072,
+          55
+        ],
+        "fits": true,
+        "minWall": 2.9383445756853925,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 23323.211515746294,
+        "mass": 28.920782279525405,
+        "minutes": 71.66169865485081,
+        "printable": true,
+        "structure": {
+          "load": 30,
+          "stress": 9.936896499771795,
+          "factor": 3.5222264819608204,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-02.stl"
+    },
+    {
+      "id": "brace-03",
+      "kind": "brace",
+      "description": "右腕护具 周长200mm 长度75mm 壁厚5mm",
+      "strokes": [
+        [
+          [
+            0.33899999999999997,
+            0.15
+          ],
+          [
+            0.31599999999999995,
+            0.29
+          ],
+          [
+            0.293,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.2999,
+            0.71
+          ],
+          [
+            0.3206,
+            0.85
+          ],
+          [
+            0.6794,
+            0.85
+          ],
+          [
+            0.7001,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7070000000000001,
+            0.42999999999999994
+          ],
+          [
+            0.684,
+            0.29
+          ],
+          [
+            0.661,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        7.9940309999997226,
+        39.87715900000012,
+        18.248450999999932
+      ],
+      "medianMs": 18.248450999999932,
+      "params": {
+        "kind": "brace",
+        "side": "right",
+        "support": false,
+        "finger": false,
+        "length": 75,
+        "warnings": [],
+        "circumference": 200,
+        "wall": 5
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9298340592370962
+        },
+        "side": {
+          "source": "rule"
+        },
+        "finger": {
+          "source": "text",
+          "confidence": 0.8835160960533099
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.7528483292717223
+        },
+        "circumference": {
+          "source": "rule"
+        },
+        "wall": {
+          "source": "text",
+          "confidence": 0.9434176966717226
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          73.21421162296342,
+          76.24779907813024,
+          75
+        ],
+        "fits": true,
+        "minWall": 4.873162965735559,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 68591.82798420849,
+        "mass": 85.05386670041852,
+        "minutes": 199.90785551169026,
+        "printable": true,
+        "structure": {
+          "load": 30,
+          "stress": 3.292711115228183,
+          "factor": 10.629538630987529,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-03.stl"
+    },
+    {
+      "id": "brace-04",
+      "kind": "brace",
+      "description": "finger brace circumference 5.4cm length 29mm wall 2.5mm",
+      "strokes": [
+        [
+          [
+            0.293,
+            0.15
+          ],
+          [
+            0.2815,
+            0.29
+          ],
+          [
+            0.27,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.27690000000000003,
+            0.71
+          ],
+          [
+            0.2838,
+            0.85
+          ],
+          [
+            0.7162,
+            0.85
+          ],
+          [
+            0.7231,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.73,
+            0.42999999999999994
+          ],
+          [
+            0.7185,
+            0.29
+          ],
+          [
+            0.7070000000000001,
+            0.15
+          ],
+          [
+            0.293,
+            0.15
+          ]
+        ]
+      ],
+      "representative": true,
+      "success": true,
+      "durationsMs": [
+        20.352620000000115,
+        19.86531799999966,
+        30.3965189999999
+      ],
+      "medianMs": 20.352620000000115,
+      "params": {
+        "kind": "brace",
+        "side": "neutral",
+        "support": false,
+        "finger": true,
+        "length": 29,
+        "warnings": [],
+        "circumference": 54,
+        "wall": 2.5
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9609532553499245
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.863702804627769
+        },
+        "finger": {
+          "source": "text",
+          "confidence": 0.9396618899696593
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.8735903872777052
+        },
+        "circumference": {
+          "source": "rule"
+        },
+        "wall": {
+          "source": "text",
+          "confidence": 0.909656682953995
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          21.249891841134083,
+          24.21492976015804,
+          29
+        ],
+        "fits": true,
+        "minWall": 2.6229073327288916,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 4068.1345490735407,
+        "mass": 5.0444868408511905,
+        "minutes": 14.925373747426502,
+        "printable": true,
+        "structure": {
+          "load": 12,
+          "stress": 3.3722400945341184,
+          "factor": 10.378857678825895,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-04.stl"
+    },
+    {
+      "id": "brace-05",
+      "kind": "brace",
+      "description": "左手护指 指围47mm 长度26mm 壁厚2mm",
+      "strokes": [
+        [
+          [
+            0.2976,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.29
+          ],
+          [
+            0.2999,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.29069999999999996,
+            0.71
+          ],
+          [
+            0.2815,
+            0.85
+          ],
+          [
+            0.7185,
+            0.85
+          ],
+          [
+            0.7093,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7001,
+            0.42999999999999994
+          ],
+          [
+            0.661,
+            0.29
+          ],
+          [
+            0.7024,
+            0.15
+          ],
+          [
+            0.2976,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        24.954827000000023,
+        21.228801999999632,
+        20.68279399999983
+      ],
+      "medianMs": 21.228801999999632,
+      "params": {
+        "kind": "brace",
+        "side": "left",
+        "support": false,
+        "finger": true,
+        "length": 26,
+        "warnings": [],
+        "circumference": 47,
+        "wall": 2
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9567895698719882
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9394187615659922
+        },
+        "finger": {
+          "source": "text",
+          "confidence": 0.7193504259051714
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.7528483292717223
+        },
+        "circumference": {
+          "source": "text",
+          "confidence": 0.6257033571493442
+        },
+        "wall": {
+          "source": "text",
+          "confidence": 0.9434176966717226
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          19.829062269256113,
+          20.88942665365954,
+          26
+        ],
+        "fits": true,
+        "minWall": 2.0012273066377433,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 2470.5950628681744,
+        "mass": 3.063537877956536,
+        "minutes": 10.112764063522707,
+        "printable": true,
+        "structure": {
+          "load": 12,
+          "stress": 5.690901139913789,
+          "factor": 6.150168337053596,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-05.stl"
+    },
+    {
+      "id": "brace-06",
+      "kind": "brace",
+      "description": "wrist splint circumference 215mm wall 6mm length 100mm",
+      "strokes": [
+        [
+          [
+            0.27,
+            0.15
+          ],
+          [
+            0.27,
+            0.29
+          ],
+          [
+            0.34819999999999995,
+            0.42999999999999994
+          ],
+          [
+            0.34819999999999995,
+            0.57
+          ],
+          [
+            0.27,
+            0.71
+          ],
+          [
+            0.27,
+            0.85
+          ],
+          [
+            0.73,
+            0.85
+          ],
+          [
+            0.73,
+            0.71
+          ],
+          [
+            0.6518,
+            0.57
+          ],
+          [
+            0.6518,
+            0.42999999999999994
+          ],
+          [
+            0.73,
+            0.29
+          ],
+          [
+            0.73,
+            0.15
+          ],
+          [
+            0.27,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        20.722149000000172,
+        21.246446000000105,
+        18.735447000000022
+      ],
+      "medianMs": 20.722149000000172,
+      "params": {
+        "kind": "brace",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 100,
+        "warnings": [],
+        "circumference": 215,
+        "wall": 6
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9784357882735908
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.918901739170552
+        },
+        "finger": {
+          "source": "text",
+          "confidence": 0.6825144194288375
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9727225021022073
+        },
+        "circumference": {
+          "source": "text",
+          "confidence": 0.7552829303098132
+        },
+        "wall": {
+          "source": "rule"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          74.43187087789038,
+          83.23681270722082,
+          100
+        ],
+        "fits": true,
+        "minWall": 5.569804239573263,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 116010.82740633537,
+        "mass": 143.85342598385586,
+        "minutes": 334.7522983509316,
+        "printable": true,
+        "structure": {
+          "load": 30,
+          "stress": 2.0289311982775398,
+          "factor": 17.25046173557449,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-06.stl"
+    },
+    {
+      "id": "brace-07",
+      "kind": "brace",
+      "description": "护腕 腕围14厘米 长度50毫米 壁厚3.5毫米",
+      "strokes": [
+        [
+          [
+            0.34819999999999995,
+            0.15
+          ],
+          [
+            0.3298,
+            0.29
+          ],
+          [
+            0.2976,
+            0.42999999999999994
+          ],
+          [
+            0.27459999999999996,
+            0.57
+          ],
+          [
+            0.27,
+            0.71
+          ],
+          [
+            0.30910000000000004,
+            0.85
+          ],
+          [
+            0.6909,
+            0.85
+          ],
+          [
+            0.73,
+            0.71
+          ],
+          [
+            0.7254,
+            0.57
+          ],
+          [
+            0.7024,
+            0.42999999999999994
+          ],
+          [
+            0.6702,
+            0.29
+          ],
+          [
+            0.6518,
+            0.15
+          ],
+          [
+            0.34819999999999995,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        19.24043299999994,
+        19.621879999999692,
+        18.52594799999997
+      ],
+      "medianMs": 19.24043299999994,
+      "params": {
+        "kind": "brace",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 50,
+        "warnings": [],
+        "circumference": 140,
+        "wall": 3.5
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9716179776722776
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9511377373455665
+        },
+        "finger": {
+          "source": "text",
+          "confidence": 0.8286161726022119
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.7528483292717223
+        },
+        "circumference": {
+          "source": "rule"
+        },
+        "wall": {
+          "source": "text",
+          "confidence": 0.9434176966717226
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          48.12733480628363,
+          53.8205731781262,
+          50
+        ],
+        "fits": true,
+        "minWall": 3.33322944420062,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 22566.468525970093,
+        "mass": 27.982420972202917,
+        "minutes": 68.93463479436137,
+        "printable": true,
+        "structure": {
+          "load": 30,
+          "stress": 7.462733389539036,
+          "factor": 4.689970574194921,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-07.stl"
+    },
+    {
+      "id": "brace-08",
+      "kind": "brace",
+      "description": "right finger splint circumference 7.9cm length 50mm wall 4mm",
+      "strokes": [
+        [
+          [
+            0.3045,
+            0.15
+          ],
+          [
+            0.27,
+            0.29
+          ],
+          [
+            0.31599999999999995,
+            0.42999999999999994
+          ],
+          [
+            0.33899999999999997,
+            0.57
+          ],
+          [
+            0.3045,
+            0.71
+          ],
+          [
+            0.2953,
+            0.85
+          ],
+          [
+            0.7047,
+            0.85
+          ],
+          [
+            0.6955,
+            0.71
+          ],
+          [
+            0.661,
+            0.57
+          ],
+          [
+            0.684,
+            0.42999999999999994
+          ],
+          [
+            0.73,
+            0.29
+          ],
+          [
+            0.6955,
+            0.15
+          ],
+          [
+            0.3045,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        17.56557500000008,
+        18.263556999999764,
+        17.572786999999607
+      ],
+      "medianMs": 17.572786999999607,
+      "params": {
+        "kind": "brace",
+        "side": "right",
+        "support": false,
+        "finger": true,
+        "length": 50,
+        "warnings": [],
+        "circumference": 79,
+        "wall": 4
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9703561381996496
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.6628068555960571
+        },
+        "finger": {
+          "source": "text",
+          "confidence": 0.9593559372582143
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.8735903872777052
+        },
+        "circumference": {
+          "source": "text",
+          "confidence": 0.7090900726700397
+        },
+        "wall": {
+          "source": "text",
+          "confidence": 0.909656682953995
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          33.52500687187711,
+          35.31776554049731,
+          50
+        ],
+        "fits": true,
+        "minWall": 3.9177927675805178,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 15335.45819002115,
+        "mass": 19.015968155626226,
+        "minutes": 48.848494972280974,
+        "printable": true,
+        "structure": {
+          "load": 12,
+          "stress": 1.2499407857145564,
+          "factor": 28.001326462830377,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-08.stl"
+    },
+    {
+      "id": "brace-09",
+      "kind": "brace",
+      "description": "左腕支具 周长250mm 长度100mm 壁厚5mm",
+      "strokes": [
+        [
+          [
+            0.33899999999999997,
+            0.15
+          ],
+          [
+            0.31599999999999995,
+            0.29
+          ],
+          [
+            0.293,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.2999,
+            0.71
+          ],
+          [
+            0.3206,
+            0.85
+          ],
+          [
+            0.6794,
+            0.85
+          ],
+          [
+            0.7001,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7070000000000001,
+            0.42999999999999994
+          ],
+          [
+            0.684,
+            0.29
+          ],
+          [
+            0.661,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        21.014370999999755,
+        18.4114169999998,
+        18.67609999999968
+      ],
+      "medianMs": 18.67609999999968,
+      "params": {
+        "kind": "brace",
+        "side": "left",
+        "support": false,
+        "finger": false,
+        "length": 100,
+        "warnings": [],
+        "circumference": 250,
+        "wall": 5
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.8778341546401405
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.8031745383166149
+        },
+        "finger": {
+          "source": "text",
+          "confidence": 0.8356538748260651
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.7528483292717223
+        },
+        "circumference": {
+          "source": "rule"
+        },
+        "wall": {
+          "source": "text",
+          "confidence": 0.9434176966717226
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          88.49365244862602,
+          92.16033447632465,
+          100
+        ],
+        "fits": true,
+        "minWall": 4.873162965735559,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 112126.84132562905,
+        "mass": 139.03728324378002,
+        "minutes": 323.9634481267474,
+        "printable": true,
+        "structure": {
+          "load": 30,
+          "stress": 3.072704778247691,
+          "factor": 11.390615931531137,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-09.stl"
+    },
+    {
+      "id": "brace-10",
+      "kind": "brace",
+      "description": "wrist orthosis circumference 110mm length 30mm wall 2mm",
+      "strokes": [
+        [
+          [
+            0.293,
+            0.15
+          ],
+          [
+            0.2815,
+            0.29
+          ],
+          [
+            0.27,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.27690000000000003,
+            0.71
+          ],
+          [
+            0.2838,
+            0.85
+          ],
+          [
+            0.7162,
+            0.85
+          ],
+          [
+            0.7231,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.73,
+            0.42999999999999994
+          ],
+          [
+            0.7185,
+            0.29
+          ],
+          [
+            0.7070000000000001,
+            0.15
+          ],
+          [
+            0.293,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        25.5022570000001,
+        10.269396000000143,
+        28.58532299999979
+      ],
+      "medianMs": 25.5022570000001,
+      "params": {
+        "kind": "brace",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 30,
+        "warnings": [],
+        "circumference": 110,
+        "wall": 2
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9883363804018932
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9082240514029384
+        },
+        "finger": {
+          "source": "default"
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.8735903872777052
+        },
+        "circumference": {
+          "source": "text",
+          "confidence": 0.835328866488314
+        },
+        "wall": {
+          "source": "text",
+          "confidence": 0.909656682953995
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          36.6000683840561,
+          40.92968510966305,
+          30
+        ],
+        "fits": true,
+        "minWall": 2.0983258661831155,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 6217.736695044302,
+        "mass": 7.709993501854934,
+        "minutes": 21.021490819567507,
+        "printable": true,
+        "structure": {
+          "load": 30,
+          "stress": 24.879167152491593,
+          "factor": 1.4067995035957153,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-10.stl"
+    },
+    {
+      "id": "brace-11",
+      "kind": "brace",
+      "description": "护指 周长63mm 长度35mm",
+      "strokes": [
+        [
+          [
+            0.2976,
+            0.15
+          ],
+          [
+            0.33899999999999997,
+            0.29
+          ],
+          [
+            0.2999,
+            0.42999999999999994
+          ],
+          [
+            0.27,
+            0.57
+          ],
+          [
+            0.29069999999999996,
+            0.71
+          ],
+          [
+            0.2815,
+            0.85
+          ],
+          [
+            0.7185,
+            0.85
+          ],
+          [
+            0.7093,
+            0.71
+          ],
+          [
+            0.73,
+            0.57
+          ],
+          [
+            0.7001,
+            0.42999999999999994
+          ],
+          [
+            0.661,
+            0.29
+          ],
+          [
+            0.7024,
+            0.15
+          ],
+          [
+            0.2976,
+            0.15
+          ]
+        ]
+      ],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        28.920226000000184,
+        20.221192999999857,
+        14.37432600000011
+      ],
+      "medianMs": 20.221192999999857,
+      "params": {
+        "kind": "brace",
+        "side": "neutral",
+        "support": false,
+        "finger": true,
+        "length": 35,
+        "warnings": [],
+        "circumference": 63,
+        "wall": 3
+      },
+      "usedSketch": true,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.783918912955183
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9761602201438482
+        },
+        "finger": {
+          "source": "rule"
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.9742944865539624
+        },
+        "circumference": {
+          "source": "rule"
+        },
+        "wall": {
+          "source": "default"
+        },
+        "profile": {
+          "source": "sketch",
+          "coverage": 1
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          24.742588460336606,
+          28.194968997055014,
+          35
+        ],
+        "fits": true,
+        "minWall": 3.001840959956609,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 6640.422358724842,
+        "mass": 8.234123724818804,
+        "minutes": 22.82061766312456,
+        "printable": true,
+        "structure": {
+          "load": 12,
+          "stress": 2.4602393574047854,
+          "factor": 14.22625806495519,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-11.stl"
+    },
+    {
+      "id": "brace-12",
+      "kind": "brace",
+      "description": "forearm brace circumference 31cm length 130mm wall 7mm",
+      "strokes": [],
+      "representative": false,
+      "success": true,
+      "durationsMs": [
+        11.138112000000092,
+        20.341679999999997,
+        18.471090000000004
+      ],
+      "medianMs": 18.471090000000004,
+      "params": {
+        "kind": "brace",
+        "side": "neutral",
+        "support": false,
+        "finger": false,
+        "length": 130,
+        "warnings": [],
+        "circumference": 310,
+        "wall": 7
+      },
+      "usedSketch": false,
+      "provenance": {
+        "kind": {
+          "source": "text",
+          "confidence": 0.9676938452298748
+        },
+        "side": {
+          "source": "text",
+          "confidence": 0.9051468209156557
+        },
+        "finger": {
+          "source": "text",
+          "confidence": 0.7211401330767767
+        },
+        "length": {
+          "source": "text",
+          "confidence": 0.8735903872777052
+        },
+        "circumference": {
+          "source": "rule"
+        },
+        "wall": {
+          "source": "text",
+          "confidence": 0.909656682953995
+        },
+        "profile": {
+          "source": "default"
+        }
+      },
+      "checks": {
+        "manifold": true,
+        "nonManifold": 0,
+        "badVertices": 0,
+        "degenerate": 0,
+        "size": [
+          103.45078403950143,
+          115.68852742715298,
+          130
+        ],
+        "fits": true,
+        "minWall": 6.953114568372309,
+        "wallPass": true,
+        "overhangPass": true,
+        "overhangPercent": 0,
+        "volume": 259040.0810159298,
+        "mass": 321.209700459753,
+        "minutes": 735.8057805998051,
+        "printable": true,
+        "structure": {
+          "load": 30,
+          "stress": 1.4345125539641557,
+          "factor": 24.398531684703926,
+          "model": "开口环近似"
+        }
+      },
+      "vertices": 3250,
+      "triangles": 6496,
+      "stl": "brace-12.stl"
+    }
+  ]
+}

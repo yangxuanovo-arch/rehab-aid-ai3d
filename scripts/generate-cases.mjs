@@ -5,6 +5,7 @@ import { binarySTL, generateModel } from '../src/generator.js';
 import { outlineFromWidths, presets } from '../src/samples.js';
 
 const output = resolve(process.argv[2] ?? 'benchmark/artifacts');
+const generator = process.argv.includes('--ai') ? (await import('../src/ai.js')).generateAIModel : generateModel;
 mkdirSync(output, { recursive: true });
 const cases = [];
 for (const { kind, description, profile } of presets) {
@@ -37,7 +38,7 @@ for (const { kind, description, profile } of presets) {
       strokes: i === 11 ? [] : outlineFromWidths(widths), representative: i === 0 || (kind === 'brace' && i === 3) });
   });
 }
-for (const preset of presets) for (let n = 0; n < 5; n++) generateModel(preset.description, outlineFromWidths(preset.profile));
+for (const preset of presets) for (let n = 0; n < 5; n++) generator(preset.description, outlineFromWidths(preset.profile));
 const records = cases.map(input => {
   const { id, description, strokes, representative } = input;
   const durationsMs = [];
@@ -45,7 +46,7 @@ const records = cases.map(input => {
     let model;
     for (let n = 0; n < 3; n++) {
       const started = performance.now();
-      model = generateModel(description, strokes);
+      model = generator(description, strokes);
       durationsMs.push(performance.now() - started);
     }
     const stl = id + '.stl';
@@ -54,7 +55,7 @@ const records = cases.map(input => {
       writeFileSync(resolve(output, id + '-surface.json'), JSON.stringify({ vertices: model.vertices, faces: model.faces }));
     }
     return { ...input, success: true, durationsMs, medianMs: durationsMs.toSorted((a, b) => a - b)[1],
-      params: model.params, usedSketch: Boolean(model.profile), checks: model.checks,
+      params: model.params, usedSketch: Boolean(model.profile), provenance: model.provenance, checks: model.checks,
       vertices: model.vertices.length, triangles: model.faces.length, stl };
   } catch (error) {
     return { ...input, success: false, durationsMs, error: String(error) };

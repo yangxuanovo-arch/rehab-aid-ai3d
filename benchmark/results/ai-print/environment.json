@@ -1,0 +1,16 @@
+{
+  "pipeline": "本地 AI＋规则回退",
+  "platform": "Linux-6.8.0-1060-aws-x86_64-with-glibc2.35",
+  "cpu": "Intel(R) Xeon(R) Processor",
+  "logical_cpus": 8,
+  "node": "v24.22.3",
+  "python": "3.10.12",
+  "slicer": "PrusaSlicer-2.4.0+UNKNOWN based on Slic3r (with GUI support)",
+  "packages": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "tetgen": "0.7.0",
+    "meshio": "5.3.5",
+    "scikit-fem": "11.0.0"
+  }
+}

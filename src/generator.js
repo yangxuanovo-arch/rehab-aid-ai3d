@@ -8,49 +8,70 @@ const clamp = (value, low, high) => Math.max(low, Math.min(value, high));
 const mix = (a, b, t) => a + (b - a) * t;
 const number = '([0-9]+(?:\\.[0-9]+)?)\\s*(毫米|厘米|mm|cm)?';
 
-function dimension(text, names, min, max, fallback, warnings, label) {
+function dimension(text, names) {
   const forward = text.match(new RegExp('(?:' + names + ')\\s*(?:[:：=为]\\s*)?' + number));
   const reverse = text.match(new RegExp(number + '\\s*(?:的\\s*)?(?:' + names + ')'));
   const match = forward ?? (reverse?.[2] ? reverse : null);
-  if (!match) return fallback;
-  const value = Number(match[1]) * (['厘米', 'cm'].includes(match[2]) ? 10 : 1);
+  return match ? Number(match[1]) * (['厘米', 'cm'].includes(match[2]) ? 10 : 1) : undefined;
+}
+
+function bounded(value, min, max, fallback, warnings, label) {
+  if (value === undefined) return fallback;
   const limited = clamp(value, min, max);
   if (limited !== value) warnings.push(label + '超出模板范围，已限制为 ' + limited + ' mm。');
   return limited;
 }
 
-export function parseIntent(description, selected = 'auto') {
+export function readRuleIntent(description) {
   const text = description.normalize('NFKC').toLowerCase();
-  const inferred = /护具|护腕|护指|支具|矫形|brace|orthos|splint/.test(text) ? 'brace'
+  const kind = /护具|护腕|护指|支具|矫形|brace|orthos|splint/.test(text) ? 'brace'
     : /餐具|勺|筷|叉|utensil|spoon|fork|cutlery/.test(text) ? 'utensil'
-      : /笔|pencil|\bpen\b/.test(text) ? 'pen' : null;
+      : /笔|pencil|\bpen\b/.test(text) ? 'pen' : undefined;
+  const side = /左手|左腕|左侧|\bleft\b/.test(text) ? 'left' : /右手|右腕|右侧|\bright\b/.test(text) ? 'right' : undefined;
+  return {
+    kind, side, support: /震颤|颤抖|握力弱|tremor|weak\s*grip/.test(text) || undefined,
+    finger: /护指|手指|finger/.test(text) || undefined,
+    length: dimension(text, '长度|(?<!周)长|\\blength\\b'),
+    circumference: dimension(text, '周长|围度|腕围|指围|臂围|circumference|girth'),
+    wall: dimension(text, '壁厚|wall thickness|wall'),
+    diameter: dimension(text, '外径|直径|outer diameter|(?<!inner )\\bdiameter'),
+    bore: dimension(text, '孔径|内径|bore|inner diameter'),
+  };
+}
+
+export function resolveIntent(raw, selected = 'auto') {
+  const inferred = raw.kind;
   const kind = selected === 'auto' ? (inferred ?? 'pen') : selected;
   if (!families[kind]) throw new Error('未知辅具类别。');
   const warnings = [];
   if (!inferred && selected === 'auto') warnings.push('未识别到类别关键词，使用握笔器模板。');
   if (selected !== 'auto' && inferred && selected !== inferred) warnings.push('文字中的类别与所选类别不同，采用所选类别。');
   const defaults = families[kind];
-  const side = /左手|左腕|左侧|\bleft\b/.test(text) ? 'left' : /右手|右腕|右侧|\bright\b/.test(text) ? 'right' : 'neutral';
-  const support = /震颤|颤抖|握力弱|tremor|weak\s*grip/.test(text);
-  const finger = kind === 'brace' && /护指|手指|finger/.test(text);
-  const length = dimension(text, '长度|(?<!周)长|\\blength\\b', kind === 'utensil' ? 55 : 22, finger ? 70 : 140,
+  const side = raw.side ?? 'neutral';
+  const support = Boolean(raw.support);
+  const finger = kind === 'brace' && Boolean(raw.finger);
+  const length = bounded(raw.length, kind === 'utensil' ? 55 : 22, finger ? 70 : 140,
     finger ? 34 : defaults.length, warnings, '长度');
   const params = { kind, side, support, finger, length, warnings };
   if (kind === 'brace') {
-    params.circumference = dimension(text, '周长|围度|腕围|指围|臂围|circumference|girth', finger ? 42 : 100,
+    params.circumference = bounded(raw.circumference, finger ? 42 : 100,
       finger ? 95 : 320, finger ? 60 : defaults.circumference, warnings, '周长');
-    params.wall = dimension(text, '壁厚|wall thickness|wall', 2, 8,
+    params.wall = bounded(raw.wall, 2, 8,
       finger ? 3 : defaults.wall, warnings, '壁厚');
   } else {
-    params.diameter = dimension(text, '外径|直径|outer diameter|(?<!inner )\\bdiameter', 16, 55,
+    params.diameter = bounded(raw.diameter, 16, 55,
       defaults.diameter + (support ? 4 : 0), warnings, '外径');
-    params.bore = dimension(text, '孔径|内径|bore|inner diameter', 5, Math.min(24, params.diameter - 5),
+    params.bore = bounded(raw.bore, 5, Math.min(24, params.diameter - 5),
       Math.min(defaults.bore, params.diameter - 5), warnings, '孔径');
   }
   return params;
 }
 
-export function profileFromSketch(strokes) {
+export function parseIntent(description, selected = 'auto') {
+  return resolveIntent(readRuleIntent(description), selected);
+}
+
+export function sampleSketch(strokes) {
   const points = strokes.flat();
   if (points.length < 8) return null;
   const xs = points.map(p => p[0]), ys = points.map(p => p[1]);
@@ -72,6 +93,12 @@ export function profileFromSketch(strokes) {
   const valid = widths.filter(x => x !== null);
   if (valid.length < 7 || Math.max(...valid) < 0.04) return null;
   const maxWidth = Math.max(...valid);
+  return widths.map(width => width === null ? null : width / maxWidth);
+}
+
+export function profileFromSketch(strokes) {
+  const widths = sampleSketch(strokes);
+  if (!widths) return null;
   const filled = widths.map((w, i) => {
     if (w !== null) return w;
     const before = widths.slice(0, i).findLastIndex(x => x !== null);
@@ -80,12 +107,14 @@ export function profileFromSketch(strokes) {
       : mix(widths[before], widths[after], (i - before) / (after - before));
   });
   return filled.map((w, i) => clamp((filled[Math.max(0, i - 1)] + 2 * w
-    + filled[Math.min(i + 1, filled.length - 1)]) / (4 * maxWidth), 0.66, 1));
+    + filled[Math.min(i + 1, filled.length - 1)]) / 4, 0.66, 1));
 }
 
 export function generateModel(description, strokes = [], selected = 'auto') {
-  const params = parseIntent(description, selected);
-  const profile = profileFromSketch(strokes);
+  return buildModel(parseIntent(description, selected), profileFromSketch(strokes));
+}
+
+export function buildModel(params, profile) {
   const segments = 64, rows = 24, stride = segments + Number(params.kind === 'brace');
   const isBrace = params.kind === 'brace';
   const inner = isBrace ? params.circumference / (2 * Math.PI) + 0.75 : params.bore / 2;
