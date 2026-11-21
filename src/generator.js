@@ -1,4 +1,5 @@
 import { attributeMeasurements, normalizeMeasurements, normalizeMetricText } from './measurements.js';
+import { readSide } from './laterality.js';
 
 export const families = {
   pen: { label: '握笔器', length: 45, diameter: 28, bore: 10, load: 15 },
@@ -38,7 +39,7 @@ export function readRuleEvidence(description, selected = 'auto') {
   const kind = /护具|护腕|护指|支具|矫形|brace|orthos|splint/.test(text) ? 'brace'
     : /餐具|勺|筷|叉|utensil|spoon|fork|cutlery/.test(text) ? 'utensil'
       : /笔|pencil|\bpen\b/.test(text) ? 'pen' : undefined;
-  const side = /左手|左腕|左侧|\bleft\b/.test(text) ? 'left' : /右手|右腕|右侧|\bright\b/.test(text) ? 'right' : undefined;
+  const { side, blocked: sideBlocked } = readSide(text);
   const measurementText = normalizeMeasurements(description);
   const { dimensions, blocked } = attributeMeasurements(measurementText, selected === 'auto' ? kind : selected);
   const claimed = new Set(Object.values(dimensions).map(evidence => evidence.span[0]));
@@ -64,7 +65,7 @@ export function readRuleEvidence(description, selected = 'auto') {
     ...(/^(?:外径|(?:outer|outside|external|overall)\b.*|o\.?d\.?|width|wide|across(?: the outside)?|宽度|宽|横宽|最宽处|from side to side)$/u.test(dimensions.diameter?.label)
       ? { outerOnlyDiameter: true } : {}),
   };
-  return { raw, dimensions, blocked };
+  return { raw, dimensions, blocked, sideBlocked };
 }
 
 export function readRuleIntent(description) {
