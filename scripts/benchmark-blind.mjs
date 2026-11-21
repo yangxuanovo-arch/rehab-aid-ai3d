@@ -5,8 +5,22 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { generateAIModel, predictText } from '../src/ai.js';
 import { binarySTL, buildModel, readRuleIntent, resolveIntent } from '../src/generator.js';
 
-const evaluatedCommit = '38cec054a054ebaf0b5eb2dd3fd3283a88888f23';
-const datasetSha256 = '8042e9dd5725af92036bc1e5037b09ac72767f445f9f8e215a042e83c9c28853';
+const runs = new Map([
+  ['1', {
+    evaluatedCommit: '38cec054a054ebaf0b5eb2dd3fd3283a88888f23',
+    datasetSha256: '8042e9dd5725af92036bc1e5037b09ac72767f445f9f8e215a042e83c9c28853',
+    fixturePath: 'blind/rehab_aid_blind_test_set.json',
+    outputName: 'blind',
+    title: '盲测：独立编写的 60 条中英文请求',
+  }],
+  ['2', {
+    evaluatedCommit: '6829e756ea9295a093e3af534765eb5bb1f38261',
+    datasetSha256: '110426622e9aea27d34d206c56bf3ae7d2e5057bda326d2b3cab83dd3b64d228',
+    fixturePath: 'blind2/rehab_aid_blind_test_set_2.json',
+    outputName: 'blind2',
+    title: '盲测 2：独立编写的 60 条中英文请求',
+  }],
+]);
 const toleranceMm = 0.5;
 const minSlotConfidence = 0.62;
 const kindMap = new Map([['pen_grip', 'pen'], ['utensil_handle', 'utensil'], ['brace', 'brace']]);
@@ -18,7 +32,7 @@ const methods = ['model', 'rules', 'hybrid'];
 const generationMethods = ['rules', 'hybrid'];
 const generationFields = ['generated', 'stlValid', 'manifold', 'printable', 'endToEnd'];
 const repo = fileURLToPath(new URL('..', import.meta.url));
-const fixture = new URL('../benchmark/cases/blind/rehab_aid_blind_test_set.json', import.meta.url);
+const cases = new URL('../benchmark/cases/', import.meta.url);
 const out = new URL('../benchmark/results/', import.meta.url);
 
 function loadInputs(bytes) {
@@ -108,15 +122,18 @@ export function summarize(rows) {
   };
 }
 
-function markdown(metadata, summary) {
+function markdown(metadata, summary, { title, fixturePath, outputName }) {
   const tableRows = (routes, group, keys) => Object.entries(summary).flatMap(([lang, slice]) => routes.map(method =>
     '| ' + [lang, method, ...keys.map(key => {
       const { correct, total } = slice[group][method][key];
       return correct + '/' + total;
     })].join(' | ') + ' |'));
   return [
-    '# 盲测：独立编写的 60 条中英文请求', '',
+    '# ' + title, '',
     '请求由未查看仓库的独立会话编写，不是用户采集或临床数据。只评测一次，未用该集合训练、校准或调整实现。', '',
+    ...(outputName === 'blind2' ? [
+      '两轮之间合入了尺寸合并修复 #9；为保持评分口径，混合路线仍按建模参数评分，不改用报告中的原始提取值。两轮请求不同，不作同集前后比较。', '',
+    ] : []),
     '- 被测代码：' + metadata.evaluatedCommit,
     '- 原始请求集 SHA-256：' + metadata.datasetSha256,
     '- 运行环境：Node ' + metadata.node + '；UTC ' + metadata.runAt, '',
@@ -137,18 +154,21 @@ function markdown(metadata, summary) {
       + '不要求生成类别或尺寸正确。未做切片、实体打印、有限元仿真或临床验证。', '',
     '| 语言 | 路线 | 已生成 | STL 有效 | 流形 | 几何筛查通过 | 端到端通过 |',
     '|---|---|---:|---:|---:|---:|---:|', ...tableRows(generationMethods, 'generation', generationFields), '',
-    '[原始请求与标签](../cases/blind/rehab_aid_blind_test_set.json) · [逐例预测与检查](blind.json)', '',
+    '[原始请求与标签](../cases/' + fixturePath + ') · [逐例预测与检查](' + outputName + '.json)', '',
   ].join('\n');
 }
 
 function main() {
-  const resultJson = new URL('blind.json', out), resultMd = new URL('blind.md', out);
+  const run = runs.get(process.argv[2] ?? '1');
+  if (!run || process.argv.length > 3) throw new Error('Usage: node scripts/benchmark-blind.mjs [1|2]');
+  const { outputName, evaluatedCommit, datasetSha256, fixturePath } = run;
+  const resultJson = new URL(outputName + '.json', out), resultMd = new URL(outputName + '.md', out);
   if (existsSync(resultJson) || existsSync(resultMd)) throw new Error('Blind results already exist; refusing to overwrite');
   const git = (...args) => execFileSync('git', args, { cwd: repo, encoding: 'utf8' }).trim();
   if (git('diff', '--name-only', evaluatedCommit, '--', 'src') || git('status', '--porcelain', '--', 'src')) {
     throw new Error('Working source does not match evaluated commit');
   }
-  const bytes = readFileSync(fixture);
+  const bytes = readFileSync(new URL(fixturePath, cases));
   if (createHash('sha256').update(bytes).digest('hex') !== datasetSha256) throw new Error('Blind data checksum mismatch');
   const rows = loadInputs(bytes).map(evaluate);
   const metadata = { evaluatedCommit, datasetSha256, toleranceMm, minSlotConfidence,
@@ -156,8 +176,8 @@ function main() {
   const summary = { all: summarize(rows), zh: summarize(rows.filter(row => row.input.lang === 'zh')),
     en: summarize(rows.filter(row => row.input.lang === 'en')) };
   writeFileSync(resultJson, JSON.stringify({ metadata, summary, rows }, null, 2) + '\n', { flag: 'wx' });
-  writeFileSync(resultMd, markdown(metadata, summary), { flag: 'wx' });
-  console.log('Recorded ' + rows.length + ' blind requests in benchmark/results/blind.{json,md}.');
+  writeFileSync(resultMd, markdown(metadata, summary, run), { flag: 'wx' });
+  console.log('Recorded ' + rows.length + ' blind requests in benchmark/results/' + outputName + '.{json,md}.');
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();
