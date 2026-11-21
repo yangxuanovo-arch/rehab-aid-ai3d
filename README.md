@@ -18,13 +18,13 @@
 
 每个方案附测量、打印朝向、材料与清洁限制、切片准备和使用检查，指导单按当前模型尺寸下载，也包含在 JSON 报告中。0.4 mm 喷嘴、0.2 mm 层高等仅作切片起点，不是验证过的工艺。本版未做实体打印或临床验证。
 
-**免登录演示**：[打开适形工坊](https://rawcdn.githack.com/yangxuanovo-arch/rehab-aid-ai3d/98a0fc60a0ed771a477618565d459642be97fe89/index.html)。若 RawGitHack 显示外部内容提示，点击 **Open the page** 即可，无需账号。此地址指向公开 `site` 分支上的一个静态构建版本；发布新版本时，将 `npm run build` 生成的 `dist/` 内容更新到该分支，再用新的提交 SHA 更新演示链接。
+**免登录演示**：[打开适形工坊](https://rawcdn.githack.com/yangxuanovo-arch/rehab-aid-ai3d/afc24bf2bf37f97e28610ed4bb99e25bd75a580e/index.html)。若 RawGitHack 显示外部内容提示，点击 **Open the page** 即可，无需账号。此地址指向公开 `site` 分支上的一个静态构建版本；发布新版本时，将 `npm run build` 生成的 `dist/` 内容更新到该分支，再用新的提交 SHA 更新演示链接。
 
 备用部署：[GitHub Pages](https://yangxuanovo-arch.github.io/rehab-aid-ai3d/) 需先由仓库管理员在 [Settings → Pages](https://github.com/yangxuanovo-arch/rehab-aid-ai3d/settings/pages) 将 Source 设为 **GitHub Actions**。启用后，合并到 `main` 触发 [Deploy GitHub Pages](.github/workflows/pages.yml)；也可在 Actions 手动运行。
 
 ## 试用或本地运行
 
-打开网页后，点击「握笔器」「餐具手柄」「矫形护具」，即可填入草图及需求、生成模型。默认打开握笔器样例。也可以清空后从上到下画出辅具左右外缘，填写例如「右手握力弱，握笔器直径28mm，孔径10mm」或 `left wrist brace circumference 18cm length 65mm wall 4mm`，再点「生成 3D 原型」。支持 `mm`、`cm`、毫米、厘米。下载 STL 后用切片器按毫米导入。
+打开网页后，可先选择功能困难进入推荐方案，或从八种辅具卡片中直接开始。默认打开握笔器样例。套筒和腕／指壳体可填入文字与草图；钥匙助转柄、拉链拉环、拇指翻书架直接编辑专用尺寸。也可以清空后从上到下画出辅具左右外缘，填写例如「右手握力弱，握笔器直径28mm，孔径10mm」或 `left wrist brace circumference 18cm length 65mm wall 4mm`，再点「生成 3D 原型」。支持 `mm`、`cm`、毫米、厘米。下载 STL 后用切片器按毫米导入。
 
 ```sh
 # Node.js 22.12+。
