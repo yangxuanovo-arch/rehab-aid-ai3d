@@ -2,7 +2,9 @@
 
 「适形工坊」是一个无需登录、完全在浏览器中运行的设计原型。用户可以生成握笔器、餐具手柄以及开口式腕／指护具，预览模型并下载毫米单位的 STL。输入不上传；无模型 API、账号或后端。
 
-**演示入口（部署后）**：[GitHub Pages](https://yangxuanovo-arch.github.io/rehab-aid-ai3d/)。仓库管理员需先在 [Settings → Pages](https://github.com/yangxuanovo-arch/rehab-aid-ai3d/settings/pages) 将 Source 设为 **GitHub Actions**；合并到 `main` 后，[Deploy GitHub Pages](.github/workflows/pages.yml) 构建并更新站点。也可在 Actions 手动运行。
+**免登录演示**：[打开适形工坊](https://rawcdn.githack.com/yangxuanovo-arch/rehab-aid-ai3d/35e44ba7f5f26cd7757f23b74bef98297625e4e3/index.html)。若 RawGitHack 显示外部内容提示，点击 **Open the page** 即可，无需账号。此地址指向公开 `site` 分支上的一个静态构建版本；发布新版本时，将 `npm run build` 生成的 `dist/` 内容更新到该分支，再用新的提交 SHA 更新演示链接。
+
+备用部署：[GitHub Pages](https://yangxuanovo-arch.github.io/rehab-aid-ai3d/) 需先由仓库管理员在 [Settings → Pages](https://github.com/yangxuanovo-arch/rehab-aid-ai3d/settings/pages) 将 Source 设为 **GitHub Actions**。启用后，合并到 `main` 触发 [Deploy GitHub Pages](.github/workflows/pages.yml)；也可在 Actions 手动运行。
 
 ## 试用或本地运行
 
