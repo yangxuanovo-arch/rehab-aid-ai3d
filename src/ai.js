@@ -31,15 +31,19 @@ function dense(layer, input) {
 }
 
 function classify(head, input) {
-  const logits = dense(model.heads[head], input);
+  const layer = model.heads[head];
+  const logits = dense(layer, input);
   const max = Math.max(...logits), index = logits.indexOf(max);
-  return { value: model.labels[head][index], confidence: 1 / logits.reduce((a, z) => a + Math.exp(z - max), 0) };
+  return { value: model.labels[head][index],
+    confidence: 1 / logits.reduce((a, z) => a + Math.exp((z - max) / (layer.temperature ?? 1)), 0) };
 }
 
 export function predictText(description) {
   const text = description.normalize('NFKC').toLowerCase();
-  const vector = features(text.replace(number, '#'));
-  const intent = Object.fromEntries(intentFields.map(key => [key, classify(key, vector)]));
+  const masked = text.replace(number, '#');
+  const vector = features(masked);
+  const category = features(masked.split(separator, 1)[0], masked);
+  const intent = Object.fromEntries(intentFields.map(key => [key, classify(key, key === 'kind' ? category : vector)]));
   const matches = Array.from(text.matchAll(number));
   const slots = matches.map((match, i) => {
     const before = i ? matches[i - 1].index + matches[i - 1][0].length : 0;
@@ -61,14 +65,13 @@ export function predictSketch(strokes) {
   return { profile, coverage: input.slice(13).reduce((a, x) => a + x, 0) / 13 };
 }
 
-export function generateAIModel(description, strokes = [], selected = 'auto') {
+export function understandText(description, selected = 'auto') {
   const raw = readRuleIntent(description);
   const provenance = Object.fromEntries([...intentFields, ...dimensionFields]
     .map(key => [key, { source: raw[key] === undefined ? 'default' : 'rule' }]));
-  let text, sketch;
+  let text;
   try {
     text = predictText(description);
-    sketch = predictSketch(strokes);
   } catch {
     // Keep the deterministic generator usable if model inference fails.
   }
@@ -94,6 +97,17 @@ export function generateAIModel(description, strokes = [], selected = 'auto') {
     }
   }
   if (selected !== 'auto') provenance.kind = { source: 'manual' };
+  return { raw, provenance };
+}
+
+export function generateAIModel(description, strokes = [], selected = 'auto') {
+  const { raw, provenance } = understandText(description, selected);
+  let sketch;
+  try {
+    sketch = predictSketch(strokes);
+  } catch {
+    // Preserve the deterministic contour when sketch inference fails.
+  }
   const params = resolveIntent(raw, selected);
   const profile = sketch?.profile ?? profileFromSketch(strokes);
   provenance.profile = sketch ? { source: 'sketch', coverage: sketch.coverage } : { source: profile ? 'rule' : 'default' };

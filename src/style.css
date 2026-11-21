@@ -4,7 +4,7 @@ body{margin:0}
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.55;cursor:default}
-button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #398c7b;outline-offset:3px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #398c7b;outline-offset:3px}
 .top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:13px max(24px,calc((100% - 1120px)/2));background:#fbfdfb;gap:8px}
 .brand{display:flex;align-items:center;gap:11px;white-space:nowrap}
 .brand strong,.brand small{display:block;line-height:1.2}
@@ -17,6 +17,9 @@ main{max-width:1168px;padding:0 24px;margin:auto}
 h1{margin:0;font-size:clamp(2rem,5vw,3.35rem);letter-spacing:-.045em;line-height:1.2}
 h1 span{color:var(--accent)}
 .hero>p:last-child{margin:12px 0 0;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;list-style:none;padding:0;margin:0 0 14px;counter-reset:stage}
+.steps li{counter-increment:stage;display:flex;align-items:center;gap:6px;padding:5px 8px;background:#e4f2eb;color:#17594c;border-radius:7px;font-size:.77rem;font-weight:700}
+.steps li::before{content:counter(stage,decimal-leading-zero);font-size:.64rem;color:#326d61}
 #presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:3px 0 19px}
 .preset{display:flex;align-items:center;text-align:left;gap:10px;border:1px solid var(--line);border-radius:12px;padding:10px 13px;background:#fff;color:var(--ink);min-width:0}
 .preset:hover,.preset[aria-pressed=true]{border-color:#439481;background:#e9f6ee}
@@ -41,7 +44,11 @@ label small{font-weight:400;color:var(--muted);margin-left:4px}
 #sketch-hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#49655f;pointer-events:none;font-size:.75rem;white-space:nowrap}
 .hint{margin:6px 0 11px}
 .field{display:block;margin:9px 0 4px}
-textarea,select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#f8fbf9;color:var(--ink);font-size:.84rem}
+textarea,select,input[type=number]{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#f8fbf9;color:var(--ink);font-size:.84rem}
+#parameter-editor{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.parameter-fields,.exports{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.parameter-fields input,.parameter-fields select{display:block;margin-top:3px}
+h3{margin:0;font-size:.92rem}
 textarea{resize:vertical;display:block}
 .primary,.secondary{display:flex;align-items:center;justify-content:space-between;width:100%;border-radius:9px;padding:9px 12px;font-weight:800;margin-top:10px}
 .primary{border:1px solid #006b59;background:#006b59;color:#fff}
@@ -54,9 +61,13 @@ textarea{resize:vertical;display:block}
 .preview-tag{font-size:.66rem;top:10px;left:10px;letter-spacing:.08em;background:#101f24a8;padding:3px 7px;border-radius:5px}
 .preview-hint{font-size:.63rem;right:10px;bottom:8px}
 #preview-error{inset:25% 10%;text-align:center}
-.badges{display:flex;flex-wrap:wrap;gap:5px;margin:9px 0}
+#results{margin-top:12px}
+.check-list{list-style:none;padding:0;margin:6px 0}
+.check-list li{display:grid;grid-template-columns:fit-content(5em) 1fr;align-items:start;gap:2px 8px;border-bottom:1px solid var(--line);padding:5px 0;font-size:.77rem}
+.check-list p{grid-column:2;margin:0}
 .badge{border-radius:9px;padding:3px 6px;font-size:.65rem;background:#e4f4eb;color:#145b49}
 .badge.warn{background:#fff1dc;color:#814200}
+.badge.fail{background:#f9e5e5;color:#982424}
 .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:0}
 .metrics div{background:#f3f8f5;border-radius:7px;padding:4px 6px}
 .metrics dt{font-size:.65rem;color:var(--muted)}
@@ -68,3 +79,4 @@ footer strong{color:#276052;white-space:nowrap}
 footer p{margin:0}
 @media(max-width:760px){.workbench{grid-template-columns:1fr}.hero{padding-top:25px}}
 @media(max-width:450px){main{padding-inline:12px}.top{padding-inline:12px}.preset{padding:6px;gap:5px}.preset .symbol{min-width:24px;height:26px}.preset .arrow,.preset small{display:none}.preset strong{font-size:.76rem}footer{display:block}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:450px){.steps{grid-template-columns:repeat(3,minmax(0,1fr))}.panel{padding:12px}.exports{grid-template-columns:1fr;gap:0}textarea,select,input[type=number]{font-size:1rem}}

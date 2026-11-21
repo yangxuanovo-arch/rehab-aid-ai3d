@@ -17,6 +17,9 @@
         <h1>让草图变成<span>合手的辅具。</span></h1>
         <p>画个轮廓，写下需求。把握笔器、餐具手柄或矫形护具变成可下载的参数化 3D 打印原型。</p>
       </section>
+      <ol class="steps" aria-label="设计流程">
+        <li>草图</li><li>理解</li><li>参数</li><li>模型</li><li>校验</li><li>导出</li>
+      </ol>
       <nav id="presets" aria-label="一键试用样例"></nav>
       <div class="workbench">
         <section class="panel input-panel" aria-labelledby="input-title">
@@ -35,12 +38,21 @@
             <option value="pen">握笔器</option><option value="utensil">餐具手柄</option><option value="brace">矫形护具（腕／指）</option>
           </select>
           <button type="button" id="generate" class="primary">生成 3D 原型 <span>↗</span></button>
+          <form id="parameter-editor" hidden>
+            <h3>调整识别参数</h3>
+            <p class="hint">单位为毫米；应用调整将保留当前草图轮廓并重新校验。换类别请在上方选择后重新生成。</p>
+            <div id="parameter-fields" class="parameter-fields"></div>
+            <button type="submit" class="secondary">应用参数并重新校验 <span aria-hidden="true">↻</span></button>
+          </form>
         </section>
         <section class="panel output-panel" aria-labelledby="output-title">
           <div class="panel-head"><span>02</span><div><h2 id="output-title">预览与校验</h2><p id="model-label">选择样例，或输入需求后生成。</p></div></div>
           <div id="preview"><span class="preview-tag">3D / 原型预览</span><p id="preview-error" hidden></p><span class="preview-hint">拖拽旋转 · 滚动缩放</span></div>
           <div id="results" aria-live="polite"></div>
-          <button type="button" id="download" class="secondary" disabled>下载 STL <span>↓</span></button>
+          <div class="exports">
+            <button type="button" id="download" class="secondary" disabled>下载 STL <span aria-hidden="true">↓</span></button>
+            <button type="button" id="download-report" class="secondary" disabled>下载校验报告（JSON） <span aria-hidden="true">↓</span></button>
+          </div>
         </section>
       </div>
       <footer><strong>原型仿真 · 非实体打印</strong><p>文字模型和草图模型用合成样本训练，在本地运行；网格由参数化模板生成。浏览器检查不等于真实切片、实物试验或临床验证；护具仅用于设计展示，不用于医疗佩戴。</p></footer>

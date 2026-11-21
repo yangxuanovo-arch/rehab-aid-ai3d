@@ -1,4 +1,5 @@
 {
+  "pipeline": "纯规则基线",
   "platform": "Linux-6.8.0-1060-aws-x86_64-with-glibc2.35",
   "cpu": "Intel(R) Xeon(R) Processor",
   "logical_cpus": 8,
