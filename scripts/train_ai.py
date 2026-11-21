@@ -9,10 +9,12 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 WIDTH = 768
-NUM = re.compile(r'([0-9]+(?:\.[0-9]+)?)[ \t]*(毫米|厘米|mm|cm)?')
+KIND_WIDTH = 2048
+NUM = re.compile(r'([-+−]?(?:[0-9]+(?:\.[0-9]+)?|\.[0-9]+))[ \t]*(毫米|厘米|mm|cm)?')
 SEPARATOR = re.compile(r'[,，;；、。!?！？\n]')
 LABELS = {
     'kind': ['pen', 'utensil', 'brace', 'unknown'],
+    'kindLatin': ['pen', 'utensil', 'brace', 'unknown'],
     'side': ['neutral', 'left', 'right'],
     'support': [False, True],
     'finger': [False, True],
@@ -44,6 +46,32 @@ TRAIN_AUGMENT = {
 }
 TRAIN_INTROS = (('试着做一个', '我的需求是', '想要这样的', '做个', '帮忙画一下'),
                 ('looking for a', 'could I get a', 'please create a', 'I would like a', 'help me make a'))
+OBJECTS = {
+    'pen': ('钢笔|铅笔|蜡笔|毛笔|中性笔|圆珠笔|马克笔|触控笔|绘图笔|写字',
+            'fountain pen|mechanical pencil|ballpoint|biro|marker|crayon|stylus|paintbrush|handwriting|felt-tip'),
+    'utensil': ('汤匙|调羹|饭勺|餐叉|筷子|餐刀|餐夹|锅铲|喝汤|吃饭',
+                'spoon|dinner fork|chopsticks|table knife|ladle|cutlery|utensils|eating|feeding|mealtime'),
+    'wrist': ('手腕|腕关节|腕部|前臂|掌根|腕托',
+              'wrist|carpal joint|forearm|base of the palm|lower arm|wrist joint'),
+    'finger': ('指节|拇指|食指|中指|无名指|小指|指关节',
+               'finger joint|thumb|knuckle|ring finger|index finger|pinky|digit'),
+    'unknown': ('灯罩|手机壳|相机|风扇|杯子|衣架|鞋垫|台灯|玩具车|随便试一下',
+                'lamp shade|phone case|camera|fan|cup holder|coat hanger|shoe insole|car part|random thing|no idea yet'),
+}
+PROSE = (
+    ('我需要的是{object}。平时操控这个不方便，能先画个样子吗',
+     '手上用起来不太方便，想做个适配的辅助件，主要是给{object}用',
+     '能帮我弄一下吗？前面的尺寸还没量。这个是给{object}用的',
+     '先只做一件；考虑{object}使用时的需求，请给我一个初稿',
+     '给{object}试个适配件，暂时没确定尺寸，等确认方案再测量',
+     '{object}。做个合适的辅助件就行，不需要其他东西'),
+    ('Can you help me make an aid for my {object}? I have trouble with it.',
+     'It is tricky to use sometimes and I need a prototype. This one is for my {object}.',
+     'I can send measurements later. Would you sketch an attachment for my {object}?',
+     'Just one for now; it needs to work with my {object}, so please start with a rough model.',
+     'For my {object}: I want to try something easier to manage, dimensions to follow.',
+     'My {object}. Looking for some help using it; please do not assume my size.'),
+)
 SLOTS = {
     'length': [('长度|长|部件长度|轴向长度', '总长度|整体长度|全长'),
                ('length|long|axial length', 'overall length|part length|longitudinal length')],
@@ -135,22 +163,48 @@ def context(text, matches, i):
     return SEPARATOR.split(left)[-1][-25:], SEPARATOR.split(right)[0][:25]
 
 
-def features(*parts):
-    vector = np.zeros(WIDTH)
+def features(*parts, width=WIDTH, sizes=(1, 2, 3)):
+    vector = np.zeros(width)
     for channel, part in enumerate(parts):
         clean = '^' + re.sub(r'\s+', ' ', part).strip() + '$'
-        for n in (1, 2, 3):
+        for n in sizes:
             for start in range(len(clean) - n + 1):
                 code = 2166136261 ^ channel
                 for char in clean[start:start + n]:
                     code = ((code ^ ord(char)) * 16777619) & 0xffffffff
-                vector[code % WIDTH] += 1
+                vector[code % width] += 1
     return np.sqrt(vector) / max(1, np.sqrt(vector.sum()))
+
+
+def kind_latin_features(text):
+    return features(NUM.sub('#', text), width=KIND_WIDTH, sizes=(2, 3, 4, 5))
 
 
 def kind_features(text):
     masked = NUM.sub('#', text)
     return features(SEPARATOR.split(masked)[0], masked)
+
+
+def category_prose(rng, count):
+    cases = []
+    for i in range(count):
+        lang = (i // 5) % 2
+        category = list(CATEGORIES)[i % 5]
+        kind = 'brace' if category in ('finger', 'wrist') else category
+        phrase = pick(rng, OBJECTS[category][lang].split('|') + TRAIN_AUGMENT[category][lang].split('|'))
+        if lang and len(phrase) >= 5 and rng.random() < .12:
+            pos = int(rng.integers(1, len(phrase) - 1))
+            phrase = phrase[:pos] + phrase[pos + 1:]
+        text = phrase if rng.random() < .18 else pick(rng, PROSE[lang]).format(object=phrase)
+        if kind == 'unknown' and rng.random() < .30:
+            alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789' if lang else '天地方圆东西寻常山水花草甲乙丙丁'
+            text = ''.join(pick(rng, alphabet) for _ in range(int(rng.integers(3, 28))))
+        elif rng.random() < .36:
+            sizes = ['length 50 mm', 'width around 3 cm', 'not sure about the thickness'] if lang else [
+                '长度50毫米', '大概3厘米宽', '厚度还没定']
+            text = text + ('; ' if lang else '；') + pick(rng, sizes)
+        cases.append({'kind': kind, 'description': text})
+    return cases
 
 
 def rounded(array):
@@ -240,13 +294,21 @@ def main():
     normalized = [normalize(row['description']) for row in train]
     text_x = np.array([features(NUM.sub('#', t)) for t in normalized])
     heads = {key: fit_head(text_x, [values.index(row[key]) for row in train], len(values))
-             for key, values in LABELS.items() if key not in ('slot', 'kind')}
-    kind_targets = [LABELS['kind'].index(row['kind']) for row in train]
-    heads['kind'] = fit_head(np.array([kind_features(t) for t in normalized]), kind_targets, len(LABELS['kind']), 600)
-    calibration = make_text(np.random.default_rng(6047), 600, False)
+             for key, values in LABELS.items() if key not in ('slot', 'kind', 'kindLatin')}
+    original_calibration = make_text(np.random.default_rng(6047), 600, False)
+    heads['kind'] = fit_head(np.array([kind_features(t) for t in normalized]),
+                             [LABELS['kind'].index(row['kind']) for row in train], len(LABELS['kind']), 600)
     heads['kind']['temperature'] = temperature_scale(heads['kind'],
-        np.array([kind_features(normalize(row['description'])) for row in calibration]),
-        [LABELS['kind'].index(row['kind']) for row in calibration])
+        np.array([kind_features(normalize(row['description'])) for row in original_calibration]),
+        [LABELS['kind'].index(row['kind']) for row in original_calibration])
+    kind_train = train + category_prose(np.random.default_rng(16271), 5000)
+    kind_targets = [LABELS['kindLatin'].index(row['kind']) for row in kind_train]
+    heads['kindLatin'] = fit_head(np.array([kind_latin_features(normalize(row['description'])) for row in kind_train]),
+                                  kind_targets, len(LABELS['kindLatin']), 600)
+    calibration = original_calibration + category_prose(np.random.default_rng(46127), 600)
+    heads['kindLatin']['temperature'] = temperature_scale(heads['kindLatin'],
+        np.array([kind_latin_features(normalize(row['description'])) for row in calibration]),
+        [LABELS['kindLatin'].index(row['kind']) for row in calibration])
     slot_x, slot_y = [], []
     for row, text in zip(train, normalized):
         matches = list(NUM.finditer(text))
@@ -255,7 +317,7 @@ def main():
             slot_y.append(LABELS['slot'].index(label))
     heads['slot'] = fit_head(np.array(slot_x), slot_y, len(LABELS['slot']))
     sketch = fit_sketch(make_sketch(np.random.default_rng(42), 2400, False), np.random.default_rng(43))
-    model = {'featureWidth': WIDTH, 'labels': LABELS, 'heads': heads, 'sketch': sketch}
+    model = {'featureWidth': WIDTH, 'categoryWidth': KIND_WIDTH, 'labels': LABELS, 'heads': heads, 'sketch': sketch}
     path = ROOT / 'src' / 'trained-model.js'
     path.write_text('export default ' + json.dumps(model, separators=(',', ':')) + ';\n')
     tests = {'text': make_text(np.random.default_rng(202703), 240, True),
@@ -264,6 +326,7 @@ def main():
     args.test_data.parent.mkdir(parents=True, exist_ok=True)
     args.test_data.write_text(json.dumps(tests, ensure_ascii=False) + '\n')
     print(f'Trained on {len(train)} descriptions, {len(slot_y)} number contexts, 2400 sketches; model {path.stat().st_size} bytes.')
+    print(f'Category: {len(kind_train)} descriptions; {len(calibration)} separate generated calibration descriptions.')
     print(f'Held out {len(tests["text"])} descriptions and {len(tests["sketch"])} sketches.')
 
 

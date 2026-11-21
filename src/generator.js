@@ -6,19 +6,20 @@ export const families = {
 
 const clamp = (value, low, high) => Math.max(low, Math.min(value, high));
 const mix = (a, b, t) => a + (b - a) * t;
-const number = '([0-9]+(?:\\.[0-9]+)?)\\s*(毫米|厘米|mm|cm)?';
+const number = '([-+−]?(?:[0-9]+(?:\\.[0-9]+)?|\\.[0-9]+))\\s*(毫米|厘米|mm|cm)?';
+const dimensionLabels = { length: '长度', diameter: '外径', bore: '孔径', circumference: '周长', wall: '壁厚' };
 
 function dimension(text, names) {
   const forward = text.match(new RegExp('(?:' + names + ')\\s*(?:[:：=为]\\s*)?' + number));
   const reverse = text.match(new RegExp(number + '\\s*(?:的\\s*)?(?:' + names + ')'));
   const match = forward ?? (reverse?.[2] ? reverse : null);
-  return match ? Number(match[1]) * (['厘米', 'cm'].includes(match[2]) ? 10 : 1) : undefined;
+  return match ? Number(match[1].replace('−', '-')) * (['厘米', 'cm'].includes(match[2]) ? 10 : 1) : undefined;
 }
 
-function bounded(value, min, max, fallback, warnings, label) {
+function bounded(value, min, max, fallback, warnings, key) {
   if (value === undefined) return fallback;
   const limited = clamp(value, min, max);
-  if (limited !== value) warnings.push(label + '超出模板范围，已限制为 ' + limited + ' mm。');
+  if (limited !== value) warnings.set(key, dimensionLabels[key] + '超出模板范围，已限制为 ' + limited + ' mm。');
   return limited;
 }
 
@@ -39,32 +40,31 @@ export function readRuleIntent(description) {
   };
 }
 
-export function resolveIntent(raw, selected = 'auto') {
+export function resolveIntent(raw, selected = 'auto', warnings = new Map()) {
   const inferred = raw.kind;
   const kind = selected === 'auto' ? (inferred ?? 'pen') : selected;
   if (!families[kind]) throw new Error('未知辅具类别。');
-  const warnings = [];
-  if (!inferred && selected === 'auto') warnings.push('未识别到类别关键词，使用握笔器模板。');
-  if (selected !== 'auto' && inferred && selected !== inferred) warnings.push('文字中的类别与所选类别不同，采用所选类别。');
+  if (!inferred && selected === 'auto') warnings.set('kind', '未识别到类别关键词，使用握笔器模板。');
+  if (selected !== 'auto' && inferred && selected !== inferred) warnings.set('kind', '文字中的类别与所选类别不同，采用所选类别。');
   const defaults = families[kind];
   const side = raw.side ?? 'neutral';
   const support = Boolean(raw.support);
   const finger = kind === 'brace' && Boolean(raw.finger);
   const length = bounded(raw.length, kind === 'utensil' ? 55 : 22, finger ? 70 : 140,
-    finger ? 34 : defaults.length, warnings, '长度');
-  const params = { kind, side, support, finger, length, warnings };
+    finger ? 34 : defaults.length, warnings, 'length');
+  const params = { kind, side, support, finger, length };
   if (kind === 'brace') {
     params.circumference = bounded(raw.circumference, finger ? 42 : 100,
-      finger ? 95 : 320, finger ? 60 : defaults.circumference, warnings, '周长');
+      finger ? 95 : 320, finger ? 60 : defaults.circumference, warnings, 'circumference');
     params.wall = bounded(raw.wall, 2, 8,
-      finger ? 3 : defaults.wall, warnings, '壁厚');
+      finger ? 3 : defaults.wall, warnings, 'wall');
   } else {
     params.diameter = bounded(raw.diameter, 16, 55,
-      defaults.diameter + (support ? 4 : 0), warnings, '外径');
+      defaults.diameter + (support ? 4 : 0), warnings, 'diameter');
     params.bore = bounded(raw.bore, 5, Math.min(24, params.diameter - 5),
-      Math.min(defaults.bore, params.diameter - 5), warnings, '孔径');
+      Math.min(defaults.bore, params.diameter - 5), warnings, 'bore');
   }
-  return params;
+  return { ...params, warnings: [...warnings.values()] };
 }
 
 export function parseIntent(description, selected = 'auto') {
@@ -72,19 +72,22 @@ export function parseIntent(description, selected = 'auto') {
 }
 
 export function updateModelParameters(model, edits) {
-  const { params, profile, provenance } = model;
-  const raw = { ...params, ...edits, kind: params.kind };
+  const { params, profile, provenance, parameterWarnings } = model;
+  const changes = Object.entries(edits).filter(([key, value]) => value !== params[key]);
+  const raw = { ...params, ...Object.fromEntries(changes), kind: params.kind };
   const useDefaultDiameter = edits.support !== undefined && edits.support !== params.support
     && (edits.diameter === undefined || edits.diameter === params.diameter) && provenance.diameter?.source === 'default';
   if (useDefaultDiameter) delete raw.diameter;
-  const next = resolveIntent(raw);
+  const warnings = new Map(parameterWarnings);
+  for (const [key] of changes) warnings.delete(key);
+  const next = resolveIntent(raw, 'auto', warnings);
   const sources = { ...provenance };
-  for (const [key, value] of Object.entries(edits)) {
-    if (next[key] !== undefined && value !== params[key]) {
+  for (const [key] of changes) {
+    if (next[key] !== undefined) {
       sources[key] = { source: 'manual' };
     }
   }
-  return { ...buildModel(next, profile), provenance: sources };
+  return { ...buildModel(next, profile), provenance: sources, parameterWarnings: warnings };
 }
 
 export function sampleSketch(strokes) {

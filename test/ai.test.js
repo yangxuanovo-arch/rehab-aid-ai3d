@@ -56,3 +56,47 @@ test('edited parameters rebuild geometry and validation without rerunning infere
   assert.equal(supported.params.diameter, sleeve.params.diameter + 4);
   assert.equal(supported.provenance.diameter.source, 'default');
 });
+
+test('clamp warnings survive rechecks until the corresponding parameter is edited', () => {
+  const result = generateAIModel('腕托，前臂周长999厘米，长度999厘米，壁厚0.01毫米');
+  assert.equal(result.params.kind, 'brace');
+  assert.deepEqual([result.params.length, result.params.circumference, result.params.wall], [140, 320, 2]);
+  const clampWarnings = result.params.warnings.filter(warning => warning.includes('超出模板范围'));
+  assert.equal(clampWarnings.length, 3);
+  const reapplied = updateModelParameters(result, { length: 140, circumference: 320, wall: 2 });
+  assert.deepEqual(reapplied.params.warnings, result.params.warnings);
+  const edited = updateModelParameters(reapplied, { wall: 4, side: 'left' });
+  assert.deepEqual(edited.params.warnings, result.params.warnings.filter(warning => !warning.startsWith('壁厚')));
+  const reclamped = updateModelParameters(edited, { wall: 100 });
+  assert.ok(reclamped.params.warnings.some(warning => warning.startsWith('壁厚') && warning.includes('8 mm')));
+  assert.deepEqual(updateModelParameters(reclamped, { wall: 8 }).params.warnings, reclamped.params.warnings);
+});
+
+test('fallback intent stays at template defaults without model confidence', () => {
+  const result = generateAIModel('asdf qwerty zzz 123');
+  assert.equal(result.params.kind, 'pen');
+  assert.equal(result.params.side, 'neutral');
+  assert.equal(result.params.support, false);
+  for (const key of ['kind', 'side', 'support', 'length']) {
+    assert.deepEqual(result.provenance[key], { source: 'default' });
+  }
+  const pen = generateAIModel('pen grip');
+  assert.deepEqual(pen.provenance.side, { source: 'default' });
+  assert.deepEqual(pen.provenance.support, { source: 'default' });
+  assert.notEqual(generateAIModel('右手握力弱，握笔器').provenance.support.source, 'default');
+});
+
+test('signed negative and zero dimensions are clamped to the lower limits', () => {
+  const description = 'pen length -999mm, diameter 999cm, bore 0.01mm';
+  assert.equal(readRuleIntent(description).length, -999);
+  assert.equal(predictText(description).slots[0].mm, -999);
+  const { params } = generateAIModel(description);
+  assert.deepEqual([params.length, params.diameter, params.bore], [22, 55, 5]);
+  assert.equal(params.warnings.length, 3);
+  assert.match(params.warnings.join(' '), /长度.*22 mm/);
+
+  const zeroAndUnicodeMinus = generateAIModel('握笔器，−.2厘米的长度，外径0mm');
+  assert.equal(readRuleIntent('握笔器，−.2厘米的长度').length, -2);
+  assert.deepEqual([zeroAndUnicodeMinus.params.length, zeroAndUnicodeMinus.params.diameter], [22, 16]);
+  assert.equal(zeroAndUnicodeMinus.params.warnings.length, 2);
+});
