@@ -1,4 +1,4 @@
-import { buildModel, profileFromSketch, readRuleIntent, resolveIntent, sampleSketch } from './generator.js';
+import { buildModel, profileFromSketch, readRuleEvidence, resolveIntent, sampleSketch } from './generator.js';
 import { normalizeMetricText } from './measurements.js';
 import model from './trained-model.js';
 
@@ -58,7 +58,8 @@ export function predictText(description) {
     const left = text.slice(before, match.index).split(separator).at(-1).slice(-25);
     const right = text.slice(end, matches[i + 1]?.index).split(separator)[0].slice(0, 25);
     const prediction = classify('slot', features(left, right));
-    return { ...prediction, mm: Number(match[1].replace('−', '-')) * (['厘米', 'cm'].includes(match[2]) ? 10 : 1) };
+    return { ...prediction, mm: Number(match[1].replace('−', '-')) * (['厘米', 'cm'].includes(match[2]) ? 10 : 1),
+      span: [match.index, match.index + match[1].length], unit: match[2] ?? null };
   });
   return { intent, slots };
 }
@@ -73,9 +74,21 @@ export function predictSketch(strokes) {
 }
 
 export function understandText(description, selected = 'auto') {
-  const raw = readRuleIntent(description);
+  const { raw, dimensions } = readRuleEvidence(description);
   const provenance = Object.fromEntries([...intentFields, ...dimensionFields]
     .map(key => [key, { source: raw[key] === undefined ? 'default' : 'rule' }]));
+  const claimed = new Set();
+  const ruleMatches = Object.entries(dimensions).filter(([, evidence]) => evidence)
+    .sort(([, a], [, b]) => Number(b.forward) - Number(a.forward));
+  for (const [key, { span }] of ruleMatches) {
+    if (claimed.has(span[0])) {
+      delete raw[key];
+      provenance[key] = { source: 'default' };
+    } else {
+      claimed.add(span[0]);
+      provenance[key].span = span;
+    }
+  }
   let text;
   try {
     text = predictText(description);
@@ -89,22 +102,20 @@ export function understandText(description, selected = 'auto') {
     for (const [key, { value, confidence }] of Object.entries(text.intent)) {
       if (requestEvidence && confidence >= minTextConfidence && value !== defaultIntent[key]
         && (key !== 'kind' || selected === 'auto')
-        && (raw[key] === undefined || raw[key] === value)) {
+        && raw[key] === undefined) {
         raw[key] = value;
         provenance[key] = { source: 'text', confidence };
       }
     }
     const best = {};
-    const kind = selected === 'auto' ? (raw.kind ?? 'pen') : selected;
-    const allowed = kind === 'brace' ? ['length', 'circumference', 'wall'] : ['length', 'diameter', 'bore'];
     for (const slot of requestEvidence ? text.slots : []) {
-      if (allowed.includes(slot.value) && slot.confidence >= minSlotConfidence
+      if (dimensionFields.includes(slot.value) && raw[slot.value] === undefined && slot.unit
+        && !claimed.has(slot.span[0]) && slot.confidence >= minSlotConfidence
         && slot.confidence > (best[slot.value]?.confidence ?? 0)) best[slot.value] = slot;
     }
-    for (const [key, { mm, confidence }] of Object.entries(best)) {
-      if (raw[key] !== undefined && Math.abs(raw[key] - mm) > 1e-8) continue;
+    for (const [key, { mm, confidence, span }] of Object.entries(best)) {
       raw[key] = mm;
-      provenance[key] = { source: 'text', confidence };
+      provenance[key] = { source: 'text', confidence, span };
     }
   }
   if (selected !== 'auto') provenance.kind = { source: 'manual' };
@@ -128,5 +139,6 @@ export function generateAIModel(description, strokes = [], selected = 'auto') {
       delete provenance[key];
     }
   }
-  return { ...buildModel(params, profile), provenance, parameterWarnings };
+  const extracted = Object.fromEntries(Object.entries(raw).filter(([, value]) => value !== undefined));
+  return { ...buildModel(params, profile), extracted, provenance, parameterWarnings };
 }

@@ -122,3 +122,35 @@ test('written Chinese metric dimensions are shared by rule and learned text path
   assert.equal(readRuleIntent('护腕，周长一百二毫米').circumference, undefined);
   assert.equal(generateAIModel('握笔器，长度负两公分').params.length, 22);
 });
+
+test('extracted dimensions survive geometry limits, template selection, edits and rechecks', () => {
+  const model = generateAIModel('左手握笔器，长度1.7公分，外径20毫米，孔径16毫米，指围58毫米');
+  assert.deepEqual(model.extracted,
+    { kind: 'pen', side: 'left', length: 17, diameter: 20, bore: 16, circumference: 58 });
+  assert.equal(model.params.length, 22);
+  assert.equal(model.params.bore, 15);
+  assert.equal(model.params.circumference, undefined);
+  assert.match(model.params.warnings.join(' '), /长度.*22 mm/);
+  assert.equal(updateModelParameters(model, { length: 22 }).extracted.length, 17);
+  const edited = updateModelParameters(model, { length: 30 });
+  assert.equal(edited.extracted.length, 17);
+  assert.equal(edited.params.length, 30);
+  assert.equal(edited.provenance.length.source, 'manual');
+});
+
+test('a named measurement owns its numeric span and a default does not become an extracted value', () => {
+  const description = 'Pen grip length 42 mm diameter';
+  assert.equal(readRuleIntent(description).diameter, 42);
+  const model = generateAIModel(description);
+  assert.deepEqual(model.extracted, { kind: 'pen', length: 42 });
+  assert.equal(model.provenance.length.source, 'rule');
+  assert.deepEqual(model.provenance.length.span, [16, 18]);
+  assert.equal(model.provenance.diameter.source, 'default');
+  assert.equal(model.params.diameter, 28);
+});
+
+test('inner and outer measurements retain distinct spans in mixed phrasing', () => {
+  const model = generateAIModel('Left spoon handle; internal diameter of 8 mm, outer diameter is 28 mm, 7 cm long.');
+  assert.deepEqual(model.extracted, { kind: 'utensil', side: 'left', length: 70, diameter: 28, bore: 8 });
+  assert.notDeepEqual(model.provenance.diameter.span, model.provenance.bore.span);
+});

@@ -1,0 +1,1529 @@
+{
+  "toleranceMm": 0.5,
+  "results": {
+    "dev": {
+      "summary": {
+        "all": {
+          "model": {
+            "kind": [
+              18,
+              18
+            ],
+            "side": [
+              8,
+              12
+            ],
+            "length": [
+              15,
+              18
+            ],
+            "circumference": [
+              6,
+              7
+            ],
+            "wall": [
+              5,
+              6
+            ],
+            "diameter": [
+              11,
+              11
+            ],
+            "bore": [
+              3,
+              5
+            ],
+            "sizes": [
+              40,
+              47
+            ]
+          },
+          "rules": {
+            "kind": [
+              18,
+              18
+            ],
+            "side": [
+              12,
+              12
+            ],
+            "length": [
+              17,
+              18
+            ],
+            "circumference": [
+              7,
+              7
+            ],
+            "wall": [
+              6,
+              6
+            ],
+            "diameter": [
+              11,
+              11
+            ],
+            "bore": [
+              4,
+              5
+            ],
+            "sizes": [
+              45,
+              47
+            ]
+          },
+          "hybrid": {
+            "kind": [
+              18,
+              18
+            ],
+            "side": [
+              12,
+              12
+            ],
+            "length": [
+              17,
+              18
+            ],
+            "circumference": [
+              7,
+              7
+            ],
+            "wall": [
+              6,
+              6
+            ],
+            "diameter": [
+              11,
+              11
+            ],
+            "bore": [
+              4,
+              5
+            ],
+            "sizes": [
+              45,
+              47
+            ]
+          }
+        },
+        "zh": {
+          "model": {
+            "kind": [
+              9,
+              9
+            ],
+            "side": [
+              2,
+              6
+            ],
+            "length": [
+              9,
+              9
+            ],
+            "circumference": [
+              3,
+              4
+            ],
+            "wall": [
+              3,
+              3
+            ],
+            "diameter": [
+              5,
+              5
+            ],
+            "bore": [
+              2,
+              2
+            ],
+            "sizes": [
+              22,
+              23
+            ]
+          },
+          "rules": {
+            "kind": [
+              9,
+              9
+            ],
+            "side": [
+              6,
+              6
+            ],
+            "length": [
+              9,
+              9
+            ],
+            "circumference": [
+              4,
+              4
+            ],
+            "wall": [
+              3,
+              3
+            ],
+            "diameter": [
+              5,
+              5
+            ],
+            "bore": [
+              2,
+              2
+            ],
+            "sizes": [
+              23,
+              23
+            ]
+          },
+          "hybrid": {
+            "kind": [
+              9,
+              9
+            ],
+            "side": [
+              6,
+              6
+            ],
+            "length": [
+              9,
+              9
+            ],
+            "circumference": [
+              4,
+              4
+            ],
+            "wall": [
+              3,
+              3
+            ],
+            "diameter": [
+              5,
+              5
+            ],
+            "bore": [
+              2,
+              2
+            ],
+            "sizes": [
+              23,
+              23
+            ]
+          }
+        },
+        "en": {
+          "model": {
+            "kind": [
+              9,
+              9
+            ],
+            "side": [
+              6,
+              6
+            ],
+            "length": [
+              6,
+              9
+            ],
+            "circumference": [
+              3,
+              3
+            ],
+            "wall": [
+              2,
+              3
+            ],
+            "diameter": [
+              6,
+              6
+            ],
+            "bore": [
+              1,
+              3
+            ],
+            "sizes": [
+              18,
+              24
+            ]
+          },
+          "rules": {
+            "kind": [
+              9,
+              9
+            ],
+            "side": [
+              6,
+              6
+            ],
+            "length": [
+              8,
+              9
+            ],
+            "circumference": [
+              3,
+              3
+            ],
+            "wall": [
+              3,
+              3
+            ],
+            "diameter": [
+              6,
+              6
+            ],
+            "bore": [
+              2,
+              3
+            ],
+            "sizes": [
+              22,
+              24
+            ]
+          },
+          "hybrid": {
+            "kind": [
+              9,
+              9
+            ],
+            "side": [
+              6,
+              6
+            ],
+            "length": [
+              8,
+              9
+            ],
+            "circumference": [
+              3,
+              3
+            ],
+            "wall": [
+              3,
+              3
+            ],
+            "diameter": [
+              6,
+              6
+            ],
+            "bore": [
+              2,
+              3
+            ],
+            "sizes": [
+              22,
+              24
+            ]
+          }
+        }
+      },
+      "rows": [
+        {
+          "input": {
+            "language": "zh",
+            "kind": "pen",
+            "fields": {
+              "length": 17,
+              "diameter": 26,
+              "bore": 8,
+              "side": "left"
+            },
+            "description": "左手用握笔器，长度17毫米，外径2.6厘米，孔径8毫米。"
+          },
+          "model": {
+            "kind": "pen",
+            "side": "neutral",
+            "length": 17,
+            "diameter": 26,
+            "bore": 8
+          },
+          "rules": {
+            "kind": "pen",
+            "side": "left",
+            "length": 17,
+            "diameter": 26,
+            "bore": 8
+          },
+          "hybrid": {
+            "kind": "pen",
+            "side": "left",
+            "length": 17,
+            "diameter": 26,
+            "bore": 8
+          }
+        },
+        {
+          "input": {
+            "language": "zh",
+            "kind": "pen",
+            "fields": {
+              "length": 49,
+              "diameter": 32,
+              "side": "right"
+            },
+            "description": "给右手做个握笔套，49毫米的长度；外径三点二公分。"
+          },
+          "model": {
+            "kind": "pen",
+            "side": "neutral",
+            "length": 49,
+            "diameter": 32
+          },
+          "rules": {
+            "kind": "pen",
+            "side": "right",
+            "length": 49,
+            "diameter": 32
+          },
+          "hybrid": {
+            "kind": "pen",
+            "side": "right",
+            "length": 49,
+            "diameter": 32
+          }
+        },
+        {
+          "input": {
+            "language": "zh",
+            "kind": "pen",
+            "fields": {
+              "length": 58,
+              "circumference": 92
+            },
+            "description": "握笔器，长度58毫米。我想额外记录手指周长92毫米。"
+          },
+          "model": {
+            "kind": "pen",
+            "side": "neutral",
+            "length": 58
+          },
+          "rules": {
+            "kind": "pen",
+            "side": "neutral",
+            "finger": true,
+            "length": 58,
+            "circumference": 92
+          },
+          "hybrid": {
+            "kind": "pen",
+            "side": "neutral",
+            "finger": true,
+            "length": 58,
+            "circumference": 92
+          }
+        },
+        {
+          "input": {
+            "language": "zh",
+            "kind": "utensil",
+            "fields": {
+              "length": 150,
+              "diameter": 31,
+              "bore": 12,
+              "side": "left"
+            },
+            "description": "左手的长勺柄，长度十五公分，3.1厘米的直径，12毫米的孔径。"
+          },
+          "model": {
+            "kind": "utensil",
+            "side": "left",
+            "length": 150,
+            "diameter": 31,
+            "bore": 12
+          },
+          "rules": {
+            "kind": "utensil",
+            "side": "left",
+            "length": 150,
+            "diameter": 31,
+            "bore": 12
+          },
+          "hybrid": {
+            "kind": "utensil",
+            "side": "left",
+            "length": 150,
+            "diameter": 31,
+            "bore": 12
+          }
+        },
+        {
+          "input": {
+            "language": "zh",
+            "kind": "utensil",
+            "fields": {
+              "length": 88,
+              "diameter": 37,
+              "side": "right"
+            },
+            "description": "右手拿的餐具手柄，长度88，外径37。"
+          },
+          "model": {
+            "kind": "utensil",
+            "side": "right",
+            "length": 88,
+            "diameter": 37
+          },
+          "rules": {
+            "kind": "utensil",
+            "side": "right",
+            "length": 88,
+            "diameter": 37
+          },
+          "hybrid": {
+            "kind": "utensil",
+            "side": "right",
+            "length": 88,
+            "diameter": 37
+          }
+        },
+        {
+          "input": {
+            "language": "zh",
+            "kind": "utensil",
+            "fields": {
+              "length": 76,
+              "diameter": 27
+            },
+            "description": "叉子手柄，长度76毫米，外径27毫米，我有2把叉子。"
+          },
+          "model": {
+            "kind": "utensil",
+            "side": "neutral",
+            "length": 76,
+            "diameter": 27
+          },
+          "rules": {
+            "kind": "utensil",
+            "side": "neutral",
+            "length": 76,
+            "diameter": 27
+          },
+          "hybrid": {
+            "kind": "utensil",
+            "side": "neutral",
+            "length": 76,
+            "diameter": 27
+          }
+        },
+        {
+          "input": {
+            "language": "zh",
+            "kind": "brace",
+            "fields": {
+              "length": 160,
+              "circumference": 197,
+              "wall": 9,
+              "side": "right"
+            },
+            "description": "右腕护具，腕围19.7公分，长度16厘米，壁厚9毫米。"
+          },
+          "model": {
+            "kind": "brace",
+            "side": "neutral",
+            "circumference": 197,
+            "length": 160,
+            "wall": 9
+          },
+          "rules": {
+            "kind": "brace",
+            "side": "right",
+            "length": 160,
+            "circumference": 197,
+            "wall": 9
+          },
+          "hybrid": {
+            "kind": "brace",
+            "side": "right",
+            "length": 160,
+            "circumference": 197,
+            "wall": 9
+          }
+        },
+        {
+          "input": {
+            "language": "zh",
+            "kind": "brace",
+            "fields": {
+              "length": 53,
+              "circumference": 165,
+              "wall": 3.2,
+              "side": "left"
+            },
+            "description": "左手的护腕，长度5.3公分；一百六十五毫米的腕围，壁厚3.2毫米。"
+          },
+          "model": {
+            "kind": "brace",
+            "side": "neutral",
+            "length": 53,
+            "circumference": 165,
+            "wall": 3.2
+          },
+          "rules": {
+            "kind": "brace",
+            "side": "left",
+            "length": 53,
+            "circumference": 165,
+            "wall": 3.2
+          },
+          "hybrid": {
+            "kind": "brace",
+            "side": "left",
+            "length": 53,
+            "circumference": 165,
+            "wall": 3.2
+          }
+        },
+        {
+          "input": {
+            "language": "zh",
+            "kind": "brace",
+            "fields": {
+              "length": 47,
+              "circumference": 61,
+              "wall": 2.8
+            },
+            "description": "护指，长度47毫米，指围61毫米，壁厚2.8毫米。"
+          },
+          "model": {
+            "kind": "brace",
+            "side": "neutral",
+            "length": 47,
+            "circumference": 61,
+            "wall": 2.8
+          },
+          "rules": {
+            "kind": "brace",
+            "side": "neutral",
+            "finger": true,
+            "length": 47,
+            "circumference": 61,
+            "wall": 2.8
+          },
+          "hybrid": {
+            "kind": "brace",
+            "side": "neutral",
+            "finger": true,
+            "length": 47,
+            "circumference": 61,
+            "wall": 2.8
+          }
+        },
+        {
+          "input": {
+            "language": "en",
+            "kind": "pen",
+            "fields": {
+              "length": 53,
+              "diameter": 29,
+              "bore": 7,
+              "side": "right"
+            },
+            "description": "A right pen grip, length 5.3 cm, outer diameter 29 mm, bore 7 mm."
+          },
+          "model": {
+            "kind": "pen",
+            "side": "right",
+            "length": 53,
+            "diameter": 29,
+            "bore": 7
+          },
+          "rules": {
+            "kind": "pen",
+            "side": "right",
+            "length": 53,
+            "diameter": 29,
+            "bore": 7
+          },
+          "hybrid": {
+            "kind": "pen",
+            "side": "right",
+            "length": 53,
+            "diameter": 29,
+            "bore": 7
+          }
+        },
+        {
+          "input": {
+            "language": "en",
+            "kind": "pen",
+            "fields": {
+              "length": 18,
+              "diameter": 20,
+              "bore": 16,
+              "side": "left"
+            },
+            "description": "Left pencil grip: 18 mm length, 20 mm outer diameter, 16 mm inner diameter."
+          },
+          "model": {
+            "kind": "pen",
+            "side": "left",
+            "length": 18,
+            "diameter": 20
+          },
+          "rules": {
+            "kind": "pen",
+            "side": "left",
+            "length": 18,
+            "diameter": 20,
+            "bore": 16
+          },
+          "hybrid": {
+            "kind": "pen",
+            "side": "left",
+            "length": 18,
+            "diameter": 20,
+            "bore": 16
+          }
+        },
+        {
+          "input": {
+            "language": "en",
+            "kind": "pen",
+            "fields": {
+              "length": 43,
+              "diameter": 25
+            },
+            "description": "Pen grip for 3 pencils. Length 43 mm; diameter 25 mm."
+          },
+          "model": {
+            "kind": "pen",
+            "side": "neutral",
+            "length": 43,
+            "diameter": 25
+          },
+          "rules": {
+            "kind": "pen",
+            "side": "neutral",
+            "length": 43,
+            "diameter": 25
+          },
+          "hybrid": {
+            "kind": "pen",
+            "side": "neutral",
+            "length": 43,
+            "diameter": 25
+          }
+        },
+        {
+          "input": {
+            "language": "en",
+            "kind": "utensil",
+            "fields": {
+              "length": 42,
+              "diameter": 35,
+              "side": "right"
+            },
+            "description": "Right spoon handle: 42 mm length, diameter 3.5 cm."
+          },
+          "model": {
+            "kind": "utensil",
+            "side": "right",
+            "diameter": 35
+          },
+          "rules": {
+            "kind": "utensil",
+            "side": "right",
+            "length": 42,
+            "diameter": 35
+          },
+          "hybrid": {
+            "kind": "utensil",
+            "side": "right",
+            "length": 42,
+            "diameter": 35
+          }
+        },
+        {
+          "input": {
+            "language": "en",
+            "kind": "utensil",
+            "fields": {
+              "length": 91,
+              "diameter": 38,
+              "bore": 14,
+              "side": "left"
+            },
+            "description": "Left fork handle, length 91 mm, 38 mm outer diameter, 14 mm internal opening."
+          },
+          "model": {
+            "kind": "utensil",
+            "side": "left",
+            "length": 91,
+            "diameter": 38
+          },
+          "rules": {
+            "kind": "utensil",
+            "side": "left",
+            "length": 91,
+            "diameter": 38
+          },
+          "hybrid": {
+            "kind": "utensil",
+            "side": "left",
+            "length": 91,
+            "diameter": 38
+          }
+        },
+        {
+          "input": {
+            "language": "en",
+            "kind": "utensil",
+            "fields": {
+              "length": 72,
+              "diameter": 63
+            },
+            "description": "A spoon handle, outer diameter 63 mm; make it 7.2 cm long."
+          },
+          "model": {
+            "kind": "utensil",
+            "side": "neutral",
+            "diameter": 63
+          },
+          "rules": {
+            "kind": "utensil",
+            "side": "neutral",
+            "diameter": 63
+          },
+          "hybrid": {
+            "kind": "utensil",
+            "side": "neutral",
+            "diameter": 63
+          }
+        },
+        {
+          "input": {
+            "language": "en",
+            "kind": "brace",
+            "fields": {
+              "length": 144,
+              "circumference": 183,
+              "wall": 1.2,
+              "side": "right"
+            },
+            "description": "Right wrist brace: circumference 18.3 cm; length 144 mm; wall thickness 1.2 mm."
+          },
+          "model": {
+            "kind": "brace",
+            "side": "right",
+            "circumference": 183,
+            "length": 144,
+            "wall": 1.2
+          },
+          "rules": {
+            "kind": "brace",
+            "side": "right",
+            "length": 144,
+            "circumference": 183,
+            "wall": 1.2
+          },
+          "hybrid": {
+            "kind": "brace",
+            "side": "right",
+            "length": 144,
+            "circumference": 183,
+            "wall": 1.2
+          }
+        },
+        {
+          "input": {
+            "language": "en",
+            "kind": "brace",
+            "fields": {
+              "length": 65,
+              "circumference": 151,
+              "wall": 4.6,
+              "side": "left"
+            },
+            "description": "Left wrist brace with 151 mm girth, 65 mm length and 4.6 mm wall."
+          },
+          "model": {
+            "kind": "brace",
+            "side": "left",
+            "circumference": 151,
+            "length": 4.6
+          },
+          "rules": {
+            "kind": "brace",
+            "side": "left",
+            "length": 65,
+            "circumference": 151,
+            "wall": 4.6
+          },
+          "hybrid": {
+            "kind": "brace",
+            "side": "left",
+            "length": 65,
+            "circumference": 151,
+            "wall": 4.6
+          }
+        },
+        {
+          "input": {
+            "language": "en",
+            "kind": "brace",
+            "fields": {
+              "length": 35,
+              "circumference": 52,
+              "wall": 2.6
+            },
+            "description": "Finger splint, length 35 mm, circumference 52 mm, wall thickness 2.6 mm."
+          },
+          "model": {
+            "kind": "brace",
+            "side": "neutral",
+            "length": 35,
+            "circumference": 52,
+            "wall": 2.6
+          },
+          "rules": {
+            "kind": "brace",
+            "side": "neutral",
+            "finger": true,
+            "length": 35,
+            "circumference": 52,
+            "wall": 2.6
+          },
+          "hybrid": {
+            "kind": "brace",
+            "side": "neutral",
+            "finger": true,
+            "length": 35,
+            "circumference": 52,
+            "wall": 2.6
+          }
+        }
+      ]
+    },
+    "authored": {
+      "summary": {
+        "all": {
+          "model": {
+            "kind": [
+              61,
+              72
+            ],
+            "side": [
+              0,
+              0
+            ],
+            "length": [
+              7,
+              31
+            ],
+            "circumference": [
+              8,
+              16
+            ],
+            "wall": [
+              5,
+              10
+            ],
+            "diameter": [
+              10,
+              21
+            ],
+            "bore": [
+              1,
+              23
+            ],
+            "sizes": [
+              31,
+              101
+            ]
+          },
+          "rules": {
+            "kind": [
+              38,
+              72
+            ],
+            "side": [
+              0,
+              0
+            ],
+            "length": [
+              18,
+              31
+            ],
+            "circumference": [
+              7,
+              16
+            ],
+            "wall": [
+              5,
+              10
+            ],
+            "diameter": [
+              13,
+              21
+            ],
+            "bore": [
+              4,
+              23
+            ],
+            "sizes": [
+              47,
+              101
+            ]
+          },
+          "hybrid": {
+            "kind": [
+              63,
+              72
+            ],
+            "side": [
+              0,
+              0
+            ],
+            "length": [
+              19,
+              31
+            ],
+            "circumference": [
+              9,
+              16
+            ],
+            "wall": [
+              7,
+              10
+            ],
+            "diameter": [
+              13,
+              21
+            ],
+            "bore": [
+              4,
+              23
+            ],
+            "sizes": [
+              52,
+              101
+            ]
+          }
+        },
+        "zh": {
+          "model": {
+            "kind": [
+              34,
+              36
+            ],
+            "side": [
+              0,
+              0
+            ],
+            "length": [
+              5,
+              16
+            ],
+            "circumference": [
+              5,
+              8
+            ],
+            "wall": [
+              2,
+              5
+            ],
+            "diameter": [
+              7,
+              11
+            ],
+            "bore": [
+              1,
+              12
+            ],
+            "sizes": [
+              20,
+              52
+            ]
+          },
+          "rules": {
+            "kind": [
+              20,
+              36
+            ],
+            "side": [
+              0,
+              0
+            ],
+            "length": [
+              15,
+              16
+            ],
+            "circumference": [
+              4,
+              8
+            ],
+            "wall": [
+              2,
+              5
+            ],
+            "diameter": [
+              9,
+              11
+            ],
+            "bore": [
+              2,
+              12
+            ],
+            "sizes": [
+              32,
+              52
+            ]
+          },
+          "hybrid": {
+            "kind": [
+              35,
+              36
+            ],
+            "side": [
+              0,
+              0
+            ],
+            "length": [
+              15,
+              16
+            ],
+            "circumference": [
+              5,
+              8
+            ],
+            "wall": [
+              2,
+              5
+            ],
+            "diameter": [
+              9,
+              11
+            ],
+            "bore": [
+              2,
+              12
+            ],
+            "sizes": [
+              33,
+              52
+            ]
+          }
+        },
+        "en": {
+          "model": {
+            "kind": [
+              27,
+              36
+            ],
+            "side": [
+              0,
+              0
+            ],
+            "length": [
+              2,
+              15
+            ],
+            "circumference": [
+              3,
+              8
+            ],
+            "wall": [
+              3,
+              5
+            ],
+            "diameter": [
+              3,
+              10
+            ],
+            "bore": [
+              0,
+              11
+            ],
+            "sizes": [
+              11,
+              49
+            ]
+          },
+          "rules": {
+            "kind": [
+              18,
+              36
+            ],
+            "side": [
+              0,
+              0
+            ],
+            "length": [
+              3,
+              15
+            ],
+            "circumference": [
+              3,
+              8
+            ],
+            "wall": [
+              3,
+              5
+            ],
+            "diameter": [
+              4,
+              10
+            ],
+            "bore": [
+              2,
+              11
+            ],
+            "sizes": [
+              15,
+              49
+            ]
+          },
+          "hybrid": {
+            "kind": [
+              28,
+              36
+            ],
+            "side": [
+              0,
+              0
+            ],
+            "length": [
+              4,
+              15
+            ],
+            "circumference": [
+              4,
+              8
+            ],
+            "wall": [
+              5,
+              5
+            ],
+            "diameter": [
+              4,
+              10
+            ],
+            "bore": [
+              2,
+              11
+            ],
+            "sizes": [
+              19,
+              49
+            ]
+          }
+        }
+      }
+    },
+    "synthetic": {
+      "summary": {
+        "all": {
+          "model": {
+            "kind": [
+              228,
+              240
+            ],
+            "side": [
+              240,
+              240
+            ],
+            "length": [
+              124,
+              164
+            ],
+            "circumference": [
+              57,
+              80
+            ],
+            "wall": [
+              56,
+              79
+            ],
+            "diameter": [
+              28,
+              80
+            ],
+            "bore": [
+              24,
+              83
+            ],
+            "sizes": [
+              289,
+              486
+            ]
+          },
+          "rules": {
+            "kind": [
+              224,
+              240
+            ],
+            "side": [
+              240,
+              240
+            ],
+            "length": [
+              89,
+              164
+            ],
+            "circumference": [
+              42,
+              80
+            ],
+            "wall": [
+              25,
+              79
+            ],
+            "diameter": [
+              43,
+              80
+            ],
+            "bore": [
+              28,
+              83
+            ],
+            "sizes": [
+              227,
+              486
+            ]
+          },
+          "hybrid": {
+            "kind": [
+              192,
+              240
+            ],
+            "side": [
+              240,
+              240
+            ],
+            "length": [
+              157,
+              164
+            ],
+            "circumference": [
+              75,
+              80
+            ],
+            "wall": [
+              72,
+              79
+            ],
+            "diameter": [
+              46,
+              80
+            ],
+            "bore": [
+              52,
+              83
+            ],
+            "sizes": [
+              402,
+              486
+            ]
+          }
+        },
+        "zh": {
+          "model": {
+            "kind": [
+              118,
+              120
+            ],
+            "side": [
+              120,
+              120
+            ],
+            "length": [
+              56,
+              86
+            ],
+            "circumference": [
+              15,
+              38
+            ],
+            "wall": [
+              14,
+              37
+            ],
+            "diameter": [
+              18,
+              38
+            ],
+            "bore": [
+              0,
+              42
+            ],
+            "sizes": [
+              103,
+              241
+            ]
+          },
+          "rules": {
+            "kind": [
+              116,
+              120
+            ],
+            "side": [
+              120,
+              120
+            ],
+            "length": [
+              55,
+              86
+            ],
+            "circumference": [
+              29,
+              38
+            ],
+            "wall": [
+              19,
+              37
+            ],
+            "diameter": [
+              26,
+              38
+            ],
+            "bore": [
+              22,
+              42
+            ],
+            "sizes": [
+              151,
+              241
+            ]
+          },
+          "hybrid": {
+            "kind": [
+              96,
+              120
+            ],
+            "side": [
+              120,
+              120
+            ],
+            "length": [
+              79,
+              86
+            ],
+            "circumference": [
+              33,
+              38
+            ],
+            "wall": [
+              30,
+              37
+            ],
+            "diameter": [
+              26,
+              38
+            ],
+            "bore": [
+              22,
+              42
+            ],
+            "sizes": [
+              190,
+              241
+            ]
+          }
+        },
+        "en": {
+          "model": {
+            "kind": [
+              110,
+              120
+            ],
+            "side": [
+              120,
+              120
+            ],
+            "length": [
+              68,
+              78
+            ],
+            "circumference": [
+              42,
+              42
+            ],
+            "wall": [
+              42,
+              42
+            ],
+            "diameter": [
+              10,
+              42
+            ],
+            "bore": [
+              24,
+              41
+            ],
+            "sizes": [
+              186,
+              245
+            ]
+          },
+          "rules": {
+            "kind": [
+              108,
+              120
+            ],
+            "side": [
+              120,
+              120
+            ],
+            "length": [
+              34,
+              78
+            ],
+            "circumference": [
+              13,
+              42
+            ],
+            "wall": [
+              6,
+              42
+            ],
+            "diameter": [
+              17,
+              42
+            ],
+            "bore": [
+              6,
+              41
+            ],
+            "sizes": [
+              76,
+              245
+            ]
+          },
+          "hybrid": {
+            "kind": [
+              96,
+              120
+            ],
+            "side": [
+              120,
+              120
+            ],
+            "length": [
+              78,
+              78
+            ],
+            "circumference": [
+              42,
+              42
+            ],
+            "wall": [
+              42,
+              42
+            ],
+            "diameter": [
+              20,
+              42
+            ],
+            "bore": [
+              30,
+              41
+            ],
+            "sizes": [
+              212,
+              245
+            ]
+          }
+        }
+      }
+    }
+  }
+}
