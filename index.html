@@ -3,51 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="用手绘草图和文字生成握笔器、餐具手柄及矫形护具的 3D 打印原型。" />
+    <meta name="description" content="从功能困难出发，探索八种康复生活辅具的参数化设计、打印准备与使用指导。仅用于原型仿真。" />
     <title>适形工坊 · 康复辅具生成器</title>
   </head>
   <body>
     <header class="top">
       <div class="brand"><span class="mark">适</span><div><strong>适形工坊</strong><small>REHAB AID STUDIO</small></div></div>
-      <span class="local">● 本地 AI · 免登录</span>
+      <span class="local">本地处理 · 无需登录</span>
     </header>
     <main>
       <section class="hero">
-        <p class="eyebrow">AI3D / 个性化辅具设计实验</p>
-        <h1>让草图变成<span>合手的辅具。</span></h1>
-        <p>画个轮廓，写下需求。把握笔器、餐具手柄或矫形护具变成可下载的参数化 3D 打印原型。</p>
+        <div><p class="eyebrow">REHAB DESIGN / 康复生活辅助设计</p>
+        <h1>从生活中的困难，<br>找到<span>适合的辅助。</span></h1>
+        <p>先了解使用场景，再调整尺寸与形状。让设计不止于一个模型。</p></div>
+        <aside class="hero-note"><span>设计与仿真平台</span><strong>8 <small>种辅具原型</small></strong><p>功能需求 → 方案比较 → 参数建模<br>打印准备 → 试配注意事项</p></aside>
+      </section>
+      <section class="care-panel" aria-labelledby="care-title">
+        <div class="section-heading"><div><p class="eyebrow">01 / 从需求开始</p><h2 id="care-title">哪一种动作让你觉得困难？</h2></div><span class="subtle">按功能选方案，不按病名开处方</span></div>
+        <div id="conditions" class="condition-tabs" aria-label="功能困难与相关场景"></div>
+        <div id="recommendations" aria-live="polite"></div>
       </section>
       <ol class="steps" aria-label="设计流程">
-        <li>草图</li><li>理解</li><li>参数</li><li>模型</li><li>校验</li><li>导出</li>
+        <li>选择辅具</li><li>描述 / 草图</li><li>调整尺寸</li><li>预览模型</li><li>仿真筛查</li><li>制作指导</li>
       </ol>
-      <nav id="presets" aria-label="一键试用样例"></nav>
+      <div class="section-heading catalogue-heading"><div><p class="eyebrow">02 / 辅具方案库</p><h2>选择一件，开始设计</h2></div><span class="subtle">8 种原型 · 可编辑尺寸 · STL 导出</span></div>
+      <nav id="presets" aria-label="八种辅具方案"></nav>
       <div class="workbench">
         <section class="panel input-panel" aria-labelledby="input-title">
-          <div class="panel-head"><span>01</span><div><h2 id="input-title">输入设计需求</h2><p>样例可以直接生成，也可以从自己的草图开始。</p></div></div>
-          <div class="sketch-head"><label for="sketch">手绘轮廓 <small>选填</small></label><button type="button" id="undo">撤销</button><button type="button" id="clear">清空</button></div>
+          <div class="panel-head"><span>03</span><div><h2 id="input-title">定制你的设计</h2><p id="input-note">样例可以直接生成，也可以从自己的草图开始。</p></div></div>
+          <div id="sketch-section"><div class="sketch-head"><label for="sketch">手绘轮廓 <small>选填</small></label><button type="button" id="undo">撤销</button><button type="button" id="clear">清空</button></div>
           <div class="sketch-box">
             <canvas id="sketch" width="520" height="260" aria-label="手绘轮廓画布，从上到下画出辅具左右外缘"></canvas>
             <span id="sketch-hint">画出左右外缘，形成长条轮廓</span>
           </div>
-          <p class="hint">草图决定沿长度的外形变化；尺寸由文字指定，草图不作为实物测量。</p>
+          <p class="hint">草图决定沿长度的外形变化；尺寸由文字指定，草图不作为实物测量。</p></div>
+          <div id="text-section">
           <label class="field" for="description">需求描述 <small>支持中英文</small></label>
           <textarea id="description" rows="3" maxlength="400" placeholder="例如：右手握力弱，握笔器直径 28mm、孔径 10mm"></textarea>
-          <label class="field" for="family">辅助器具类型</label>
+          </div><label class="field" for="family">辅助器具类型</label>
           <select id="family">
             <option value="auto">从描述自动识别</option>
-            <option value="pen">握笔器</option><option value="utensil">餐具手柄</option><option value="brace">矫形护具（腕／指）</option>
           </select>
           <button type="button" id="generate" class="primary">生成 3D 原型 <span>↗</span></button>
           <form id="parameter-editor" hidden>
-            <h3>调整识别参数</h3>
-            <p class="hint">单位为毫米；应用调整将保留当前草图轮廓并重新校验。换类别请在上方选择后重新生成。</p>
+            <h3>尺寸与适配参数</h3>
+            <p class="hint" id="editor-note">单位为毫米；应用后重新生成当前模型并筛查。</p>
             <div id="parameter-fields" class="parameter-fields"></div>
             <button type="submit" class="secondary">应用参数并重新校验 <span aria-hidden="true">↻</span></button>
           </form>
         </section>
         <section class="panel output-panel" aria-labelledby="output-title">
-          <div class="panel-head"><span>02</span><div><h2 id="output-title">预览与校验</h2><p id="model-label">选择样例，或输入需求后生成。</p></div></div>
-          <div id="preview"><span class="preview-tag">3D / 原型预览</span><p id="preview-error" hidden></p><span class="preview-hint">拖拽旋转 · 滚动缩放</span></div>
+          <div class="panel-head"><span>04</span><div><h2 id="output-title">三维预览与仿真筛查</h2><p id="model-label">选择样例，或输入需求后生成。</p></div></div>
+          <div id="preview"><span class="preview-tag">3D / 设计原型 · 非临床产品</span><p id="preview-error" hidden></p><span class="preview-hint">拖拽旋转 · 滚动缩放</span></div>
           <div id="results" aria-live="polite"></div>
           <div class="exports">
             <button type="button" id="download" class="secondary" disabled>下载 STL <span aria-hidden="true">↓</span></button>
@@ -55,6 +62,7 @@
           </div>
         </section>
       </div>
+      <section class="care-panel guidance-panel" aria-labelledby="guidance-title"><div class="section-heading"><div><p class="eyebrow">05 / 从模型到制作准备</p><h2 id="guidance-title">打印与使用指导</h2></div><button type="button" id="download-guide" class="guide-download">下载当前指导单 ↓</button></div><div id="guidance"></div></section>
       <footer><strong>原型仿真 · 非实体打印</strong><p>文字模型和草图模型用合成样本训练，在本地运行；网格由参数化模板生成。浏览器检查不等于真实切片、实物试验或临床验证；护具仅用于设计展示，不用于医疗佩戴。</p></footer>
     </main>
     <script type="module" src="/src/main.js"></script>

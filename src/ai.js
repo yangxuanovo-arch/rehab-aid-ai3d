@@ -115,8 +115,13 @@ export function understandText(description, selected = 'auto') {
   return { raw, provenance };
 }
 
-export function generateAIModel(description, strokes = [], selected = 'auto') {
+export function generateAIModel(description, strokes = [], selected = 'auto', options = {}) {
   const { raw, provenance } = understandText(description, selected);
+  // An explicit catalogue subtype must be applied before its dimension limits.
+  if (selected === 'brace' && typeof options.finger === 'boolean') {
+    raw.finger = options.finger;
+    provenance.finger = { source: 'manual' };
+  }
   let sketch;
   try {
     sketch = predictSketch(strokes);
