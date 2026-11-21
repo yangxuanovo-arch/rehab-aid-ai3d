@@ -1,5 +1,5 @@
 import { buildModel, profileFromSketch, readRuleEvidence, resolveIntent, sampleSketch } from './generator.js';
-import { normalizeMetricText } from './measurements.js';
+import { normalizeMeasurements, normalizeMetricText } from './measurements.js';
 import model from './trained-model.js';
 
 const number = /([-+−]?(?:[0-9]+(?:\.[0-9]+)?|\.[0-9]+))[ \t]*(毫米|厘米|mm|cm)?/g;
@@ -43,14 +43,14 @@ function classify(head, input) {
 }
 
 export function predictText(description) {
-  const text = normalizeMetricText(description);
-  const masked = text.replace(number, '#');
+  const masked = normalizeMetricText(description).replace(number, '#');
   const vector = features(masked);
   const han = /\p{Script=Han}/u.test(masked);
   const kindHead = han ? 'kind' : 'kindLatin';
   const category = han ? ngrams(model.categoryWidth, 1, 3, [masked]) : ngrams(model.categoryWidth, 2, 5, [masked]);
   const intent = Object.fromEntries(intentFields.map(key =>
     [key, key === 'kind' ? classify(kindHead, category) : classify(key, vector)]));
+  const text = normalizeMeasurements(description);
   const matches = Array.from(text.matchAll(number));
   const slots = matches.map((match, i) => {
     const before = i ? matches[i - 1].index + matches[i - 1][0].length : 0;
@@ -74,20 +74,13 @@ export function predictSketch(strokes) {
 }
 
 export function understandText(description, selected = 'auto') {
-  const { raw, dimensions } = readRuleEvidence(description);
+  const { raw, dimensions, blocked } = readRuleEvidence(description, selected);
   const provenance = Object.fromEntries([...intentFields, ...dimensionFields]
     .map(key => [key, { source: raw[key] === undefined ? 'default' : 'rule' }]));
-  const claimed = new Set();
-  const ruleMatches = Object.entries(dimensions).filter(([, evidence]) => evidence)
-    .sort(([, a], [, b]) => Number(b.forward) - Number(a.forward));
-  for (const [key, { span }] of ruleMatches) {
-    if (claimed.has(span[0])) {
-      delete raw[key];
-      provenance[key] = { source: 'default' };
-    } else {
-      claimed.add(span[0]);
-      provenance[key].span = span;
-    }
+  const claimed = new Set(blocked);
+  for (const [key, { span }] of Object.entries(dimensions)) {
+    claimed.add(span[0]);
+    provenance[key].span = span;
   }
   let text;
   try {

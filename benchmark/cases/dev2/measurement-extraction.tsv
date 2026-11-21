@@ -1,0 +1,49 @@
+language	kind	fields	description
+en	pen	{"side":"right","length":44.45,"diameter":25.4,"bore":6.35}	Right pen grip: 1 3/4 inches long, 1 inch wide, with a 1/4-inch bore.
+en	pen	{"length":60,"diameter":24}	Pencil grip, roughly 5 to 7 cm long and about 24 mm across.
+en	pen	{"length":46,"bore":8}	The pencil is 175 mm long. Make the grip 46 mm long with an 8 mm hole.
+en	pen	{"length":38,"diameter":30}	Pen sleeve: about 38 millimeters in length; overall width around 30 millimeters.
+en	pen	{"length":52,"diameter":22}	Pen grip for the left: length approximately 52 mm, overall diameter about 22 mm; reference photo 120 mm wide.
+en	pen	{"length":51,"diameter":30.5}	Pencil grip, between 48 and 54 mm long and outer diameter 3–3.1 cm.
+en	pen	{"length":40,"bore":9.525}	Pen aid 40 mm in length with a ⅜″ opening diameter.
+en	pen	{"diameter":31,"bore":9}	Pen grip: the shaft is 9 mm across; bore 9 mm and outer width 31 mm.
+en	utensil	{"length":88.9,"diameter":31.75}	Spoon handle, 3.5 inches long and 1 1/4 inches in diameter.
+en	utensil	{"length":102,"bore":12}	Fork handle, length around 10.2 centimeters; 12 mm inner opening.
+en	utensil	{"length":94,"diameter":36}	Spoon handle: the spoon itself is 160 mm long; the handle should be 94 mm long and 36 mm wide.
+en	utensil	{"side":"left","length":80,"diameter":38}	Left spoon handle, make it 80 millimetres long, with a width of roughly 38 mm.
+en	utensil	{"length":105,"diameter":32}	Fork handle; approx. 100–110 mm long and 32 mm from side to side.
+en	utensil	{"length":76.2,"bore":12.7}	Design a utensil grip with a length of 3 in and an opening of 1/2 in.
+en	utensil	{"length":86,"diameter":34}	3 spoons, each has a 7 mm shaft. Handle length needs to be 86 mm, thickness 34 mm across.
+en	utensil	{"length":97,"bore":11,"diameter":35}	Spoon handle 97 mm long with an 11 mm inner diameter and 35 mm outer diameter.
+en	brace	{"side":"right","circumference":177.8,"length":63.5,"wall":3.175}	Right wrist brace, wrist measures 7 inches around, brace 2 1/2 inches long, shell 1/8 inch thick.
+en	brace	{"circumference":190,"length":52,"wall":3}	Wrist splint for a wrist measuring 19 cm around; the splint is 52 mm long and 3 mm thick.
+en	brace	{"circumference":56,"length":30,"wall":2.5}	Finger splint; finger circumference about 56 mm, 30 mm long, wall thickness around 2.5 mm.
+en	brace	{"circumference":170,"wall":4}	Wrist brace for 17 cm girth; shell thickness approximately 4 mm; arm length 240 mm.
+en	brace	{"circumference":185,"wall":4,"length":65}	Wrist brace, circumference from 18 to 19 cm, length 65 mm and a 4 mm thick wall.
+en	brace	{"circumference":61,"wall":3}	Finger splint: finger diameter 19 mm, circumference 61 mm, shell 3 mm thick.
+en	brace	{"circumference":203.2,"length":70}	Wrist brace to fit a wrist 8″ around; brace length 70 millimeters.
+en	brace	{"circumference":175,"wall":3}	Wrist brace, fits a wrist with a girth of about 175 mm, and has 3 mm walls.
+zh	pen	{"side":"left","length":48,"diameter":27,"bore":8}	左手握笔器，大概四点八公分长、宽约27毫米，内孔8毫米。
+zh	pen	{"length":50,"diameter":29}	做个握笔器，长约4到6厘米，粗29毫米。
+zh	pen	{"length":41,"bore":7}	这支铅笔全长182毫米，握笔器只要41毫米长，孔径约7毫米。
+zh	pen	{"length":44.45,"diameter":30}	握笔器，长度1又3/4英寸，外径30毫米。
+zh	pen	{"length":45,"diameter":25.4}	握笔器，长度4.5公分，外径一英寸。
+zh	pen	{"length":53,"diameter":32}	握笔器，笔本体直径9毫米；握套做成53毫米长、32毫米宽。
+zh	pen	{"diameter":21,"bore":8}	握笔器，外径约21毫米，开孔约8毫米。
+zh	pen	{"length":58,"diameter":25}	笔套握笔器，长度在56至60毫米之间，外径大约25毫米。
+zh	utensil	{"length":93,"diameter":35}	勺子手柄做成约9.3厘米长，最宽处35毫米。
+zh	utensil	{"length":90,"bore":13}	叉柄长8–10厘米，内孔约13毫米。
+zh	utensil	{"length":81,"diameter":33}	勺子本身长160毫米；握柄长81毫米，宽33毫米。
+zh	utensil	{"side":"right","length":99,"bore":9.525}	右手餐具手柄，长九点九公分，用3/8英寸的孔径。
+zh	utensil	{"diameter":38.1,"length":112}	餐具手柄长度约112毫米，外径一又二分之一英寸。
+zh	utensil	{"length":71,"bore":8}	叉子手柄，成品长约71毫米，开孔8毫米；盒子宽100毫米。
+zh	utensil	{"length":111,"diameter":37}	餐具手柄的长度大概十一点一公分，横宽37毫米。
+zh	utensil	{"length":78,"diameter":31}	想做个勺柄，78 mm 长，31 mm 宽。
+zh	brace	{"side":"right","circumference":181,"wall":3,"length":66}	右手护腕，手腕绕一圈18.1厘米，壳厚约3毫米，护腕长度66毫米。
+zh	brace	{"circumference":60,"wall":2.5}	护指，手指一圈约60毫米，壁厚2.5毫米，手指全长92毫米。
+zh	brace	{"circumference":170,"length":66,"wall":4}	护腕，腕围16到18厘米，长66毫米，厚4毫米。
+zh	brace	{"circumference":190.5,"length":71}	腕部支具，周长7.5英寸，长71毫米。
+zh	brace	{"circumference":52,"wall":2.8}	护指，指围大概5.2公分，壳厚约2.8毫米。
+zh	brace	{"circumference":177,"wall":4,"length":55}	护腕，手腕一圈约17.7公分；支具厚度4毫米，长55毫米。
+zh	brace	{"circumference":181,"wall":3}	腕部护具，直径只是参考57毫米，腕围181毫米，外壳3毫米厚。
+zh	brace	{"circumference":177.8,"wall":3.175}	左手护腕，腕围7英寸，壁厚1/8英寸。
