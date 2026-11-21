@@ -147,7 +147,7 @@ function node(tag, content, className) {
 }
 
 function provenanceDetails(provenance) {
-  const sections = { text: '文字模型', sketch: '草图模型', rule: '规则回退', default: '模板默认', manual: '手动输入' };
+  const sections = { text: '文字模型', sketch: '草图模型', rule: '规则回退', default: '模板默认', manual: '手动输入', derived: '几何换算' };
   const components = Object.entries(provenance).map(([key, value]) => {
     const score = value.confidence !== undefined ? ' ' + fixed(value.confidence * 100, 0) + '%'
       : value.coverage !== undefined ? '（采样覆盖 ' + fixed(value.coverage * 100, 0) + '%）' : '';
@@ -226,7 +226,7 @@ function extractedMeasurements(extracted, params) {
   const measurements = ['length', 'diameter', 'bore', 'circumference', 'wall'].flatMap(key => {
     if (extracted[key] === undefined) return [];
     const geometry = params[key] === undefined ? '（不用于当前模板）'
-      : params[key] !== extracted[key] ? '（建模 ' + params[key] + ' mm）' : '';
+      : Math.abs(params[key] - extracted[key]) > 1e-8 ? '（建模 ' + Number(params[key].toFixed(2)) + ' mm）' : '';
     return [parameterLabels[key] + ' ' + extracted[key] + ' mm' + geometry];
   });
   return node('p', '从原始请求提取的尺寸：' + (measurements.join(' · ') || '无'), 'result-text');
@@ -255,8 +255,9 @@ function renderModel(elapsed, presetKind) {
     metrics.append(item);
   }
   const nominal = params.kind === 'brace'
-    ? '周长 ' + params.circumference + ' mm · 名义壁厚 ' + params.wall + ' mm'
-    : '名义外径 ' + params.diameter + ' mm · 孔径 ' + params.bore + ' mm';
+    ? '适配周长 ' + Number(params.circumference.toFixed(2)) + ' mm · 名义壁厚 ' + params.wall + ' mm'
+    : '名义外径 ' + Number(params.diameter.toFixed(2)) + ' mm · 孔径 ' + Number(params.bore.toFixed(2))
+      + ' mm · 名义壁厚 ' + Number(params.wall.toFixed(2)) + ' mm';
   const s = checks.structure;
   output.replaceChildren(node('h3', '校验报告'), report, node('p', notice, 'result-text'), metrics,
     node('p', nominal, 'result-text'),

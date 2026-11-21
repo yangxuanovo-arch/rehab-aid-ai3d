@@ -60,10 +60,10 @@ test('edited parameters rebuild geometry and validation without rerunning infere
 test('clamp warnings survive rechecks until the corresponding parameter is edited', () => {
   const result = generateAIModel('腕托，前臂周长999厘米，长度999厘米，壁厚0.01毫米');
   assert.equal(result.params.kind, 'brace');
-  assert.deepEqual([result.params.length, result.params.circumference, result.params.wall], [140, 320, 2]);
+  assert.deepEqual([result.params.length, result.params.circumference, result.params.wall], [220, 320, 2]);
   const clampWarnings = result.params.warnings.filter(warning => warning.includes('超出模板范围'));
   assert.equal(clampWarnings.length, 3);
-  const reapplied = updateModelParameters(result, { length: 140, circumference: 320, wall: 2 });
+  const reapplied = updateModelParameters(result, { length: 220, circumference: 320, wall: 2 });
   assert.deepEqual(reapplied.params.warnings, result.params.warnings);
   const edited = updateModelParameters(reapplied, { wall: 4, side: 'left' });
   assert.deepEqual(edited.params.warnings, result.params.warnings.filter(warning => !warning.startsWith('壁厚')));
@@ -147,6 +147,43 @@ test('a named measurement owns its numeric span and a default does not become an
   assert.deepEqual(model.provenance.length.span, [16, 18]);
   assert.equal(model.provenance.diameter.source, 'default');
   assert.equal(model.params.diameter, 28);
+});
+
+test('sleeve circumference and wall thickness determine actual sleeve geometry', () => {
+  const model = generateAIModel('Spoon handle length 160 mm, circumference 100 mm, wall 2 mm');
+  assert.deepEqual([model.params.length, model.params.circumference, model.params.wall], [160, 100, 2]);
+  assert.equal(model.params.diameter, 100 / Math.PI);
+  assert.equal(model.params.bore, model.params.diameter - 4);
+  assert.equal(model.checks.size[2], 160);
+  assert.ok(model.checks.minWall >= 1.6);
+  assert.ok(model.checks.printable);
+  assert.deepEqual(updateModelParameters(model, { length: 160 }).params, model.params);
+});
+
+test('incompatible sleeve dimensions preserve the request and warn through rechecks', () => {
+  const model = generateAIModel('Pen grip diameter 30 mm, bore 10 mm, wall 3 mm');
+  assert.equal(model.extracted.wall, 3);
+  assert.equal(model.params.wall, 10);
+  assert.match(model.params.warnings.join(' '), /壁厚.*10 mm/);
+  assert.deepEqual(updateModelParameters(model, { diameter: 30 }).params, model.params);
+  const edited = updateModelParameters(model, { bore: 24 });
+  assert.equal(edited.params.wall, 3);
+  assert.equal(edited.extracted.wall, 3);
+  assert.deepEqual(edited.params.warnings, []);
+});
+
+test('brace fitting diameter drives circumference but outside width does not', () => {
+  const model = generateAIModel('Finger brace, diameter 20 mm, length 50 mm, wall 2 mm');
+  assert.equal(model.params.diameter, 20);
+  assert.equal(model.params.circumference, 20 * Math.PI);
+  assert.ok(model.checks.printable);
+  const edited = updateModelParameters(model, { circumference: 70 });
+  assert.equal(edited.params.diameter, 70 / Math.PI);
+  assert.equal(edited.extracted.diameter, 20);
+  const outer = generateAIModel('Finger brace, outer diameter 20 mm');
+  assert.equal(outer.extracted.diameter, 20);
+  assert.equal(outer.params.diameter, undefined);
+  assert.equal(outer.params.circumference, 60);
 });
 
 test('inner and outer measurements retain distinct spans in mixed phrasing', () => {

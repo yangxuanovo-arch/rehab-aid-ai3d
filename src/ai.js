@@ -132,6 +132,16 @@ export function generateAIModel(description, strokes = [], selected = 'auto') {
       delete provenance[key];
     }
   }
-  const extracted = Object.fromEntries(Object.entries(raw).filter(([, value]) => value !== undefined));
+  if (params.kind === 'brace' && raw.circumference === undefined && params.diameter !== undefined) {
+    provenance.circumference = { source: 'derived' };
+  } else if (params.kind !== 'brace') {
+    if (raw.wall === undefined) provenance.wall = { source: 'derived' };
+    if (raw.bore === undefined && raw.wall !== undefined) provenance.bore = { source: 'derived' };
+    if (raw.diameter === undefined && (params.circumference !== undefined || (raw.bore !== undefined && raw.wall !== undefined))) {
+      provenance.diameter = { source: 'derived' };
+    }
+  }
+  const extracted = Object.fromEntries(Object.entries(raw).filter(([key, value]) =>
+    (intentFields.includes(key) || dimensionFields.includes(key)) && value !== undefined));
   return { ...buildModel(params, profile), extracted, provenance, parameterWarnings };
 }

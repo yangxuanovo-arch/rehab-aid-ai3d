@@ -123,7 +123,8 @@ export function attributeMeasurements(text, kind) {
       if (key === 'diameter' && label === '宽' && kind === 'brace') continue;
       const broad = /^(?:wall|shell|thickness|thick|厚|wide|width|across|粗|宽|around)$/u.test(label);
       const priority = (broad ? 0 : 4) + (left ? 2 : 1) + Number(Boolean(unit));
-      candidates.push({ key, mm, span, unit: unit ?? null, forward: Boolean(left), priority });
+      const bodyFit = key === 'circumference' && (body || /腕围|指围|臂围/u.test(label));
+      candidates.push({ key, mm, span, unit: unit ?? null, forward: Boolean(left), priority, bodyFit, label });
     }
   }
   const claimed = new Set();

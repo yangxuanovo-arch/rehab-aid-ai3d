@@ -10,6 +10,10 @@ const clamp = (value, low, high) => Math.max(low, Math.min(value, high));
 const mix = (a, b, t) => a + (b - a) * t;
 const number = '([-+−]?(?:[0-9]+(?:\\.[0-9]+)?|\\.[0-9]+))\\s*(毫米|厘米|mm|cm)?';
 const dimensionLabels = { length: '长度', diameter: '外径', bore: '孔径', circumference: '周长', wall: '壁厚' };
+const minimumWall = 1.6;
+const meshSegments = 64;
+const circumferenceOf = diameter => Math.PI * diameter;
+const displayMm = value => Number(value.toFixed(2)) + ' mm';
 
 function dimension(text, names, extended = false, suffix = names) {
   const lead = extended ? '[:：=为]|\\b(?:is|of)\\b' : '[:：=为]';
@@ -56,12 +60,35 @@ export function readRuleEvidence(description, selected = 'auto') {
     kind, side, support: /震颤|颤抖|握力弱|tremor|weak\s*grip/.test(text) || undefined,
     finger: /护指|手指|finger/.test(text) || undefined,
     ...Object.fromEntries(Object.entries(dimensions).map(([key, evidence]) => [key, evidence?.mm])),
+    ...(dimensions.circumference?.bodyFit ? { bodyFitCircumference: true } : {}),
+    ...(/^(?:外径|outer diameter|outer width|width|wide|across|宽度|宽|横宽|最宽处|from side to side)$/u.test(dimensions.diameter?.label)
+      ? { outerOnlyDiameter: true } : {}),
   };
   return { raw, dimensions, blocked };
 }
 
 export function readRuleIntent(description) {
   return readRuleEvidence(description).raw;
+}
+
+function sleeveParams(raw, defaults, support, warnings) {
+  const circumference = raw.bodyFitCircumference ? undefined : raw.circumference;
+  const wall = raw.wall === undefined ? undefined : clamp(raw.wall, 2, 25);
+  const outer = raw.diameter ?? (circumference === undefined ? undefined : circumference / Math.PI)
+    ?? (wall !== undefined && raw.bore !== undefined ? raw.bore + 2 * wall : undefined);
+  const diameter = bounded(outer, 16, 55, defaults.diameter + (support ? 4 : 0), warnings,
+    raw.diameter === undefined && circumference !== undefined ? 'circumference' : 'diameter');
+  if (circumference !== undefined && Math.abs(circumferenceOf(diameter) - circumference) > 0.05) {
+    warnings.set('circumference', '周长按建模外径换算为 ' + displayMm(circumferenceOf(diameter)) + '。');
+  }
+  const boreMax = wall === undefined ? Math.min(24, diameter - 5) : diameter - 4;
+  const bore = bounded(raw.bore, 5, boreMax,
+    wall === undefined ? Math.min(defaults.bore, boreMax) : clamp(diameter - 2 * wall, 5, boreMax), warnings, 'bore');
+  const actualWall = (diameter - bore) / 2;
+  if (raw.wall !== undefined && Math.abs(actualWall - raw.wall) > 1e-8) {
+    warnings.set('wall', '壁厚需与外径和孔径相容，已采用名义壁厚 ' + displayMm(actualWall) + '。');
+  }
+  return { diameter, bore, wall: actualWall, ...(circumference !== undefined ? { circumference: circumferenceOf(diameter) } : {}) };
 }
 
 export function resolveIntent(raw, selected = 'auto', warnings = new Map()) {
@@ -74,19 +101,24 @@ export function resolveIntent(raw, selected = 'auto', warnings = new Map()) {
   const side = raw.side ?? 'neutral';
   const support = Boolean(raw.support);
   const finger = kind === 'brace' && Boolean(raw.finger);
-  const length = bounded(raw.length, kind === 'utensil' ? 55 : 22, finger ? 70 : 140,
+  const maxLength = finger ? 70 : kind === 'brace' ? 220 : kind === 'utensil' ? 180 : 140;
+  const length = bounded(raw.length, kind === 'utensil' ? 55 : 22, maxLength,
     finger ? 34 : defaults.length, warnings, 'length');
   const params = { kind, side, support, finger, length };
   if (kind === 'brace') {
-    params.circumference = bounded(raw.circumference, finger ? 42 : 100,
+    const fitDiameter = raw.outerOnlyDiameter ? undefined : raw.diameter;
+    params.circumference = bounded(raw.circumference ?? (fitDiameter === undefined ? undefined : circumferenceOf(fitDiameter)), finger ? 42 : 100,
       finger ? 95 : 320, finger ? 60 : defaults.circumference, warnings, 'circumference');
     params.wall = bounded(raw.wall, 2, 8,
       finger ? 3 : defaults.wall, warnings, 'wall');
+    if (fitDiameter !== undefined) {
+      params.diameter = params.circumference / Math.PI;
+      if (Math.abs(params.diameter - fitDiameter) > 0.05) {
+        warnings.set('diameter', '适配直径按建模周长换算为 ' + displayMm(params.diameter) + '。');
+      }
+    }
   } else {
-    params.diameter = bounded(raw.diameter, 16, 55,
-      defaults.diameter + (support ? 4 : 0), warnings, 'diameter');
-    params.bore = bounded(raw.bore, 5, Math.min(24, params.diameter - 5),
-      Math.min(defaults.bore, params.diameter - 5), warnings, 'bore');
+    Object.assign(params, sleeveParams(raw, defaults, support, warnings));
   }
   return { ...params, warnings: [...warnings.values()] };
 }
@@ -96,7 +128,7 @@ export function parseIntent(description, selected = 'auto') {
 }
 
 export function updateModelParameters(model, edits) {
-  const { params, profile, provenance, parameterWarnings } = model;
+  const { params, profile, provenance, parameterWarnings, extracted } = model;
   const changes = Object.entries(edits).filter(([key, value]) => value !== params[key]);
   const raw = { ...params, ...Object.fromEntries(changes), kind: params.kind };
   const useDefaultDiameter = edits.support !== undefined && edits.support !== params.support
@@ -104,6 +136,22 @@ export function updateModelParameters(model, edits) {
   if (useDefaultDiameter) delete raw.diameter;
   const warnings = new Map(parameterWarnings);
   for (const [key] of changes) warnings.delete(key);
+  const edited = new Set(changes.map(([key]) => key));
+  if (params.kind === 'brace' && edited.has('circumference') && raw.diameter !== undefined) {
+    raw.diameter = raw.circumference / Math.PI;
+    warnings.delete('diameter');
+  }
+  if (params.kind !== 'brace') {
+    if (extracted.wall === undefined) delete raw.wall;
+    if (edited.has('diameter') || edited.has('bore') || useDefaultDiameter) {
+      if (raw.wall !== undefined) raw.wall = (raw.diameter ?? families[params.kind].diameter + (raw.support ? 4 : 0)) / 2 - raw.bore / 2;
+      warnings.delete('wall');
+    }
+    if (edited.has('diameter') && raw.circumference !== undefined) {
+      raw.circumference = circumferenceOf(raw.diameter);
+      warnings.delete('circumference');
+    }
+  }
   const next = resolveIntent(raw, 'auto', warnings);
   const sources = { ...provenance };
   for (const [key] of changes) {
@@ -111,7 +159,11 @@ export function updateModelParameters(model, edits) {
       sources[key] = { source: 'manual' };
     }
   }
-  return { ...buildModel(next, profile), extracted: model.extracted, provenance: sources, parameterWarnings: warnings };
+  for (const key of ['circumference', 'diameter', 'wall']) {
+    if (!edited.has(key) && !(key === 'diameter' && useDefaultDiameter)
+      && next[key] !== undefined && next[key] !== params[key]) sources[key] = { source: 'derived' };
+  }
+  return { ...buildModel(next, profile), extracted, provenance: sources, parameterWarnings: warnings };
 }
 
 export function sampleSketch(strokes) {
@@ -158,7 +210,7 @@ export function generateModel(description, strokes = [], selected = 'auto') {
 }
 
 export function buildModel(params, profile) {
-  const segments = 64, rows = 24, stride = segments + Number(params.kind === 'brace');
+  const segments = meshSegments, rows = 24, stride = segments + Number(params.kind === 'brace');
   const isBrace = params.kind === 'brace';
   const inner = isBrace ? params.circumference / (2 * Math.PI) + 0.75 : params.bore / 2;
   const baseWall = isBrace ? params.wall : params.diameter / 2 - inner;
@@ -170,7 +222,8 @@ export function buildModel(params, profile) {
     const index = t * ((profile?.length ?? 1) - 1);
     const shape = profile ? mix(profile[Math.floor(index)], profile[Math.ceil(index)], index % 1)
       : 0.79 + 0.21 * Math.sin(Math.PI * t);
-    const wall = baseWall * (isBrace ? 1 + 0.55 * (shape - 0.8) : shape);
+    const wall = isBrace ? baseWall * (1 + 0.55 * (shape - 0.8))
+      : Math.max(baseWall * shape, minimumWall / Math.cos(Math.PI / segments) + 1e-8);
     for (const radius of [inner + wall, inner]) {
       for (let j = 0; j < stride; j++) {
         const angle = (isBrace ? ((opening / 2 + shift) + (360 - opening) * j / segments) : 360 * j / segments)
@@ -262,7 +315,7 @@ export function inspectMesh(vertices, faces, minWall, params, inner) {
   }).length;
   const manifold = nonManifold === 0 && badVertices === 0 && degenerate === 0 && volume > 0;
   const fits = size.every((x, i) => x <= [220, 220, 250][i]);
-  const wallPass = minWall >= 1.6;
+  const wallPass = minWall >= minimumWall;
   const overhangPass = unsupported <= 1e-8;
   const load = params.finger ? 12 : families[params.kind].load;
   const radialOuter = inner + minWall;
