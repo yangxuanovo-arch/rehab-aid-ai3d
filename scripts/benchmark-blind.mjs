@@ -20,6 +20,14 @@ const runs = new Map([
     outputName: 'blind2',
     title: '盲测 2：独立编写的 60 条中英文请求',
   }],
+  ['3', {
+    evaluatedCommit: '0d9d9bc4af5164cb49bd00f0fbfbc83789cc3a6b',
+    datasetSha256: 'c4dcdeab9011f6de7373c186577dfbde324c657656bca38db93f816f53a54578',
+    fixturePath: 'blind3/rehab_blind_test_set_3.json',
+    outputName: 'blind3',
+    title: '盲测 3：独立编写的 60 条中英文请求',
+    rawSizes: true,
+  }],
 ]);
 const toleranceMm = 0.5;
 const minSlotConfidence = 0.62;
@@ -72,12 +80,13 @@ function modelFields(prediction) {
   };
 }
 
-function generation(makeModel) {
+function generation(makeModel, captureRaw = false) {
   const result = Object.fromEntries(generationFields.map(key => [key, false]));
   try {
-    const { checks, faces, params, provenance, vertices } = makeModel();
+    const { checks, faces, params, provenance, vertices, extracted } = makeModel();
     Object.assign(result, { generated: true, manifold: checks.manifold, printable: checks.printable,
       triangles: faces.length, params, provenance, checks });
+    if (captureRaw) result.extracted = extracted;
     const stl = binarySTL({ faces, vertices });
     result.stlValid = faces.length > 0 && stl.byteLength === 84 + 50 * faces.length
       && new DataView(stl).getUint32(80, true) === faces.length;
@@ -88,7 +97,7 @@ function generation(makeModel) {
   return result;
 }
 
-function evaluate(input) {
+function evaluate(input, rawSizes) {
   const expected = {
     kind: kindMap.get(input.category), side: input.side,
     ...Object.fromEntries(Object.entries(sizeFields).map(([key, field]) => [field, input[key]])),
@@ -96,7 +105,7 @@ function evaluate(input) {
   const modelRaw = predictText(input.text);
   const rulesRaw = readRuleIntent(input.text);
   const rules = generation(() => buildModel(resolveIntent(rulesRaw), null));
-  const hybrid = generation(() => generateAIModel(input.text));
+  const hybrid = generation(() => generateAIModel(input.text), rawSizes);
   const actual = { model: modelFields(modelRaw), rules: rulesRaw, hybrid: hybrid.params ?? {} };
   const scores = Object.fromEntries(methods.map(method => [method, scoreFields(expected, actual[method])]));
   return { input, expected, actual, scores, modelRaw, generation: { rules, hybrid } };
@@ -104,6 +113,13 @@ function evaluate(input) {
 
 const count = outcomes => ({ correct: outcomes.filter(Boolean).length, total: outcomes.length });
 const labeled = (rows, keys) => rows.flatMap(row => keys.flatMap(key => key in row ? [row[key]] : []));
+
+export function summarizeRawSizes(rows) {
+  const scored = rows.map(row => scoreFields(row.expected, row.generation.hybrid.extracted ?? {}));
+  return Object.fromEntries([...sizes, 'sizes'].map(key => [
+    key, count(labeled(scored, key === 'sizes' ? sizes : [key])),
+  ]));
+}
 
 export function summarize(rows) {
   return {
@@ -122,7 +138,7 @@ export function summarize(rows) {
   };
 }
 
-function markdown(metadata, summary, { title, fixturePath, outputName }) {
+function markdown(metadata, summary, { title, fixturePath, outputName }, secondary) {
   const tableRows = (routes, group, keys) => Object.entries(summary).flatMap(([lang, slice]) => routes.map(method =>
     '| ' + [lang, method, ...keys.map(key => {
       const { correct, total } = slice[group][method][key];
@@ -149,6 +165,14 @@ function markdown(metadata, summary, { title, fixturePath, outputName }) {
     '| 语言 | 路线 | 类别 | 侧别 | 长度 | 周长 | 壁厚 | 直径 | 尺寸合计 | 整例全对 |',
     '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|',
     ...tableRows(methods, 'extraction', [...fields, 'sizes', 'joint']), '',
+    ...(secondary ? [
+      '## 次要指标：混合管线的原始尺寸提取', '',
+      '沿用 #11 开发评估的提取口径：从同一次生成读取 extracted，不使用建模限幅或模板默认项；仅对已标注尺寸评分，容差 ±0.5 mm。此表不替代主表。', '',
+      '| 语言 | 长度 | 周长 | 壁厚 | 直径 | 尺寸合计 |',
+      '|---|---:|---:|---:|---:|---:|',
+      ...Object.entries(secondary.hybridRawSizes).map(([lang, metrics]) =>
+        '| ' + [lang, ...[...sizes, 'sizes'].map(key => metrics[key].correct + '/' + metrics[key].total)].join(' | ') + ' |'), '',
+    ] : []),
     '## 端到端生成（文本输入，无草图）', '',
     '独立模型只提取文字信息，不单列生成结果。端到端通过指 STL 格式检查、闭合流形和浏览器几何筛查均通过，'
       + '不要求生成类别或尺寸正确。未做切片、实体打印、有限元仿真或临床验证。', '',
@@ -160,8 +184,8 @@ function markdown(metadata, summary, { title, fixturePath, outputName }) {
 
 function main() {
   const run = runs.get(process.argv[2] ?? '1');
-  if (!run || process.argv.length > 3) throw new Error('Usage: node scripts/benchmark-blind.mjs [1|2]');
-  const { outputName, evaluatedCommit, datasetSha256, fixturePath } = run;
+  if (!run || process.argv.length > 3) throw new Error('Usage: node scripts/benchmark-blind.mjs [1|2|3]');
+  const { outputName, evaluatedCommit, datasetSha256, fixturePath, rawSizes } = run;
   const resultJson = new URL(outputName + '.json', out), resultMd = new URL(outputName + '.md', out);
   if (existsSync(resultJson) || existsSync(resultMd)) throw new Error('Blind results already exist; refusing to overwrite');
   const git = (...args) => execFileSync('git', args, { cwd: repo, encoding: 'utf8' }).trim();
@@ -170,13 +194,16 @@ function main() {
   }
   const bytes = readFileSync(new URL(fixturePath, cases));
   if (createHash('sha256').update(bytes).digest('hex') !== datasetSha256) throw new Error('Blind data checksum mismatch');
-  const rows = loadInputs(bytes).map(evaluate);
+  const rows = loadInputs(bytes).map(input => evaluate(input, rawSizes));
   const metadata = { evaluatedCommit, datasetSha256, toleranceMm, minSlotConfidence,
     node: process.version, runAt: new Date().toISOString() };
-  const summary = { all: summarize(rows), zh: summarize(rows.filter(row => row.input.lang === 'zh')),
-    en: summarize(rows.filter(row => row.input.lang === 'en')) };
-  writeFileSync(resultJson, JSON.stringify({ metadata, summary, rows }, null, 2) + '\n', { flag: 'wx' });
-  writeFileSync(resultMd, markdown(metadata, summary, run), { flag: 'wx' });
+  const groups = { all: rows, zh: rows.filter(row => row.input.lang === 'zh'), en: rows.filter(row => row.input.lang === 'en') };
+  const summary = Object.fromEntries(Object.entries(groups).map(([lang, group]) => [lang, summarize(group)]));
+  const secondary = rawSizes ? { hybridRawSizes: Object.fromEntries(
+    Object.entries(groups).map(([lang, group]) => [lang, summarizeRawSizes(group)]),
+  ) } : undefined;
+  writeFileSync(resultJson, JSON.stringify({ metadata, summary, secondary, rows }, null, 2) + '\n', { flag: 'wx' });
+  writeFileSync(resultMd, markdown(metadata, summary, run, secondary), { flag: 'wx' });
   console.log('Recorded ' + rows.length + ' blind requests in benchmark/results/' + outputName + '.{json,md}.');
 }
 
