@@ -1,0 +1,3 @@
+meshio==5.3.5
+scikit-fem==11.0.0
+tetgen==0.7.0

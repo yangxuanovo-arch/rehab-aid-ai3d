@@ -1,0 +1,150 @@
+{
+  "solver": "TetGen PLC; scikit-fem vector P1 tetrahedra; SciPy sparse direct solve",
+  "tetgen": {
+    "quality": true,
+    "fixedvolume": true,
+    "maxvolume": 18.0,
+    "minratio": 1.8,
+    "quiet": true
+  },
+  "materials": {
+    "PLA": {
+      "young_mpa": 3000,
+      "poisson": 0.36,
+      "reference_strength_mpa": 35
+    },
+    "PETG": {
+      "young_mpa": 2100,
+      "poisson": 0.38,
+      "reference_strength_mpa": 42
+    }
+  },
+  "boundary": "clamp z=0; uniform +x traction on z=length; mm, N, MPa",
+  "attempted": 4,
+  "records": [
+    {
+      "id": "pen-01",
+      "success": true,
+      "load_n": 15,
+      "loaded_area_mm2": 357.27273700364714,
+      "fixed_facets": 326,
+      "loaded_facets": 312,
+      "tetrahedra": 28478,
+      "nodes": 7158,
+      "tetrahedral_volume_mm3": 20940.616090935215,
+      "surface_volume_mm3": 20940.61609093591,
+      "surface": "benchmark/artifacts/pen-01-surface.json",
+      "materials": {
+        "PLA": {
+          "max_von_mises_mpa": 0.7196441166619874,
+          "max_displacement_mm": 0.008664870141668234,
+          "reference_safety_factor": 48.6351506107557,
+          "relative_residual": 2.6447519961209215e-12,
+          "base_reaction_x_n": -14.999999999998035,
+          "field_output": "benchmark/artifacts/pen-01-PLA.vtu"
+        },
+        "PETG": {
+          "max_von_mises_mpa": 0.7067483818062088,
+          "max_displacement_mm": 0.012281881693332183,
+          "reference_safety_factor": 59.42709043445174,
+          "relative_residual": 2.787105081118483e-12,
+          "base_reaction_x_n": -14.99999999999826,
+          "field_output": "benchmark/artifacts/pen-01-PETG.vtu"
+        }
+      }
+    },
+    {
+      "id": "utensil-01",
+      "success": true,
+      "load_n": 20,
+      "loaded_area_mm2": 531.2107838462332,
+      "fixed_facets": 292,
+      "loaded_facets": 294,
+      "tetrahedra": 50763,
+      "nodes": 12868,
+      "tetrahedral_volume_mm3": 68082.65836320743,
+      "surface_volume_mm3": 68082.65836320513,
+      "surface": "benchmark/artifacts/utensil-01-surface.json",
+      "materials": {
+        "PLA": {
+          "max_von_mises_mpa": 0.7227653357872448,
+          "max_displacement_mm": 0.039106706556043154,
+          "reference_safety_factor": 48.42512260480447,
+          "relative_residual": 1.8330396149621362e-11,
+          "base_reaction_x_n": -19.999999999986507,
+          "field_output": "benchmark/artifacts/utensil-01-PLA.vtu"
+        },
+        "PETG": {
+          "max_von_mises_mpa": 0.7210852947313516,
+          "max_displacement_mm": 0.05552245045452839,
+          "reference_safety_factor": 58.245536702627625,
+          "relative_residual": 1.8755232174493048e-11,
+          "base_reaction_x_n": -19.999999999972687,
+          "field_output": "benchmark/artifacts/utensil-01-PETG.vtu"
+        }
+      }
+    },
+    {
+      "id": "brace-01",
+      "success": true,
+      "load_n": 30,
+      "loaded_area_mm2": 581.148485877967,
+      "fixed_facets": 128,
+      "loaded_facets": 128,
+      "tetrahedra": 9216,
+      "nodes": 3250,
+      "tetrahedral_volume_mm3": 42388.06646144547,
+      "surface_volume_mm3": 42388.06646144626,
+      "surface": "benchmark/artifacts/brace-01-surface.json",
+      "materials": {
+        "PLA": {
+          "max_von_mises_mpa": 0.43234209028199283,
+          "max_displacement_mm": 0.03312438302066831,
+          "reference_safety_factor": 80.95441269012562,
+          "relative_residual": 1.2968518842533974e-12,
+          "base_reaction_x_n": -30.0000000000015,
+          "field_output": "benchmark/artifacts/brace-01-PLA.vtu"
+        },
+        "PETG": {
+          "max_von_mises_mpa": 0.4277052973359174,
+          "max_displacement_mm": 0.04645045850307034,
+          "reference_safety_factor": 98.19845641755853,
+          "relative_residual": 1.4428977249213146e-12,
+          "base_reaction_x_n": -29.999999999996547,
+          "field_output": "benchmark/artifacts/brace-01-PETG.vtu"
+        }
+      }
+    },
+    {
+      "id": "brace-04",
+      "success": true,
+      "load_n": 12,
+      "loaded_area_mm2": 137.4800488735462,
+      "fixed_facets": 190,
+      "loaded_facets": 190,
+      "tetrahedra": 13136,
+      "nodes": 3919,
+      "tetrahedral_volume_mm3": 4118.880147822441,
+      "surface_volume_mm3": 4118.880147822576,
+      "surface": "benchmark/artifacts/brace-04-surface.json",
+      "materials": {
+        "PLA": {
+          "max_von_mises_mpa": 0.866007148850505,
+          "max_displacement_mm": 0.013744608199000578,
+          "reference_safety_factor": 40.41537075814821,
+          "relative_residual": 1.4678097161477058e-12,
+          "base_reaction_x_n": -11.999999999997545,
+          "field_output": "benchmark/artifacts/brace-04-PLA.vtu"
+        },
+        "PETG": {
+          "max_von_mises_mpa": 0.8484364578411178,
+          "max_displacement_mm": 0.01950931239887858,
+          "reference_safety_factor": 49.502823236604854,
+          "relative_residual": 1.6035897382723269e-12,
+          "base_reaction_x_n": -11.99999999999908,
+          "field_output": "benchmark/artifacts/brace-04-PETG.vtu"
+        }
+      }
+    }
+  ]
+}
