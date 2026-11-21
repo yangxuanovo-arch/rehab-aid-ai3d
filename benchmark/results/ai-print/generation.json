@@ -64,26 +64,26 @@
       "representative": true,
       "success": true,
       "durationsMs": [
-        23.43140699999998,
-        17.265547000000026,
-        11.091957000000036
+        19.720805999999925,
+        39.898039999999924,
+        25.72567600000002
       ],
-      "medianMs": 17.265547000000026,
+      "medianMs": 25.72567600000002,
       "params": {
         "kind": "pen",
         "side": "right",
         "support": true,
         "finger": false,
         "length": 45,
-        "warnings": [],
         "diameter": 28,
-        "bore": 10
+        "bore": 10,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9776964521794412
+          "confidence": 0.9279101886576848
         },
         "side": {
           "source": "rule"
@@ -201,26 +201,26 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        13.832415999999967,
-        9.271858000000009,
-        16.674841999999956
+        34.09714299999996,
+        34.603808999999956,
+        32.760771999999974
       ],
-      "medianMs": 13.832415999999967,
+      "medianMs": 34.09714299999996,
       "params": {
         "kind": "pen",
         "side": "left",
         "support": true,
         "finger": false,
         "length": 44,
-        "warnings": [],
         "diameter": 32,
-        "bore": 9
+        "bore": 9,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9554713743504194
+          "confidence": 0.9784472134554668
         },
         "side": {
           "source": "text",
@@ -338,30 +338,29 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        15.251274000000024,
-        9.749138000000016,
-        9.835650000000044
+        34.13048500000002,
+        14.756918999999925,
+        19.262928999999986
       ],
-      "medianMs": 9.835650000000044,
+      "medianMs": 19.262928999999986,
       "params": {
         "kind": "pen",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 35,
-        "warnings": [],
         "diameter": 21,
-        "bore": 8
+        "bore": 8,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9996991405005261
+          "confidence": 0.998991208881235
         },
         "side": {
-          "source": "text",
-          "confidence": 0.948498239950487
+          "source": "default"
         },
         "support": {
           "source": "default"
@@ -474,34 +473,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        11.40698500000002,
-        10.527015000000006,
-        12.839867000000027
+        21.92019199999993,
+        13.680246999999895,
+        17.383106999999995
       ],
-      "medianMs": 11.40698500000002,
+      "medianMs": 17.383106999999995,
       "params": {
         "kind": "pen",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 50,
-        "warnings": [],
         "diameter": 40,
-        "bore": 10
+        "bore": 10,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9884488723393604
+          "confidence": 0.9939805872241186
         },
         "side": {
-          "source": "text",
-          "confidence": 0.7958418047443677
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.9047762299006383
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -611,34 +608,33 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        12.436498000000029,
-        9.790046000000075,
-        11.793336000000068
+        19.383973999999967,
+        11.272656000000097,
+        13.49546399999997
       ],
-      "medianMs": 11.793336000000068,
+      "medianMs": 13.49546399999997,
       "params": {
         "kind": "pen",
         "side": "left",
         "support": false,
         "finger": false,
         "length": 46,
-        "warnings": [],
         "diameter": 24,
-        "bore": 11
+        "bore": 11,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9744701570856747
+          "confidence": 0.9417718265629579
         },
         "side": {
           "source": "text",
           "confidence": 0.7834836900534156
         },
         "support": {
-          "source": "text",
-          "confidence": 0.8545396402365211
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -749,34 +745,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        11.816839000000073,
-        12.33621800000003,
-        19.558944999999994
+        13.589431000000104,
+        22.72816899999998,
+        16.86754000000019
       ],
-      "medianMs": 12.33621800000003,
+      "medianMs": 16.86754000000019,
       "params": {
         "kind": "pen",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 34,
-        "warnings": [],
         "diameter": 16,
-        "bore": 11
+        "bore": 11,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9404376414794792
+          "confidence": 0.965090687814809
         },
         "side": {
-          "source": "text",
-          "confidence": 0.7871202677534017
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.744711929857284
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -886,34 +880,33 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        20.74242300000003,
-        16.078832999999918,
-        9.301909999999907
+        17.981727999999976,
+        16.837958999999955,
+        20.335448999999926
       ],
-      "medianMs": 16.078832999999918,
+      "medianMs": 17.981727999999976,
       "params": {
         "kind": "pen",
         "side": "right",
         "support": false,
         "finger": false,
         "length": 60,
-        "warnings": [],
         "diameter": 45,
-        "bore": 12
+        "bore": 12,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.993773244073567
+          "confidence": 0.9427198233568235
         },
         "side": {
           "source": "text",
           "confidence": 0.6929209100268888
         },
         "support": {
-          "source": "text",
-          "confidence": 0.9448601434686025
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -1023,34 +1016,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        11.561799999999948,
-        9.020134000000098,
-        9.566913999999997
+        14.259770000000117,
+        15.38064600000007,
+        12.015791000000036
       ],
-      "medianMs": 9.566913999999997,
+      "medianMs": 14.259770000000117,
       "params": {
         "kind": "pen",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 23,
-        "warnings": [],
         "diameter": 54,
-        "bore": 7
+        "bore": 7,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9404376414794792
+          "confidence": 0.965090687814809
         },
         "side": {
-          "source": "text",
-          "confidence": 0.7871202677534017
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.744711929857284
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -1160,34 +1151,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        9.349231000000032,
-        9.730439000000047,
-        16.078538999999978
+        12.219241999999895,
+        27.689416000000165,
+        12.39250600000014
       ],
-      "medianMs": 9.730439000000047,
+      "medianMs": 12.39250600000014,
       "params": {
         "kind": "pen",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 49,
-        "warnings": [],
         "diameter": 31,
-        "bore": 10
+        "bore": 10,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9964479896114777
+          "confidence": 0.9982174556550576
         },
         "side": {
-          "source": "text",
-          "confidence": 0.9678817212964446
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.8322912236264953
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -1297,26 +1286,26 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        11.561089000000038,
-        17.512614999999983,
-        19.72772800000007
+        17.823486999999886,
+        15.809445000000096,
+        14.087023999999928
       ],
-      "medianMs": 17.512614999999983,
+      "medianMs": 15.809445000000096,
       "params": {
         "kind": "pen",
         "side": "left",
         "support": true,
         "finger": false,
         "length": 40,
-        "warnings": [],
         "diameter": 32,
-        "bore": 12
+        "bore": 12,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9620192230688429
+          "confidence": 0.9457113569265586
         },
         "side": {
           "source": "text",
@@ -1434,30 +1423,29 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        17.301018,
-        23.798375999999962,
-        19.068165000000022
+        15.196980000000167,
+        13.639750999999933,
+        11.64180599999986
       ],
-      "medianMs": 19.068165000000022,
+      "medianMs": 13.639750999999933,
       "params": {
         "kind": "pen",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 75,
-        "warnings": [],
         "diameter": 28,
-        "bore": 10
+        "bore": 10,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9982321929866839
+          "confidence": 0.9708695906897179
         },
         "side": {
-          "source": "text",
-          "confidence": 0.9391212530269634
+          "source": "default"
         },
         "support": {
           "source": "default"
@@ -1515,34 +1503,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        20.342178999999987,
-        15.264994000000002,
-        34.41358200000002
+        14.61853700000006,
+        11.331192999999985,
+        9.802099000000226
       ],
-      "medianMs": 20.342178999999987,
+      "medianMs": 11.331192999999985,
       "params": {
         "kind": "pen",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 40,
-        "warnings": [],
         "diameter": 23,
-        "bore": 14
+        "bore": 14,
+        "warnings": []
       },
       "usedSketch": false,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9638305226776026
+          "confidence": 0.995341684717729
         },
         "side": {
-          "source": "text",
-          "confidence": 0.7442431501381012
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.7755341830361762
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -1651,26 +1637,26 @@
       "representative": true,
       "success": true,
       "durationsMs": [
-        28.59021599999994,
-        19.627432999999996,
-        13.538943000000017
+        23.536100999999917,
+        10.004838000000063,
+        9.943870999999945
       ],
-      "medianMs": 19.627432999999996,
+      "medianMs": 10.004838000000063,
       "params": {
         "kind": "utensil",
         "side": "left",
         "support": true,
         "finger": false,
         "length": 95,
-        "warnings": [],
         "diameter": 36,
-        "bore": 13
+        "bore": 13,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.848775055569981
+          "confidence": 0.9765841364486818
         },
         "side": {
           "source": "text",
@@ -1789,34 +1775,33 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        19.058547999999973,
-        19.375613999999814,
-        20.405492000000095
+        18.624443000000156,
+        17.65802000000008,
+        16.751942999999983
       ],
-      "medianMs": 19.375613999999814,
+      "medianMs": 17.65802000000008,
       "params": {
         "kind": "utensil",
         "side": "right",
         "support": false,
         "finger": false,
         "length": 82,
-        "warnings": [],
         "diameter": 32,
-        "bore": 10
+        "bore": 10,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9896930274653798
+          "confidence": 0.9789618632612068
         },
         "side": {
           "source": "text",
           "confidence": 0.9231505828204633
         },
         "support": {
-          "source": "text",
-          "confidence": 0.8944168355292922
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -1926,34 +1911,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        11.824057999999923,
-        22.845510000000104,
-        19.29116699999986
+        11.733073999999988,
+        10.27759500000002,
+        11.488716000000068
       ],
-      "medianMs": 19.29116699999986,
+      "medianMs": 11.488716000000068,
       "params": {
         "kind": "utensil",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 110,
-        "warnings": [],
         "diameter": 38,
-        "bore": 15
+        "bore": 15,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.7965835116323166
+          "confidence": 0.9947292746950187
         },
         "side": {
-          "source": "text",
-          "confidence": 0.8499541977161847
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.9269654588874373
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -2063,30 +2046,29 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        18.903548,
-        34.50440800000001,
-        29.203492000000097
+        12.290021000000024,
+        11.179429000000027,
+        11.316150000000107
       ],
-      "medianMs": 29.203492000000097,
+      "medianMs": 11.316150000000107,
       "params": {
         "kind": "utensil",
         "side": "neutral",
         "support": true,
         "finger": false,
         "length": 120,
-        "warnings": [],
         "diameter": 38,
-        "bore": 14
+        "bore": 14,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.8076754177208957
+          "confidence": 0.9769926221106816
         },
         "side": {
-          "source": "text",
-          "confidence": 0.8762670492942757
+          "source": "default"
         },
         "support": {
           "source": "text",
@@ -2200,34 +2182,33 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        17.222028000000137,
-        16.797780999999986,
-        20.444858000000067
+        12.124137000000019,
+        10.610911999999871,
+        24.166614999999865
       ],
-      "medianMs": 17.222028000000137,
+      "medianMs": 12.124137000000019,
       "params": {
         "kind": "utensil",
         "side": "left",
         "support": false,
         "finger": false,
         "length": 71,
-        "warnings": [],
         "diameter": 27,
-        "bore": 12
+        "bore": 12,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.8585144039125205
+          "confidence": 0.9961315564665016
         },
         "side": {
           "source": "text",
           "confidence": 0.716496381119127
         },
         "support": {
-          "source": "text",
-          "confidence": 0.9709152737947133
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -2337,34 +2318,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        31.70892700000013,
-        26.613796999999977,
-        20.391227999999956
+        11.017933999999968,
+        10.713614000000007,
+        10.983703999999989
       ],
-      "medianMs": 26.613796999999977,
+      "medianMs": 10.983703999999989,
       "params": {
         "kind": "utensil",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 55,
-        "warnings": [],
         "diameter": 19,
-        "bore": 14
+        "bore": 14,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9646417022655132
+          "confidence": 0.9579384169305445
         },
         "side": {
-          "source": "text",
-          "confidence": 0.7389467326791225
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.8076717275424447
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -2474,34 +2453,33 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        34.640101000000186,
-        16.750113000000056,
-        9.252608999999893
+        12.675308000000086,
+        19.299980000000005,
+        11.644382999999834
       ],
-      "medianMs": 16.750113000000056,
+      "medianMs": 12.675308000000086,
       "params": {
         "kind": "utensil",
         "side": "right",
         "support": false,
         "finger": false,
         "length": 100,
-        "warnings": [],
         "diameter": 48,
-        "bore": 13
+        "bore": 13,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.7959273983195263
+          "confidence": 0.9888643410058948
         },
         "side": {
           "source": "text",
           "confidence": 0.7581472521432389
         },
         "support": {
-          "source": "text",
-          "confidence": 0.9862973980099811
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -2611,34 +2589,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        27.774046,
-        20.274214999999913,
-        32.81839200000013
+        10.048602999999957,
+        9.375876999999946,
+        11.889224000000013
       ],
-      "medianMs": 27.774046,
+      "medianMs": 10.048602999999957,
       "params": {
         "kind": "utensil",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 130,
-        "warnings": [],
         "diameter": 51,
-        "bore": 18
+        "bore": 18,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9849858156764341
+          "confidence": 0.9704903775875968
         },
         "side": {
-          "source": "text",
-          "confidence": 0.8092672043909871
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.9338592106578644
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -2748,34 +2724,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        14.009275000000116,
-        17.167481999999836,
-        18.173705000000155
+        10.661781999999903,
+        10.537933000000066,
+        12.342010000000073
       ],
-      "medianMs": 17.167481999999836,
+      "medianMs": 10.661781999999903,
       "params": {
         "kind": "utensil",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 120,
-        "warnings": [],
         "diameter": 34,
-        "bore": 9
+        "bore": 9,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.7625981043625181
+          "confidence": 0.9913173290882081
         },
         "side": {
-          "source": "text",
-          "confidence": 0.8705077111772035
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.9612890072556158
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -2885,26 +2859,26 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        19.742410999999947,
-        21.74650799999995,
-        23.6597569999999
+        21.018768000000136,
+        20.80503900000008,
+        19.11799300000007
       ],
-      "medianMs": 21.74650799999995,
+      "medianMs": 20.80503900000008,
       "params": {
         "kind": "utensil",
         "side": "left",
         "support": true,
         "finger": false,
         "length": 90,
-        "warnings": [],
         "diameter": 39,
-        "bore": 13
+        "bore": 13,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9897986936400354
+          "confidence": 0.9866971386267382
         },
         "side": {
           "source": "text",
@@ -3023,34 +2997,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        22.847064000000046,
-        15.629187000000002,
-        19.44432299999994
+        27.5527840000002,
+        17.258360999999923,
+        19.553582000000006
       ],
-      "medianMs": 19.44432299999994,
+      "medianMs": 19.553582000000006,
       "params": {
         "kind": "utensil",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 140,
-        "warnings": [],
         "diameter": 30,
-        "bore": 13
+        "bore": 13,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9097790089301584
+          "confidence": 0.9935486591313134
         },
         "side": {
-          "source": "text",
-          "confidence": 0.957781865336043
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.9425933052402512
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -3105,34 +3077,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        12.798893000000135,
-        28.896214999999984,
-        20.016988000000083
+        10.772312000000056,
+        31.01703600000019,
+        54.521477000000004
       ],
-      "medianMs": 20.016988000000083,
+      "medianMs": 31.01703600000019,
       "params": {
         "kind": "utensil",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 73,
-        "warnings": [],
         "diameter": 24,
-        "bore": 16
+        "bore": 16,
+        "warnings": []
       },
       "usedSketch": false,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9646417022655132
+          "confidence": 0.9579384169305445
         },
         "side": {
-          "source": "text",
-          "confidence": 0.7389467326791225
+          "source": "default"
         },
         "support": {
-          "source": "text",
-          "confidence": 0.8076717275424447
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -3241,34 +3211,33 @@
       "representative": true,
       "success": true,
       "durationsMs": [
-        20.821911,
-        18.845849000000044,
-        25.973330000000033
+        20.790815000000066,
+        35.43108099999995,
+        13.110665000000154
       ],
-      "medianMs": 20.821911,
+      "medianMs": 20.790815000000066,
       "params": {
         "kind": "brace",
         "side": "right",
         "support": false,
         "finger": false,
         "length": 65,
-        "warnings": [],
         "circumference": 180,
-        "wall": 4
+        "wall": 4,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.999983884317754
+          "confidence": 0.9965778331787891
         },
         "side": {
           "source": "text",
           "confidence": 0.7751535938988987
         },
         "finger": {
-          "source": "text",
-          "confidence": 0.9845201767143992
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -3380,34 +3349,33 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        12.278749000000062,
-        28.73504600000001,
-        25.294378999999935
+        12.238590999999815,
+        19.844665000000077,
+        12.718381000000136
       ],
-      "medianMs": 25.294378999999935,
+      "medianMs": 12.718381000000136,
       "params": {
         "kind": "brace",
         "side": "left",
         "support": false,
         "finger": false,
         "length": 55,
-        "warnings": [],
         "circumference": 160,
-        "wall": 3
+        "wall": 3,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9990298475148596
+          "confidence": 0.9989967059863505
         },
         "side": {
           "source": "text",
           "confidence": 0.9358330055877564
         },
         "finger": {
-          "source": "text",
-          "confidence": 0.8607032417128365
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -3519,33 +3487,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        20.803382000000056,
-        22.18692800000008,
-        42.29775500000005
+        21.86202000000003,
+        40.68447699999979,
+        29.49764099999993
       ],
-      "medianMs": 22.18692800000008,
+      "medianMs": 29.49764099999993,
       "params": {
         "kind": "brace",
         "side": "right",
         "support": false,
         "finger": false,
         "length": 75,
-        "warnings": [],
         "circumference": 200,
-        "wall": 5
+        "wall": 5,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.99868805417292
+          "confidence": 0.9957281567040654
         },
         "side": {
           "source": "rule"
         },
         "finger": {
-          "source": "text",
-          "confidence": 0.6705081962979166
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -3656,30 +3623,29 @@
       "representative": true,
       "success": true,
       "durationsMs": [
-        22.160718000000088,
-        38.09965299999976,
-        26.946322000000237
+        33.35835899999984,
+        33.11656600000015,
+        18.76883100000032
       ],
-      "medianMs": 26.946322000000237,
+      "medianMs": 33.11656600000015,
       "params": {
         "kind": "brace",
         "side": "neutral",
         "support": false,
         "finger": true,
         "length": 29,
-        "warnings": [],
         "circumference": 54,
-        "wall": 2.5
+        "wall": 2.5,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9989160152194613
+          "confidence": 0.9987797957262988
         },
         "side": {
-          "source": "text",
-          "confidence": 0.8341866526527358
+          "source": "default"
         },
         "finger": {
           "source": "text",
@@ -3795,26 +3761,26 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        33.50292899999977,
-        22.970954999999776,
-        23.29990399999997
+        22.805591000000277,
+        29.447119000000384,
+        33.53813200000013
       ],
-      "medianMs": 23.29990399999997,
+      "medianMs": 29.447119000000384,
       "params": {
         "kind": "brace",
         "side": "left",
         "support": false,
         "finger": true,
         "length": 26,
-        "warnings": [],
         "circumference": 47,
-        "wall": 2
+        "wall": 2,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9966281014734092
+          "confidence": 0.9941627862434815
         },
         "side": {
           "source": "rule"
@@ -3932,30 +3898,29 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        31.84829600000012,
-        11.045302999999876,
-        22.395121000000017
+        35.08728799999972,
+        27.80731999999989,
+        47.63601800000015
       ],
-      "medianMs": 22.395121000000017,
+      "medianMs": 35.08728799999972,
       "params": {
         "kind": "brace",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 100,
-        "warnings": [],
         "circumference": 215,
-        "wall": 6
+        "wall": 6,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9994465338039115
+          "confidence": 0.998909544259957
         },
         "side": {
-          "source": "text",
-          "confidence": 0.767815168034694
+          "source": "default"
         },
         "finger": {
           "source": "default"
@@ -4069,34 +4034,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        22.531706999999642,
-        27.003975999999966,
-        21.19879800000035
+        25.727237999999943,
+        26.809121000000232,
+        11.923129999999674
       ],
-      "medianMs": 22.531706999999642,
+      "medianMs": 25.727237999999943,
       "params": {
         "kind": "brace",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 50,
-        "warnings": [],
         "circumference": 140,
-        "wall": 3.5
+        "wall": 3.5,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9981347439959788
+          "confidence": 0.9965981143913588
         },
         "side": {
-          "source": "text",
-          "confidence": 0.9566608181827999
+          "source": "default"
         },
         "finger": {
-          "source": "text",
-          "confidence": 0.8301014586252952
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -4207,26 +4170,26 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        18.680680999999822,
-        20.962916999999834,
-        27.222131999999874
+        36.8718359999998,
+        31.491507000000183,
+        22.156638000000385
       ],
-      "medianMs": 20.962916999999834,
+      "medianMs": 31.491507000000183,
       "params": {
         "kind": "brace",
         "side": "right",
         "support": false,
         "finger": true,
         "length": 50,
-        "warnings": [],
         "circumference": 79,
-        "wall": 4
+        "wall": 4,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9992913277870874
+          "confidence": 0.9996456220755856
         },
         "side": {
           "source": "text",
@@ -4346,33 +4309,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        31.50736700000016,
-        8.937041000000136,
-        25.59048299999995
+        38.09767300000021,
+        19.546751000000313,
+        60.03242
       ],
-      "medianMs": 25.59048299999995,
+      "medianMs": 38.09767300000021,
       "params": {
         "kind": "brace",
         "side": "left",
         "support": false,
         "finger": false,
         "length": 100,
-        "warnings": [],
         "circumference": 250,
-        "wall": 5
+        "wall": 5,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9937121065640135
+          "confidence": 0.9954373778833722
         },
         "side": {
           "source": "rule"
         },
         "finger": {
-          "source": "text",
-          "confidence": 0.7032444863126608
+          "source": "default"
         },
         "length": {
           "source": "text",
@@ -4483,30 +4445,29 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        15.455792000000201,
-        22.066376999999648,
-        24.345753999999943
+        34.10878300000013,
+        35.61951900000031,
+        23.19469799999979
       ],
-      "medianMs": 22.066376999999648,
+      "medianMs": 34.10878300000013,
       "params": {
         "kind": "brace",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 30,
-        "warnings": [],
         "circumference": 110,
-        "wall": 2
+        "wall": 2,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9997405123729506
+          "confidence": 0.9983136178031234
         },
         "side": {
-          "source": "text",
-          "confidence": 0.7163387093781219
+          "source": "default"
         },
         "finger": {
           "source": "default"
@@ -4621,30 +4582,29 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        25.739460000000236,
-        27.402040999999826,
-        21.667065999999977
+        28.18817799999988,
+        44.66533400000026,
+        23.24483999999984
       ],
-      "medianMs": 25.739460000000236,
+      "medianMs": 28.18817799999988,
       "params": {
         "kind": "brace",
         "side": "neutral",
         "support": false,
         "finger": true,
         "length": 35,
-        "warnings": [],
         "circumference": 63,
-        "wall": 3
+        "wall": 3,
+        "warnings": []
       },
       "usedSketch": true,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.992103792324608
+          "confidence": 0.9795456398698668
         },
         "side": {
-          "source": "text",
-          "confidence": 0.9587075837407989
+          "source": "default"
         },
         "finger": {
           "source": "rule"
@@ -4702,34 +4662,32 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        13.616982000000007,
-        19.390628000000106,
-        20.05584200000021
+        24.328614000000016,
+        20.11093400000027,
+        15.689410999999836
       ],
-      "medianMs": 19.390628000000106,
+      "medianMs": 20.11093400000027,
       "params": {
         "kind": "brace",
         "side": "neutral",
         "support": false,
         "finger": false,
         "length": 130,
-        "warnings": [],
         "circumference": 310,
-        "wall": 7
+        "wall": 7,
+        "warnings": []
       },
       "usedSketch": false,
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9967719495053714
+          "confidence": 0.9981011916793419
         },
         "side": {
-          "source": "text",
-          "confidence": 0.8153419603149573
+          "source": "default"
         },
         "finger": {
-          "source": "text",
-          "confidence": 0.8204961984831219
+          "source": "default"
         },
         "length": {
           "source": "text",
