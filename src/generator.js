@@ -71,6 +71,22 @@ export function parseIntent(description, selected = 'auto') {
   return resolveIntent(readRuleIntent(description), selected);
 }
 
+export function updateModelParameters(model, edits) {
+  const { params, profile, provenance } = model;
+  const raw = { ...params, ...edits, kind: params.kind };
+  const useDefaultDiameter = edits.support !== undefined && edits.support !== params.support
+    && (edits.diameter === undefined || edits.diameter === params.diameter) && provenance.diameter?.source === 'default';
+  if (useDefaultDiameter) delete raw.diameter;
+  const next = resolveIntent(raw);
+  const sources = { ...provenance };
+  for (const [key, value] of Object.entries(edits)) {
+    if (next[key] !== undefined && value !== params[key]) {
+      sources[key] = { source: 'manual' };
+    }
+  }
+  return { ...buildModel(next, profile), provenance: sources };
+}
+
 export function sampleSketch(strokes) {
   const points = strokes.flat();
   if (points.length < 8) return null;

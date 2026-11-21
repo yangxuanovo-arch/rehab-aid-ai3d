@@ -1,12 +1,18 @@
 import { readFileSync, mkdirSync, statSync, writeFileSync } from 'node:fs';
 import { arch, cpus, platform, release } from 'node:os';
 import { performance } from 'node:perf_hooks';
-import { generateAIModel, predictSketch, predictText } from '../src/ai.js';
+import { generateAIModel, predictSketch, predictText, understandText } from '../src/ai.js';
 import { binarySTL, generateModel, profileFromSketch, readRuleIntent } from '../src/generator.js';
 
 const fixture = new URL('../benchmark/artifacts/ai-heldout.json', import.meta.url);
 const dir = new URL('../benchmark/results/', import.meta.url);
 const holdout = JSON.parse(readFileSync(fixture, 'utf8'));
+const authoredPath = new URL('../benchmark/cases/author-written.tsv', import.meta.url);
+const authoredInputs = readFileSync(authoredPath, 'utf8').trimEnd().split('\n').slice(1).map((line, index) => {
+  const [language, kind, dimensions, description] = line.split('\t');
+  if (!description) throw new Error('Expected four labelled fields in row ' + (index + 2));
+  return { id: index + 1, language, kind, dimensions: JSON.parse(dimensions), description };
+});
 const slots = ['length', 'diameter', 'bore', 'circumference', 'wall'];
 const mean = xs => xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null;
 const round = (n, digits = 3) => n === null ? '—' : n.toFixed(digits);
@@ -46,6 +52,17 @@ function summarize(pairs) {
   return { tp, fp, fn, f1: 2 * tp / (2 * tp + fp + fn), maeMm: mean(errors), maeCount: errors.length };
 }
 
+function calibration(rows) {
+  const bins = Array.from({ length: 10 }, () => []);
+  for (const row of rows) bins[Math.min(9, Math.floor(row.ai.kind.confidence * 10))].push(row);
+  const ece = bins.reduce((sum, bin) => {
+    if (!bin.length) return sum;
+    const accuracy = mean(bin.map(row => Number(row.ai.kind.value === row.input.kind)));
+    return sum + Math.abs(accuracy - mean(bin.map(row => row.ai.kind.confidence))) * bin.length / rows.length;
+  }, 0);
+  return { ece, count: rows.length };
+}
+
 for (let i = 0; i < 25; i++) {
   predictText(holdout.text[i].description);
   predictSketch(holdout.sketch[i].strokes);
@@ -61,6 +78,21 @@ const text = holdout.text.map(input => {
     rule: { kind: raw.value.kind ?? 'unknown', side: raw.value.side ?? 'neutral', support: Boolean(raw.value.support),
       finger: Boolean(raw.value.finger), slots: ruleSlots, ms: raw.ms } };
 });
+const dimensionsOf = raw => Object.fromEntries(slots.flatMap(key => raw[key] === undefined ? [] : [[key, raw[key]]]));
+const authored = authoredInputs.map(input => {
+  const model = predictText(input.description);
+  const rule = readRuleIntent(input.description);
+  const hybrid = understandText(input.description).raw;
+  return { input, ai: { kind: model.intent.kind, dimensions: selectedSlots(model) },
+    rule: { kind: rule.kind ?? 'unknown', dimensions: dimensionsOf(rule) },
+    hybrid: { kind: hybrid.kind ?? 'pen', dimensions: dimensionsOf(hybrid) } };
+});
+function authoredSummary(rows) {
+  return Object.fromEntries(['ai', 'rule', 'hybrid'].map(key => [key, {
+    kind: rows.filter(row => (key === 'ai' ? row.ai.kind.value : row[key].kind) === row.input.kind).length,
+    count: rows.length, dimensions: summarize(rows.map(row => compare(row.input.dimensions, row[key].dimensions))),
+  }]));
+}
 const sketch = holdout.sketch.map(({ strokes, target }) => {
   const ai = timed(() => predictSketch(strokes)), rule = timed(() => profileFromSketch(strokes));
   const error = profile => profile && mean(profile.map((value, i) => Math.abs(value - target[i])));
@@ -113,9 +145,15 @@ const summary = {
     en: textSummary(text.filter(x => x.input.language === 'en')) },
   sketch: { ai: sketchSummary('ai'), rule: sketchSummary('rule') },
   generation: { ai: generationSummary('ai'), rule: generationSummary('rule') },
+  authored: { all: authoredSummary(authored), zh: authoredSummary(authored.filter(x => x.input.language === 'zh')),
+    en: authoredSummary(authored.filter(x => x.input.language === 'en')) },
+  categoryCalibration: {
+    synthetic: calibration(text.map(row => ({ input: row.input, ai: { kind: row.ai.intent.kind } }))),
+    authored: calibration(authored),
+  },
 };
 mkdirSync(dir, { recursive: true });
-writeFileSync(new URL('ai.json', dir), JSON.stringify({ metadata, summary, text, sketch, generation: app }) + '\n');
+writeFileSync(new URL('ai.json', dir), JSON.stringify({ metadata, summary, text, authored, sketch, generation: app }) + '\n');
 const table = Object.entries(summary.text).flatMap(([lang, x]) => ['ai', 'rule'].map(key => {
   const m = x[key], d = m.dimensions;
   return '| ' + [lang, key, m.intent.kind + '/' + x.count, round(d.f1), round(d.maeMm), d.maeCount,
@@ -123,6 +161,10 @@ const table = Object.entries(summary.text).flatMap(([lang, x]) => ['ai', 'rule']
 }));
 const sk = Object.entries(summary.sketch).map(([key, m]) =>
   '| ' + [key, m.count + '/' + sketch.length, round(m.mae), round(m.medianMs), round(m.p95Ms)].join(' | ') + ' |');
+const authoredTable = Object.entries(summary.authored).flatMap(([language, models]) =>
+  Object.entries(models).map(([key, m]) =>
+    '| ' + [language, key, m.kind + '/' + m.count, round(m.dimensions.f1), round(m.dimensions.maeMm),
+      m.dimensions.maeCount].join(' | ') + ' |'));
 const e2e = Object.entries(summary.generation).map(([key, m]) =>
   '| ' + [key, m.validStl + '/' + m.count, m.manifold, m.printable, m.correctKind, m.anyTextAI, m.sketchAI,
     round(m.medianMs), round(m.p95Ms)].join(' | ') + ' |');
@@ -136,6 +178,14 @@ const report = [
     + ' MAE 仅对双方都有该槽的预测／标签配对计算，不填补缺失，不用于替代 F1。', '',
   '| 语言 | 路线 | 类别命中 | 尺寸槽 F1 | 尺寸 MAE (mm) | MAE 配对数 | 中位 (ms) | P95 (ms) |',
   '|---|---|---:|---:|---:|---:|---:|---:|', ...table, '',
+  '## 独立人工编写请求：文字模型 vs. 规则 vs. 实际混合管线', '',
+  '72 条请求由作者逐条编写并标注，不参与训练或温度校准，也不是用户采集或临床数据。'
+    + ' 每种语言每类各 12 条，包含口语、错别字、缺项和混合单位。混合路线是产品实际选类，尺寸只统计推断或规则提取，不把模板默认计作提取成功。'
+    + ' [请求与标签](../cases/author-written.tsv)。', '',
+  '| 语言 | 路线 | 类别命中 | 尺寸槽 F1 | 尺寸 MAE (mm) | MAE 配对数 |',
+  '|---|---|---:|---:|---:|---:|', ...authoredTable, '',
+  '类别模型的置信度采用独立合成校准集的温度缩放。按 10 个等宽区间计算 ECE（越小越好）：'
+    + ' 合成留出 ' + round(summary.categoryCalibration.synthetic.ece) + '，人工请求 ' + round(summary.categoryCalibration.authored.ece) + '。不代表真实使用概率。', '',
   '## 草图轮廓：模型回归 vs. 扫描线插值', '',
   '误差是 13 个归一化轮廓宽度相对生成器噪声前目标的平均绝对误差。', '',
   '| 路线 | 有效样例 | 轮廓 MAE | 中位 (ms) | P95 (ms) |', '|---|---:|---:|---:|---:|', ...sk, '',
@@ -147,6 +197,6 @@ const report = [
   '逐例输入、模型输出、源标记和原始用时见 [ai.json](ai.json)。', '',
 ];
 writeFileSync(new URL('ai.md', dir), report.join('\n'));
-console.log([...table, ...sk, ...e2e, 'Model: ' + metadata.bytes + ' bytes'].join('\n'));
+console.log([...table, ...authoredTable, ...sk, ...e2e, 'Model: ' + metadata.bytes + ' bytes'].join('\n'));
 if (summary.generation.ai.validStl !== app.length || summary.generation.ai.anyTextAI === 0
     || summary.generation.ai.sketchAI === 0) process.exitCode = 1;

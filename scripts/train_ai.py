@@ -8,7 +8,7 @@ import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[1]
-WIDTH = 512
+WIDTH = 768
 NUM = re.compile(r'([0-9]+(?:\.[0-9]+)?)[ \t]*(毫米|厘米|mm|cm)?')
 SEPARATOR = re.compile(r'[,，;；、。!?！？\n]')
 LABELS = {
@@ -30,6 +30,20 @@ CATEGORIES = {
     'unknown': [('做个东西|我想试试看|设计个盒子|需要原型', '想生成一个玩具|试做模型'),
                 ('make something|try a prototype|build a toy|design a box', 'make a prototype|need a model')],
 }
+TRAIN_AUGMENT = {
+    'pen': ('铅笔拿不稳|套在圆珠笔杆上|粗一点好写字|写字的笔杆手把|笔杆套管|绘图握杆',
+            'pencil holder|writing tool sleeve|ballpoint barrel|felt tip marker grip|pen handle|pencil grasp aid'),
+    'utensil': ('吃饭不方便拿餐叉|汤勺的手把|能握住餐勺|筷子抓握器|把勺柄加宽|粗一点抓叉子',
+                'hold a fork at dinner|spoon grip aid|utensil adapter handle|fork handle sleeve|hold my cutlery|grasp a soup spoon'),
+    'wrist': ('手腕托板|固定腕关节|前臂托架|限制手腕弯曲|腕部夹板',
+              'immobilize the wrist|forearm cuff|wrist stabilizer|wrist support shell|brace around the wrist'),
+    'finger': ('指关节用夹板|固定一根指头|指节支撑|中指固定夹|指头护套',
+               'stabilize a knuckle|immobilize a digit|finger cuff|support my index finger|splint for one finger'),
+    'unknown': ('画个模型|一个好握的把手|圆柱小样|零件三维图|先做一个|测试抓握',
+                'generate something|design a grip|tube prototype|make a small handle|test a hand grip|do an early sketch'),
+}
+TRAIN_INTROS = (('试着做一个', '我的需求是', '想要这样的', '做个', '帮忙画一下'),
+                ('looking for a', 'could I get a', 'please create a', 'I would like a', 'help me make a'))
 SLOTS = {
     'length': [('长度|长|部件长度|轴向长度', '总长度|整体长度|全长'),
                ('length|long|axial length', 'overall length|part length|longitudinal length')],
@@ -66,6 +80,8 @@ def make_text(rng, count, heldout):
         support = rng.random() < 0.4
         finger = category == 'finger'
         name = lexicon(rng, CATEGORIES, category, lang, heldout)
+        if not heldout and rng.random() < 0.56:
+            name = pick(rng, TRAIN_AUGMENT[category][lang].split('|'))
         handed = {
             'neutral': '',
             'left': pick(rng, ['左手', '左侧'] if not lang else ['left', 'left-handed']),
@@ -75,6 +91,8 @@ def make_text(rng, count, heldout):
         intro = ' '.join(x for x in (handed, need, name) if x)
         if heldout:
             intro = ('我想为自己做一个 ' if not lang else 'Could you design a ') + intro
+        elif rng.random() < 0.65:
+            intro = pick(rng, TRAIN_INTROS[lang]) + ' ' + intro
         allowed = ('length', 'circumference', 'wall') if kind == 'brace' else ('length', 'diameter', 'bore')
         slots = [s for s in allowed if kind != 'unknown' and rng.random() < 0.84]
         if rng.random() < 0.38:
@@ -130,6 +148,11 @@ def features(*parts):
     return np.sqrt(vector) / max(1, np.sqrt(vector.sum()))
 
 
+def kind_features(text):
+    masked = NUM.sub('#', text)
+    return features(SEPARATOR.split(masked)[0], masked)
+
+
 def rounded(array):
     return np.round(array, 6).tolist()
 
@@ -139,15 +162,23 @@ def softmax(z):
     return ex / ex.sum(axis=1, keepdims=True)
 
 
-def fit_head(x, y, size):
+def fit_head(x, y, size, steps=340):
     w = np.zeros((x.shape[1], size))
     b = np.zeros(size)
     target = np.eye(size)[y]
-    for _ in range(340):
+    for _ in range(steps):
         residual = (softmax(x @ w + b) - target) / len(y)
         w -= 7 * (x.T @ residual + 0.00016 * w)
         b -= 7 * residual.sum(axis=0)
     return {'bias': rounded(b), 'weights': rounded(w.T)}
+
+
+def temperature_scale(layer, x, targets):
+    logits = x @ np.array(layer['weights']).T + layer['bias']
+    indices = np.arange(len(targets))
+    candidates = np.geomspace(.5, 2.5, 51)
+    return round(float(min(candidates,
+                           key=lambda t: -np.log(softmax(logits / t)[indices, targets]).mean())), 4)
 
 
 def make_sketch(rng, count, heldout):
@@ -205,11 +236,17 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--test-data', type=Path, default=ROOT / 'benchmark/artifacts/ai-heldout.json')
     args = parser.parse_args()
-    train = make_text(np.random.default_rng(2027), 3000, False)
+    train = make_text(np.random.default_rng(2027), 4200, False)
     normalized = [normalize(row['description']) for row in train]
     text_x = np.array([features(NUM.sub('#', t)) for t in normalized])
     heads = {key: fit_head(text_x, [values.index(row[key]) for row in train], len(values))
-             for key, values in LABELS.items() if key != 'slot'}
+             for key, values in LABELS.items() if key not in ('slot', 'kind')}
+    kind_targets = [LABELS['kind'].index(row['kind']) for row in train]
+    heads['kind'] = fit_head(np.array([kind_features(t) for t in normalized]), kind_targets, len(LABELS['kind']), 600)
+    calibration = make_text(np.random.default_rng(6047), 600, False)
+    heads['kind']['temperature'] = temperature_scale(heads['kind'],
+        np.array([kind_features(normalize(row['description'])) for row in calibration]),
+        [LABELS['kind'].index(row['kind']) for row in calibration])
     slot_x, slot_y = [], []
     for row, text in zip(train, normalized):
         matches = list(NUM.finditer(text))

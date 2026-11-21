@@ -1,0 +1,73 @@
+language	kind	dimensions_mm	request
+zh	pen	{"bore":9,"length":42}	写久了指头发酸，给我的签字笔做个捏着舒服的软套吧。中间留 9 毫米的孔，套子长 4.2 厘米。
+zh	pen	{"diameter":31}	圆珠比老往下滑，想套个胖一点的东西，外圈直径差不多31mm就行。
+zh	pen	{}	做题那支自动铅笔太细，手要捏很紧，不知道尺寸，先给我个粗粗的套儿。
+zh	pen	{"length":49,"bore":11}	写板书用的白板笔，套上之后别挡笔帽。孔径1.1cm，整个做49毫米长。
+zh	pen	{"diameter":34,"bore":10}	帮我把钢笔的抓握部分变粗，外径 3.4cm，内侧圆孔10 mm，左右手都能拿。
+zh	pen	{"length":50}	给娃的水彩笔做个握把，5厘米长就好。家里有 12 支，但是只要试一个。
+zh	pen	{"diameter":26,"bore":8}	用右手在纸上画线时抓不稳绘图铅笔。要外面26毫米、里面开个8毫米圆孔的套。
+zh	pen	{"bore":12}	细杆马克笔总在手心打转；我量了一下，套进笔杆的那个洞得 1.2 厘米。
+zh	pen	{}	想捏一个装在触控笔上的粗套，写批注别总打滑，数字我之后再量。
+zh	pen	{"length":38,"diameter":29}	这不是餐具，是美术用素描铅笔。拿着那段加套，做 38 mm 长、外直径2.9厘米。
+zh	pen	{"bore":7,"diameter":25}	能帮装在一支很细的中性笔上吗？我想开 7mm 孔，套外径 25 mm。
+zh	pen	{"length":55,"diameter":30,"bore":10}	握笔器：孔 1cm、最宽处外径 30 毫米、套的总长 55 mm，左手用。
+en	pen	{"length":46,"bore":8}	My fingers cramp around the biro. Can I get a sleeve about 46 mm long with an 8 mm hole through it?
+en	pen	{"diameter":29}	Make the stylus easier to hold for drawing notes. Outside diameter 2.9 cm, please.
+en	pen	{}	I drop my felt-tip when marking papers; I'd like something chunky that slides onto it.
+en	pen	{"diameter":30,"bore":10}	Need a pencill grip: 1 cm hole and 30mm across the outside. Don't know how tall yet.
+en	pen	{"length":50}	I need a chunky barrel sleeve for my fountain pen, no more than 5 cm long.
+en	pen	{"bore":11}	Can you make a grip for the pen on my drawing tablet? The opening for the shaft is 11 mm.
+en	pen	{"length":39,"diameter":27}	A thick grip for the marker I write on boxes with. Make it 3.9 cm long, diameter 27mm.
+en	pen	{}	Writing checks hurts my thumb; a bigger thing to hold on my ballpoint would help.
+en	pen	{"bore":7,"length":55}	Sleeve for a mechanical pencil — hole size 7 mm, overall length 5.5 cm.
+en	pen	{"diameter":32}	I grabbed a fork handle example, but this is for writing with a pen. I want a 32mm outer dia.
+en	pen	{"length":43,"bore":9}	My daughter squeezes the crayon. Could the hold-on bit be 43mm long with a 0.9 cm bore?
+en	pen	{"diameter":28,"bore":12}	Make a pen gripper, wide 28 millimeters across, center opening 12 mm, doesn't need to be long.
+zh	utensil	{"diameter":37,"bore":14}	喝粥时勺子总翻，给勺柄套个粗把儿。套外径37毫米，给勺把留1.4厘米的孔。
+zh	utensil	{"length":92}	家里那把儿童叉太细了，想加长点方便捏。把套做九厘米多一点，长度92 mm。
+zh	utensil	{}	筷子攥不住，能给筷柄加个稍粗的套子吗？先试形状，不确定内外径。
+zh	utensil	{"bore":15,"length":105}	夹菜的餐夹手柄要更好拿。接手柄的孔1.5cm，握的部分长105毫米。
+zh	utensil	{"diameter":40}	手抖，吃面用的叉抓不牢；弄个辅助抓把，最外面直径4厘米。
+zh	utensil	{"length":85,"diameter":34}	左手拿调羹，老使不上劲。套子做8.5cm长、外径34毫米，先别管孔。
+zh	utensil	{}	不是给写字那支笔的，我要喝汤的勺子握紧一点。先做一个没量数值的样子。
+zh	utensil	{"bore":12}	要套住儿童练习筷的抓手，中间12 mm内径就差不多，给我生成个大概。
+zh	utensil	{"diameter":42,"length":96}	在自助餐夹上加个不那么细的手持套。外面圆直径42毫米，长度9.6cm。
+zh	utensil	{"bore":16,"diameter":39}	右手给叉子弄个粗手炳，直径39mm，叉柄穿的那个孔16毫米。
+zh	utensil	{}	奶奶用勺子吃饭老是松手，我想给常用那把加个胖握把，尺寸回头补。
+zh	utensil	{"length":110,"bore":13}	做个能换到餐勺上的圆筒形手把，长11厘米，轴心孔13 mm。别按汤勺个数做。
+en	utensil	{"bore":13,"length":88}	Can I slide this onto a soup spoon? Need 1.3 cm hole for the metal handle and a sleeve 88 mm long.
+en	utensil	{"diameter":36}	A chunky bit for the end of the dinner fork please, my grip slips. Outer diameter 36 mm.
+en	utensil	{}	Granddad keeps dropping the thing he eats cereal with. Shape a larger handhold for a spoon; we haven't measured it.
+en	utensil	{"length":90,"bore":12}	The grip on my cutlry is too skinny. Make one 9 cm long with a 12mm bore for the tang.
+en	utensil	{"diameter":41}	I'd like the forks in my canteen kit to have a 4.1cm outside diameter grip. It goes on the handle end.
+en	utensil	{"bore":14}	Can it wrap around the stem of a serving ladle? Opening for the stem 14 mm; we can pick the other dimensions later.
+en	utensil	{}	Struggle to squeeze my chopstiks together. Looking for a bulky thing to grab at the top end.
+en	utensil	{"length":97,"diameter":39}	Right hand gets shaky holding a dessert spoon; design a slide-on handle 97mm in length and 3.9 cm in diameter.
+en	utensil	{"length":108,"bore":15}	Spoon, not pencil: I measured a 1.5 cm hole, make the handle 108mm long.
+en	utensil	{"diameter":35,"bore":11}	Lefty fork user. Want the handle across 35mm on the outside and a hole 11 mm wide.
+en	utensil	{}	An add-on for my eating fork that I can palm instead of pinch. I'm not sure of sizes.
+en	utensil	{"diameter":45,"length":82}	The feeding spoon keeps rotating in my hand. Give it a handle 82 millimetres long, external diameter 4.5 cm.
+zh	brace	{"circumference":167,"wall":4}	右腕弯的时候不舒服，想要开口的托板。拿软尺绕手腕一圈16.7厘米，壁厚4毫米。
+zh	brace	{"circumference":54,"length":30}	想让食指少弯一点的指头夹板，指围5.4cm，沿指头长度30mm。
+zh	brace	{}	护碗那个意思，是防手腕往里弯的开口支撑，不确定量哪里，先给个样。
+zh	brace	{"circumference":195,"length":72,"wall":5}	左前臂靠近腕关节做个托壳。周长195 mm，长度7.2厘米，壳壁5mm厚。
+zh	brace	{"circumference":62}	小拇指有一段要做个固定夹，软尺绕一圈6.2厘米，其余先用推荐值。
+zh	brace	{"wall":3,"length":33}	食指支具：留边别包死，壁厚三毫米，就是3 mm；从近指节到末端长3.3cm。
+zh	brace	{"circumference":174}	我想给右手腕关节定个可以侧面套进去的撑片；腕围174毫米，不要握东西。
+zh	brace	{}	掌根上面那块需要一个刚性的支架，让手腕保持直一点。尺寸还没量。
+zh	brace	{"length":61,"wall":3.5}	腕托做一段就行，套筒长 61毫米、壳体厚0.35厘米，前臂围度暂缺。
+zh	brace	{"circumference":49,"wall":2.5}	不是腕部，是套在无名指关节外面的短夹板，周长49mm，厚度2.5mm。
+zh	brace	{"circumference":181,"length":69}	右侧，开口腕固定具，腕周18.1cm，支撑的轴向长69mm。
+zh	brace	{"circumference":70,"length":41}	中指夹具戴指节附近，指头一圈70毫米、套高4.1厘米，不确定用多厚。
+en	brace	{"circumference":173,"wall":4}	I need a split cuff to keep my wrist from folding. Tape round the wrist reads 17.3 cm; wall thickness 4 mm.
+en	brace	{"circumference":57,"length":35}	My index finger needs a little open splnt. It measures 57 mm around and I have 3.5 cm of space along it.
+en	brace	{}	The joint between my palm and arm needs some support so it stays straighter. No measurements yet.
+en	brace	{"wall":3,"length":30}	Can I get a brace for my pinky? Shell 3mm thick, about 30 millimeters long, ignore the age 54.
+en	brace	{"circumference":194,"length":75}	Wraparound forearm orthotic with a gap. My forearm is 194 mm around, longitudinal length 7.5 cm.
+en	brace	{"circumference":65}	This is to hold my bent thumb steady, not grip something. The tape around it measures 6.5cm.
+en	brace	{"wall":5,"circumference":165}	wrsit brace — 16.5 cm wrist circumference, 0.5 cm thickness of the shell, keep it open on one side.
+en	brace	{}	I'd like to stop the middle finger flexing at the knuckle using a small clip around it. No exact size.
+en	brace	{"length":63,"circumference":182}	Don't extend onto the palm. Wrist sleeve length 63mm, girth 18.2 cm, right side.
+en	brace	{"circumference":51,"wall":3.5}	Split splint for the last joint of my finger, girth 51 mm and wall 3.5 mm. This is draft 2.
+en	brace	{}	It should rest down my arm and keep my wrist from bending. Open hard support; I can measure next time.
+en	brace	{"wall":3,"length":40,"circumference":72}	Finger orthosis, 4cm long, circumference 7.2 cm, 3 mm walls please.

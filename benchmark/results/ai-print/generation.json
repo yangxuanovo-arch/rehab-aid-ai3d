@@ -64,11 +64,11 @@
       "representative": true,
       "success": true,
       "durationsMs": [
-        56.04607499999997,
-        48.183697999999936,
-        44.80731000000003
+        23.43140699999998,
+        17.265547000000026,
+        11.091957000000036
       ],
-      "medianMs": 48.183697999999936,
+      "medianMs": 17.265547000000026,
       "params": {
         "kind": "pen",
         "side": "right",
@@ -83,25 +83,25 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.7918399809911555
+          "confidence": 0.9776964521794412
         },
         "side": {
-          "source": "text",
-          "confidence": 0.8255125064712828
+          "source": "rule"
         },
         "support": {
-          "source": "rule"
+          "source": "text",
+          "confidence": 0.6724103506874946
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "rule"
         },
         "bore": {
           "source": "text",
-          "confidence": 0.8777596184796221
+          "confidence": 0.877295517736283
         },
         "profile": {
           "source": "sketch",
@@ -201,11 +201,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        24.426036000000067,
-        24.086020000000076,
-        20.189705000000004
+        13.832415999999967,
+        9.271858000000009,
+        16.674841999999956
       ],
-      "medianMs": 24.086020000000076,
+      "medianMs": 13.832415999999967,
       "params": {
         "kind": "pen",
         "side": "left",
@@ -220,19 +220,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.8883465896342349
+          "confidence": 0.9554713743504194
         },
         "side": {
           "source": "text",
-          "confidence": 0.9182465620255308
+          "confidence": 0.8094541756705161
         },
         "support": {
           "source": "text",
-          "confidence": 0.9839200456036079
+          "confidence": 0.9794510687831827
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "diameter": {
           "source": "rule"
@@ -338,11 +338,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        47.586460999999986,
-        22.221684000000096,
-        31.786052999999924
+        15.251274000000024,
+        9.749138000000016,
+        9.835650000000044
       ],
-      "medianMs": 31.786052999999924,
+      "medianMs": 9.835650000000044,
       "params": {
         "kind": "pen",
         "side": "neutral",
@@ -357,26 +357,24 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9057788774854005
+          "confidence": 0.9996991405005261
         },
         "side": {
           "source": "text",
-          "confidence": 0.9376591074455425
+          "confidence": 0.948498239950487
         },
         "support": {
-          "source": "text",
-          "confidence": 0.9983765949557565
+          "source": "default"
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "rule"
         },
         "bore": {
-          "source": "text",
-          "confidence": 0.7721043774487338
+          "source": "rule"
         },
         "profile": {
           "source": "sketch",
@@ -476,11 +474,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        17.264794999999935,
-        16.74490200000014,
-        17.70939599999997
+        11.40698500000002,
+        10.527015000000006,
+        12.839867000000027
       ],
-      "medianMs": 17.264794999999935,
+      "medianMs": 11.40698500000002,
       "params": {
         "kind": "pen",
         "side": "neutral",
@@ -495,19 +493,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9179555439727516
+          "confidence": 0.9884488723393604
         },
         "side": {
           "source": "text",
-          "confidence": 0.7980410576312529
+          "confidence": 0.7958418047443677
         },
         "support": {
           "source": "text",
-          "confidence": 0.8664052746672044
+          "confidence": 0.9047762299006383
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "diameter": {
           "source": "rule"
@@ -613,11 +611,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        9.635713000000123,
-        33.51401800000008,
-        20.175433999999996
+        12.436498000000029,
+        9.790046000000075,
+        11.793336000000068
       ],
-      "medianMs": 20.175433999999996,
+      "medianMs": 11.793336000000068,
       "params": {
         "kind": "pen",
         "side": "left",
@@ -632,26 +630,26 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.8373649257431075
+          "confidence": 0.9744701570856747
         },
         "side": {
           "source": "text",
-          "confidence": 0.9548608953916979
+          "confidence": 0.7834836900534156
         },
         "support": {
           "source": "text",
-          "confidence": 0.9828132219485157
+          "confidence": 0.8545396402365211
         },
         "length": {
           "source": "text",
-          "confidence": 0.9341999960072112
+          "confidence": 0.9178902649784973
         },
         "diameter": {
           "source": "rule"
         },
         "bore": {
           "source": "text",
-          "confidence": 0.8517319449052708
+          "confidence": 0.8631363142893346
         },
         "profile": {
           "source": "sketch",
@@ -751,11 +749,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        19.958106000000043,
-        28.69668300000012,
-        25.0189519999999
+        11.816839000000073,
+        12.33621800000003,
+        19.558944999999994
       ],
-      "medianMs": 25.0189519999999,
+      "medianMs": 12.33621800000003,
       "params": {
         "kind": "pen",
         "side": "neutral",
@@ -770,19 +768,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9046943060296028
+          "confidence": 0.9404376414794792
         },
         "side": {
           "source": "text",
-          "confidence": 0.7272406666755313
+          "confidence": 0.7871202677534017
         },
         "support": {
           "source": "text",
-          "confidence": 0.7851402504691656
+          "confidence": 0.744711929857284
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "diameter": {
           "source": "rule"
@@ -888,11 +886,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        20.00475399999982,
-        14.870499999999993,
-        21.730353999999807
+        20.74242300000003,
+        16.078832999999918,
+        9.301909999999907
       ],
-      "medianMs": 20.00475399999982,
+      "medianMs": 16.078832999999918,
       "params": {
         "kind": "pen",
         "side": "right",
@@ -907,25 +905,25 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.7464487533529878
+          "confidence": 0.993773244073567
         },
         "side": {
-          "source": "rule"
+          "source": "text",
+          "confidence": 0.6929209100268888
         },
         "support": {
           "source": "text",
-          "confidence": 0.9983088603625212
+          "confidence": 0.9448601434686025
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "rule"
         },
         "bore": {
-          "source": "text",
-          "confidence": 0.7721043774487338
+          "source": "rule"
         },
         "profile": {
           "source": "sketch",
@@ -1025,11 +1023,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        34.90721400000007,
-        30.60953100000006,
-        18.554701000000023
+        11.561799999999948,
+        9.020134000000098,
+        9.566913999999997
       ],
-      "medianMs": 30.60953100000006,
+      "medianMs": 9.566913999999997,
       "params": {
         "kind": "pen",
         "side": "neutral",
@@ -1044,19 +1042,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9046943060296028
+          "confidence": 0.9404376414794792
         },
         "side": {
           "source": "text",
-          "confidence": 0.7272406666755313
+          "confidence": 0.7871202677534017
         },
         "support": {
           "source": "text",
-          "confidence": 0.7851402504691656
+          "confidence": 0.744711929857284
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "diameter": {
           "source": "rule"
@@ -1162,11 +1160,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        21.71157100000005,
-        27.982046000000082,
-        25.296347999999853
+        9.349231000000032,
+        9.730439000000047,
+        16.078538999999978
       ],
-      "medianMs": 25.296347999999853,
+      "medianMs": 9.730439000000047,
       "params": {
         "kind": "pen",
         "side": "neutral",
@@ -1181,19 +1179,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9277936867856301
+          "confidence": 0.9964479896114777
         },
         "side": {
           "source": "text",
-          "confidence": 0.9854230609051773
+          "confidence": 0.9678817212964446
         },
         "support": {
           "source": "text",
-          "confidence": 0.9881529403337298
+          "confidence": 0.8322912236264953
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "rule"
@@ -1299,11 +1297,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        23.074837000000116,
-        62.20220900000004,
-        39.44187499999998
+        11.561089000000038,
+        17.512614999999983,
+        19.72772800000007
       ],
-      "medianMs": 39.44187499999998,
+      "medianMs": 17.512614999999983,
       "params": {
         "kind": "pen",
         "side": "left",
@@ -1317,19 +1315,20 @@
       "usedSketch": true,
       "provenance": {
         "kind": {
-          "source": "rule"
+          "source": "text",
+          "confidence": 0.9620192230688429
         },
         "side": {
           "source": "text",
-          "confidence": 0.8729099211613921
+          "confidence": 0.9020156144910112
         },
         "support": {
           "source": "text",
-          "confidence": 0.9072569184313278
+          "confidence": 0.9213511774136884
         },
         "length": {
           "source": "text",
-          "confidence": 0.8827173495127136
+          "confidence": 0.9236743875580328
         },
         "diameter": {
           "source": "default"
@@ -1435,11 +1434,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        23.13705700000014,
-        14.316084000000046,
-        31.447400000000016
+        17.301018,
+        23.798375999999962,
+        19.068165000000022
       ],
-      "medianMs": 23.13705700000014,
+      "medianMs": 19.068165000000022,
       "params": {
         "kind": "pen",
         "side": "neutral",
@@ -1454,19 +1453,18 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.819505598025026
+          "confidence": 0.9982321929866839
         },
         "side": {
           "source": "text",
-          "confidence": 0.9459426022495422
+          "confidence": 0.9391212530269634
         },
         "support": {
-          "source": "text",
-          "confidence": 0.9982723073449098
+          "source": "default"
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "rule"
@@ -1517,11 +1515,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        22.128824000000122,
-        21.95647699999995,
-        19.10234700000001
+        20.342178999999987,
+        15.264994000000002,
+        34.41358200000002
       ],
-      "medianMs": 21.95647699999995,
+      "medianMs": 20.342178999999987,
       "params": {
         "kind": "pen",
         "side": "neutral",
@@ -1536,19 +1534,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9130479685155622
+          "confidence": 0.9638305226776026
         },
         "side": {
           "source": "text",
-          "confidence": 0.7807126645941487
+          "confidence": 0.7442431501381012
         },
         "support": {
           "source": "text",
-          "confidence": 0.6876202890536686
+          "confidence": 0.7755341830361762
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "diameter": {
           "source": "rule"
@@ -1653,11 +1651,11 @@
       "representative": true,
       "success": true,
       "durationsMs": [
-        8.449411999999938,
-        22.825559000000112,
-        18.60238400000003
+        28.59021599999994,
+        19.627432999999996,
+        13.538943000000017
       ],
-      "medianMs": 18.60238400000003,
+      "medianMs": 19.627432999999996,
       "params": {
         "kind": "utensil",
         "side": "left",
@@ -1671,26 +1669,27 @@
       "usedSketch": true,
       "provenance": {
         "kind": {
-          "source": "rule"
+          "source": "text",
+          "confidence": 0.848775055569981
         },
         "side": {
           "source": "text",
-          "confidence": 0.8577889905062607
+          "confidence": 0.726315924164779
         },
         "support": {
           "source": "rule"
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "text",
-          "confidence": 0.7798603019737391
+          "confidence": 0.844588015492299
         },
         "bore": {
           "source": "text",
-          "confidence": 0.8777596184796221
+          "confidence": 0.877295517736283
         },
         "profile": {
           "source": "sketch",
@@ -1790,11 +1789,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        18.85274699999991,
-        20.71324800000002,
-        19.663272000000006
+        19.058547999999973,
+        19.375613999999814,
+        20.405492000000095
       ],
-      "medianMs": 19.663272000000006,
+      "medianMs": 19.375613999999814,
       "params": {
         "kind": "utensil",
         "side": "right",
@@ -1809,19 +1808,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.6747005484660034
+          "confidence": 0.9896930274653798
         },
         "side": {
           "source": "text",
-          "confidence": 0.7551086189881079
+          "confidence": 0.9231505828204633
         },
         "support": {
           "source": "text",
-          "confidence": 0.8366739245039687
+          "confidence": 0.8944168355292922
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "diameter": {
           "source": "rule"
@@ -1927,11 +1926,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        32.00427500000001,
-        28.618819999999914,
-        39.20250799999985
+        11.824057999999923,
+        22.845510000000104,
+        19.29116699999986
       ],
-      "medianMs": 32.00427500000001,
+      "medianMs": 19.29116699999986,
       "params": {
         "kind": "utensil",
         "side": "neutral",
@@ -1946,19 +1945,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.7198415514024692
+          "confidence": 0.7965835116323166
         },
         "side": {
           "source": "text",
-          "confidence": 0.8085682928625028
+          "confidence": 0.8499541977161847
         },
         "support": {
           "source": "text",
-          "confidence": 0.989372519246193
+          "confidence": 0.9269654588874373
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "rule"
@@ -2064,11 +2063,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        18.723027000000002,
-        25.450448999999935,
-        13.44918800000005
+        18.903548,
+        34.50440800000001,
+        29.203492000000097
       ],
-      "medianMs": 18.723027000000002,
+      "medianMs": 29.203492000000097,
       "params": {
         "kind": "utensil",
         "side": "neutral",
@@ -2082,15 +2081,16 @@
       "usedSketch": true,
       "provenance": {
         "kind": {
-          "source": "rule"
+          "source": "text",
+          "confidence": 0.8076754177208957
         },
         "side": {
           "source": "text",
-          "confidence": 0.7810405782988109
+          "confidence": 0.8762670492942757
         },
         "support": {
           "source": "text",
-          "confidence": 0.9200724232118133
+          "confidence": 0.9581058589783699
         },
         "length": {
           "source": "rule"
@@ -2100,7 +2100,7 @@
         },
         "bore": {
           "source": "text",
-          "confidence": 0.8925926070516136
+          "confidence": 0.8950734414594962
         },
         "profile": {
           "source": "sketch",
@@ -2200,11 +2200,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        23.259053000000222,
-        17.848735999999917,
-        7.89176899999984
+        17.222028000000137,
+        16.797780999999986,
+        20.444858000000067
       ],
-      "medianMs": 17.848735999999917,
+      "medianMs": 17.222028000000137,
       "params": {
         "kind": "utensil",
         "side": "left",
@@ -2219,19 +2219,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.7583281371806847
+          "confidence": 0.8585144039125205
         },
         "side": {
           "source": "text",
-          "confidence": 0.9061293396498034
+          "confidence": 0.716496381119127
         },
         "support": {
           "source": "text",
-          "confidence": 0.9809920247258808
+          "confidence": 0.9709152737947133
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "rule"
@@ -2337,11 +2337,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        18.25885900000003,
-        7.855621000000156,
-        27.22200100000009
+        31.70892700000013,
+        26.613796999999977,
+        20.391227999999956
       ],
-      "medianMs": 18.25885900000003,
+      "medianMs": 26.613796999999977,
       "params": {
         "kind": "utensil",
         "side": "neutral",
@@ -2356,19 +2356,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.7894651689694872
+          "confidence": 0.9646417022655132
         },
         "side": {
           "source": "text",
-          "confidence": 0.7944749240502742
+          "confidence": 0.7389467326791225
         },
         "support": {
           "source": "text",
-          "confidence": 0.7204369906615438
+          "confidence": 0.8076717275424447
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "diameter": {
           "source": "rule"
@@ -2474,11 +2474,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        7.591797000000042,
-        18.01605100000006,
-        18.46277199999986
+        34.640101000000186,
+        16.750113000000056,
+        9.252608999999893
       ],
-      "medianMs": 18.01605100000006,
+      "medianMs": 16.750113000000056,
       "params": {
         "kind": "utensil",
         "side": "right",
@@ -2492,18 +2492,20 @@
       "usedSketch": true,
       "provenance": {
         "kind": {
-          "source": "rule"
+          "source": "text",
+          "confidence": 0.7959273983195263
         },
         "side": {
-          "source": "rule"
+          "source": "text",
+          "confidence": 0.7581472521432389
         },
         "support": {
           "source": "text",
-          "confidence": 0.9996692099781745
+          "confidence": 0.9862973980099811
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "rule"
@@ -2609,11 +2611,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        17.468521000000237,
-        18.74442399999998,
-        18.843529999999646
+        27.774046,
+        20.274214999999913,
+        32.81839200000013
       ],
-      "medianMs": 18.74442399999998,
+      "medianMs": 27.774046,
       "params": {
         "kind": "utensil",
         "side": "neutral",
@@ -2628,19 +2630,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.8179747535383047
+          "confidence": 0.9849858156764341
         },
         "side": {
           "source": "text",
-          "confidence": 0.6826553756673008
+          "confidence": 0.8092672043909871
         },
         "support": {
           "source": "text",
-          "confidence": 0.9063615655515459
+          "confidence": 0.9338592106578644
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "diameter": {
           "source": "rule"
@@ -2746,11 +2748,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        9.34127800000033,
-        17.309684999999718,
-        18.947649000000183
+        14.009275000000116,
+        17.167481999999836,
+        18.173705000000155
       ],
-      "medianMs": 17.309684999999718,
+      "medianMs": 17.167481999999836,
       "params": {
         "kind": "utensil",
         "side": "neutral",
@@ -2765,19 +2767,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.7388894698188547
+          "confidence": 0.7625981043625181
         },
         "side": {
           "source": "text",
-          "confidence": 0.8989915752643781
+          "confidence": 0.8705077111772035
         },
         "support": {
           "source": "text",
-          "confidence": 0.9782004334032139
+          "confidence": 0.9612890072556158
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "default"
@@ -2883,11 +2885,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        17.75926299999992,
-        18.915950000000066,
-        12.438079000000016
+        19.742410999999947,
+        21.74650799999995,
+        23.6597569999999
       ],
-      "medianMs": 17.75926299999992,
+      "medianMs": 21.74650799999995,
       "params": {
         "kind": "utensil",
         "side": "left",
@@ -2902,23 +2904,23 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.736689392005514
+          "confidence": 0.9897986936400354
         },
         "side": {
           "source": "text",
-          "confidence": 0.8601982671130802
+          "confidence": 0.9117958056715013
         },
         "support": {
           "source": "text",
-          "confidence": 0.9257162241361152
+          "confidence": 0.8647228218810462
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "diameter": {
           "source": "text",
-          "confidence": 0.9339197345239774
+          "confidence": 0.9021139713052052
         },
         "bore": {
           "source": "default"
@@ -3021,11 +3023,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        15.438105000000178,
-        18.808031000000028,
-        18.186681000000135
+        22.847064000000046,
+        15.629187000000002,
+        19.44432299999994
       ],
-      "medianMs": 18.186681000000135,
+      "medianMs": 19.44432299999994,
       "params": {
         "kind": "utensil",
         "side": "neutral",
@@ -3039,19 +3041,20 @@
       "usedSketch": true,
       "provenance": {
         "kind": {
-          "source": "rule"
+          "source": "text",
+          "confidence": 0.9097790089301584
         },
         "side": {
           "source": "text",
-          "confidence": 0.9486339668872885
+          "confidence": 0.957781865336043
         },
         "support": {
           "source": "text",
-          "confidence": 0.9971994354737983
+          "confidence": 0.9425933052402512
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "diameter": {
           "source": "rule"
@@ -3102,11 +3105,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        16.828369000000293,
-        28.551142999999684,
-        17.609645999999884
+        12.798893000000135,
+        28.896214999999984,
+        20.016988000000083
       ],
-      "medianMs": 17.609645999999884,
+      "medianMs": 20.016988000000083,
       "params": {
         "kind": "utensil",
         "side": "neutral",
@@ -3121,19 +3124,19 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.7894651689694872
+          "confidence": 0.9646417022655132
         },
         "side": {
           "source": "text",
-          "confidence": 0.7944749240502742
+          "confidence": 0.7389467326791225
         },
         "support": {
           "source": "text",
-          "confidence": 0.7204369906615438
+          "confidence": 0.8076717275424447
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "diameter": {
           "source": "rule"
@@ -3238,11 +3241,11 @@
       "representative": true,
       "success": true,
       "durationsMs": [
-        31.29367400000001,
-        35.414584000000104,
-        19.097639000000072
+        20.821911,
+        18.845849000000044,
+        25.973330000000033
       ],
-      "medianMs": 31.29367400000001,
+      "medianMs": 20.821911,
       "params": {
         "kind": "brace",
         "side": "right",
@@ -3257,27 +3260,27 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9927359557331873
+          "confidence": 0.999983884317754
         },
         "side": {
           "source": "text",
-          "confidence": 0.7759383307229357
+          "confidence": 0.7751535938988987
         },
         "finger": {
           "source": "text",
-          "confidence": 0.9858735038587162
+          "confidence": 0.9845201767143992
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "circumference": {
           "source": "text",
-          "confidence": 0.918408976796415
+          "confidence": 0.9005911487011288
         },
         "wall": {
           "source": "text",
-          "confidence": 0.9434176966717226
+          "confidence": 0.9572824999570773
         },
         "profile": {
           "source": "sketch",
@@ -3377,11 +3380,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        33.394972999999936,
-        7.66491300000007,
-        18.252352999999857
+        12.278749000000062,
+        28.73504600000001,
+        25.294378999999935
       ],
-      "medianMs": 18.252352999999857,
+      "medianMs": 25.294378999999935,
       "params": {
         "kind": "brace",
         "side": "left",
@@ -3396,27 +3399,27 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.968778888231609
+          "confidence": 0.9990298475148596
         },
         "side": {
           "source": "text",
-          "confidence": 0.9087846550444119
+          "confidence": 0.9358330055877564
         },
         "finger": {
           "source": "text",
-          "confidence": 0.8527000648041849
+          "confidence": 0.8607032417128365
         },
         "length": {
           "source": "text",
-          "confidence": 0.8735903872777052
+          "confidence": 0.8824360747450181
         },
         "circumference": {
           "source": "text",
-          "confidence": 0.7146397056322875
+          "confidence": 0.8217975194582121
         },
         "wall": {
           "source": "text",
-          "confidence": 0.909656682953995
+          "confidence": 0.903687059701759
         },
         "profile": {
           "source": "sketch",
@@ -3516,11 +3519,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        7.9940309999997226,
-        39.87715900000012,
-        18.248450999999932
+        20.803382000000056,
+        22.18692800000008,
+        42.29775500000005
       ],
-      "medianMs": 18.248450999999932,
+      "medianMs": 22.18692800000008,
       "params": {
         "kind": "brace",
         "side": "right",
@@ -3535,25 +3538,25 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9298340592370962
+          "confidence": 0.99868805417292
         },
         "side": {
           "source": "rule"
         },
         "finger": {
           "source": "text",
-          "confidence": 0.8835160960533099
+          "confidence": 0.6705081962979166
         },
         "length": {
           "source": "text",
-          "confidence": 0.7528483292717223
+          "confidence": 0.9154985058973187
         },
         "circumference": {
           "source": "rule"
         },
         "wall": {
           "source": "text",
-          "confidence": 0.9434176966717226
+          "confidence": 0.9572824999570773
         },
         "profile": {
           "source": "sketch",
@@ -3653,11 +3656,11 @@
       "representative": true,
       "success": true,
       "durationsMs": [
-        20.352620000000115,
-        19.86531799999966,
-        30.3965189999999
+        22.160718000000088,
+        38.09965299999976,
+        26.946322000000237
       ],
-      "medianMs": 20.352620000000115,
+      "medianMs": 26.946322000000237,
       "params": {
         "kind": "brace",
         "side": "neutral",
@@ -3672,26 +3675,27 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9609532553499245
+          "confidence": 0.9989160152194613
         },
         "side": {
           "source": "text",
-          "confidence": 0.863702804627769
+          "confidence": 0.8341866526527358
         },
         "finger": {
           "source": "text",
-          "confidence": 0.9396618899696593
+          "confidence": 0.9095342517731366
         },
         "length": {
           "source": "text",
-          "confidence": 0.8735903872777052
+          "confidence": 0.8824360747450181
         },
         "circumference": {
-          "source": "rule"
+          "source": "text",
+          "confidence": 0.7396800262515209
         },
         "wall": {
           "source": "text",
-          "confidence": 0.909656682953995
+          "confidence": 0.903687059701759
         },
         "profile": {
           "source": "sketch",
@@ -3791,11 +3795,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        24.954827000000023,
-        21.228801999999632,
-        20.68279399999983
+        33.50292899999977,
+        22.970954999999776,
+        23.29990399999997
       ],
-      "medianMs": 21.228801999999632,
+      "medianMs": 23.29990399999997,
       "params": {
         "kind": "brace",
         "side": "left",
@@ -3810,27 +3814,25 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9567895698719882
+          "confidence": 0.9966281014734092
         },
         "side": {
-          "source": "text",
-          "confidence": 0.9394187615659922
+          "source": "rule"
         },
         "finger": {
           "source": "text",
-          "confidence": 0.7193504259051714
+          "confidence": 0.9424071740916506
         },
         "length": {
           "source": "text",
-          "confidence": 0.7528483292717223
+          "confidence": 0.9154985058973187
         },
         "circumference": {
-          "source": "text",
-          "confidence": 0.6257033571493442
+          "source": "rule"
         },
         "wall": {
           "source": "text",
-          "confidence": 0.9434176966717226
+          "confidence": 0.9572824999570773
         },
         "profile": {
           "source": "sketch",
@@ -3930,11 +3932,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        20.722149000000172,
-        21.246446000000105,
-        18.735447000000022
+        31.84829600000012,
+        11.045302999999876,
+        22.395121000000017
       ],
-      "medianMs": 20.722149000000172,
+      "medianMs": 22.395121000000017,
       "params": {
         "kind": "brace",
         "side": "neutral",
@@ -3949,23 +3951,22 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9784357882735908
+          "confidence": 0.9994465338039115
         },
         "side": {
           "source": "text",
-          "confidence": 0.918901739170552
+          "confidence": 0.767815168034694
         },
         "finger": {
-          "source": "text",
-          "confidence": 0.6825144194288375
+          "source": "default"
         },
         "length": {
           "source": "text",
-          "confidence": 0.9727225021022073
+          "confidence": 0.9795976377470216
         },
         "circumference": {
           "source": "text",
-          "confidence": 0.7552829303098132
+          "confidence": 0.7971550760527928
         },
         "wall": {
           "source": "rule"
@@ -4068,11 +4069,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        19.24043299999994,
-        19.621879999999692,
-        18.52594799999997
+        22.531706999999642,
+        27.003975999999966,
+        21.19879800000035
       ],
-      "medianMs": 19.24043299999994,
+      "medianMs": 22.531706999999642,
       "params": {
         "kind": "brace",
         "side": "neutral",
@@ -4087,26 +4088,26 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9716179776722776
+          "confidence": 0.9981347439959788
         },
         "side": {
           "source": "text",
-          "confidence": 0.9511377373455665
+          "confidence": 0.9566608181827999
         },
         "finger": {
           "source": "text",
-          "confidence": 0.8286161726022119
+          "confidence": 0.8301014586252952
         },
         "length": {
           "source": "text",
-          "confidence": 0.7528483292717223
+          "confidence": 0.9154985058973187
         },
         "circumference": {
           "source": "rule"
         },
         "wall": {
           "source": "text",
-          "confidence": 0.9434176966717226
+          "confidence": 0.9572824999570773
         },
         "profile": {
           "source": "sketch",
@@ -4206,11 +4207,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        17.56557500000008,
-        18.263556999999764,
-        17.572786999999607
+        18.680680999999822,
+        20.962916999999834,
+        27.222131999999874
       ],
-      "medianMs": 17.572786999999607,
+      "medianMs": 20.962916999999834,
       "params": {
         "kind": "brace",
         "side": "right",
@@ -4225,27 +4226,27 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9703561381996496
+          "confidence": 0.9992913277870874
         },
         "side": {
           "source": "text",
-          "confidence": 0.6628068555960571
+          "confidence": 0.8720864274331555
         },
         "finger": {
           "source": "text",
-          "confidence": 0.9593559372582143
+          "confidence": 0.9721213342078374
         },
         "length": {
           "source": "text",
-          "confidence": 0.8735903872777052
+          "confidence": 0.8824360747450181
         },
         "circumference": {
           "source": "text",
-          "confidence": 0.7090900726700397
+          "confidence": 0.8077966871531843
         },
         "wall": {
           "source": "text",
-          "confidence": 0.909656682953995
+          "confidence": 0.903687059701759
         },
         "profile": {
           "source": "sketch",
@@ -4345,11 +4346,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        21.014370999999755,
-        18.4114169999998,
-        18.67609999999968
+        31.50736700000016,
+        8.937041000000136,
+        25.59048299999995
       ],
-      "medianMs": 18.67609999999968,
+      "medianMs": 25.59048299999995,
       "params": {
         "kind": "brace",
         "side": "left",
@@ -4364,26 +4365,25 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.8778341546401405
+          "confidence": 0.9937121065640135
         },
         "side": {
-          "source": "text",
-          "confidence": 0.8031745383166149
+          "source": "rule"
         },
         "finger": {
           "source": "text",
-          "confidence": 0.8356538748260651
+          "confidence": 0.7032444863126608
         },
         "length": {
           "source": "text",
-          "confidence": 0.7528483292717223
+          "confidence": 0.9154985058973187
         },
         "circumference": {
           "source": "rule"
         },
         "wall": {
           "source": "text",
-          "confidence": 0.9434176966717226
+          "confidence": 0.9572824999570773
         },
         "profile": {
           "source": "sketch",
@@ -4483,11 +4483,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        25.5022570000001,
-        10.269396000000143,
-        28.58532299999979
+        15.455792000000201,
+        22.066376999999648,
+        24.345753999999943
       ],
-      "medianMs": 25.5022570000001,
+      "medianMs": 22.066376999999648,
       "params": {
         "kind": "brace",
         "side": "neutral",
@@ -4502,26 +4502,26 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9883363804018932
+          "confidence": 0.9997405123729506
         },
         "side": {
           "source": "text",
-          "confidence": 0.9082240514029384
+          "confidence": 0.7163387093781219
         },
         "finger": {
           "source": "default"
         },
         "length": {
           "source": "text",
-          "confidence": 0.8735903872777052
+          "confidence": 0.8824360747450181
         },
         "circumference": {
           "source": "text",
-          "confidence": 0.835328866488314
+          "confidence": 0.8451508591681547
         },
         "wall": {
           "source": "text",
-          "confidence": 0.909656682953995
+          "confidence": 0.903687059701759
         },
         "profile": {
           "source": "sketch",
@@ -4621,11 +4621,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        28.920226000000184,
-        20.221192999999857,
-        14.37432600000011
+        25.739460000000236,
+        27.402040999999826,
+        21.667065999999977
       ],
-      "medianMs": 20.221192999999857,
+      "medianMs": 25.739460000000236,
       "params": {
         "kind": "brace",
         "side": "neutral",
@@ -4640,18 +4640,18 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.783918912955183
+          "confidence": 0.992103792324608
         },
         "side": {
           "source": "text",
-          "confidence": 0.9761602201438482
+          "confidence": 0.9587075837407989
         },
         "finger": {
           "source": "rule"
         },
         "length": {
           "source": "text",
-          "confidence": 0.9742944865539624
+          "confidence": 0.978742683314909
         },
         "circumference": {
           "source": "rule"
@@ -4702,11 +4702,11 @@
       "representative": false,
       "success": true,
       "durationsMs": [
-        11.138112000000092,
-        20.341679999999997,
-        18.471090000000004
+        13.616982000000007,
+        19.390628000000106,
+        20.05584200000021
       ],
-      "medianMs": 18.471090000000004,
+      "medianMs": 19.390628000000106,
       "params": {
         "kind": "brace",
         "side": "neutral",
@@ -4721,26 +4721,26 @@
       "provenance": {
         "kind": {
           "source": "text",
-          "confidence": 0.9676938452298748
+          "confidence": 0.9967719495053714
         },
         "side": {
           "source": "text",
-          "confidence": 0.9051468209156557
+          "confidence": 0.8153419603149573
         },
         "finger": {
           "source": "text",
-          "confidence": 0.7211401330767767
+          "confidence": 0.8204961984831219
         },
         "length": {
           "source": "text",
-          "confidence": 0.8735903872777052
+          "confidence": 0.8824360747450181
         },
         "circumference": {
           "source": "rule"
         },
         "wall": {
           "source": "text",
-          "confidence": 0.909656682953995
+          "confidence": 0.903687059701759
         },
         "profile": {
           "source": "default"
