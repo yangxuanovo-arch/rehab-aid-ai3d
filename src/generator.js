@@ -61,7 +61,7 @@ export function readRuleEvidence(description, selected = 'auto') {
     finger: /护指|手指|finger/.test(text) || undefined,
     ...Object.fromEntries(Object.entries(dimensions).map(([key, evidence]) => [key, evidence?.mm])),
     ...(dimensions.circumference?.bodyFit ? { bodyFitCircumference: true } : {}),
-    ...(/^(?:外径|outer diameter|outer width|width|wide|across|宽度|宽|横宽|最宽处|from side to side)$/u.test(dimensions.diameter?.label)
+    ...(/^(?:外径|(?:outer|outside|external|overall)\b.*|o\.?d\.?|width|wide|across(?: the outside)?|宽度|宽|横宽|最宽处|from side to side)$/u.test(dimensions.diameter?.label)
       ? { outerOnlyDiameter: true } : {}),
   };
   return { raw, dimensions, blocked };

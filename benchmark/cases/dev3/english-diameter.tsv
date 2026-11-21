@@ -1,0 +1,29 @@
+language	kind	fields	description
+en	pen	{"diameter":29,"bore":8}	A pencil grip with OD 29 mm and ID 8 mm.
+en	utensil	{"diameter":34,"bore":10}	Spoon sleeve, 34 mm O.D. and 10 mm I.D.
+en	pen	{"diameter":25.4,"bore":7.9375}	Pen sleeve: Ø1 inch outside, Ø5/16 inch inside.
+en	utensil	{"diameter":38,"wall":4}	Fork handle, dia. 38 mm; wall thickness 4 mm.
+en	pen	{"diameter":24,"length":62}	A 62 mm long pencil grip, diameter approx. 24 mm.
+en	utensil	{"diameter":31,"length":96}	Make the spoon handle 31 mm thick overall and 96 mm long.
+en	pen	{"diameter":26,"bore":9}	Pencil grip that fits a 9 mm pencil; make the sleeve 26 mm across.
+en	utensil	{"diameter":30,"length":115}	Round spoon handle, 3 cm cross-section and a length of 115 mm.
+en	pen	{"diameter":27,"bore":7}	Grip for a pen: outer Ø27 mm, hole Ø7 mm.
+en	utensil	{"diameter":35,"wall":3}	Adaptive cutlery handle 35 mm in diameter with a solid 3 mm wall.
+en	pen	{"diameter":28,"wall":2}	Pencil grip with a 28 mm outside dia and 2 mm walls.
+en	pen	{"diameter":28,"bore":9}	Pen grip: the marker in my sketch is 15 mm wide; outside diameter 28 mm; opening 9 mm.
+en	brace	{"diameter":21,"length":50}	Finger splint, fit diameter 21 mm and 50 mm long.
+en	brace	{"diameter":22,"circumference":69.12}	Finger brace; finger fit Ø22 mm and girth 69.12 mm.
+en	brace	{"circumference":155,"wall":3}	Brace for my wrist: 155 mm in girth, 3 mm thick.
+en	utensil	{"circumference":99,"bore":8}	Spoon handle sleeve: 99 mm girth, 8 mm inside diameter.
+en	pen	{"diameter":28,"length":65}	Pencil grip, 65 mm long and 28 mm from side to side.
+en	pen	{"diameter":25,"bore":8}	25 mm outside diameter; the pencil goes through an 8 mm hole.
+en	utensil	{"diameter":31.75,"length":128}	Spoon handle per sketch: ⌀1¼″, length 128 mm.
+en	utensil	{"diameter":32,"wall":2}	Fork handle thickness 32 mm overall; sleeve wall 2 mm.
+en	pen	{"diameter":26,"bore":9}	Left pencil grip. Nominal outside diameter 26 mm; 9 mm bore for the barrel.
+en	pen	{"diameter":28,"length":66}	Pencil grip near 66 mm in length; Ø between 26 and 30 mm.
+en	utensil	{"diameter":37,"bore":12}	Fork handle, 12 mm hole diameter and overall OD 37 mm.
+en	pen	{"diameter":27,"length":71}	Pen sleeve: want it 27 mm in outer diameter, 71 mm long.
+zh	pen	{"diameter":27,"bore":9}	握笔器做成外径27毫米，孔径9毫米。
+zh	utensil	{"diameter":32,"wall":2.5}	勺柄套外径3.2公分，壁厚2.5毫米。
+zh	brace	{"circumference":159,"wall":3}	左腕护具，腕围159毫米，壁厚3毫米。
+zh	pen	{"diameter":23,"length":61}	握笔器宽23毫米，长度61毫米。
