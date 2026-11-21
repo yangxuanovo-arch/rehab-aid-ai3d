@@ -1,3 +1,4 @@
+import argparse
 import csv
 import importlib.metadata as metadata
 import json
@@ -189,6 +190,7 @@ def summary(generation, slices, analyses, env):
                             f'{value["reference_safety_factor"]:.3f} |')
     report = [
         '# 实测基准：生成耗时、切片与有限元仿真', '',
+        '生成管线：' + env['pipeline'] + '。', '',
         '**未进行实体打印、佩戴或临床验证。** 切片时间为软件估算，有限元结果为指定边界条件下的仿真。',
         f'环境：{env["platform"]}；{env["cpu"]}（{env["logical_cpus"]} 逻辑核）；Node {env["node"]}；'
         f'Python {env["python"]}；{env["slicer"]}。',
@@ -204,7 +206,7 @@ def summary(generation, slices, analyses, env):
         '逐例输入、原始计时和筛查：[generation.json](generation.json)；'
         '逐例切片统计：[slicing.json](slicing.json)；求解配置、平衡误差和仿真输出位置：[fea.json](fea.json)；'
         '版本和环境：[environment.json](environment.json)；逐例表格：[summary.csv](summary.csv)。'
-        'STL、G-code、切片日志和 VTU 场结果由脚本重建至 benchmark/artifacts/，未纳入 Git。', '',
+        f'STL、G-code、切片日志和 VTU 场结果由脚本重建至 {relative(ARTIFACTS)}/，未纳入 Git。', '',
     ]
     (RESULTS / 'summary.md').write_text('\n'.join(report))
     print('\n'.join(lines), flush=True)
@@ -212,16 +214,25 @@ def summary(generation, slices, analyses, env):
 
 
 def main():
+    global ARTIFACTS, RESULTS
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--ai', action='store_true', help='Use the browser AI pipeline and separate output directories.')
+    args = parser.parse_args()
+    if args.ai:
+        ARTIFACTS /= 'ai-print'
+        RESULTS /= 'ai-print'
     RESULTS.mkdir(parents=True, exist_ok=True)
     version_output = subprocess.run([SLICER, '--help'], text=True, capture_output=True, check=True).stdout
     version = next(line.strip() for line in version_output.splitlines() if line.startswith('PrusaSlicer-'))
-    subprocess.run(['node', 'scripts/generate-cases.mjs', str(ARTIFACTS)], cwd=ROOT, check=True)
+    command = ['node', 'scripts/generate-cases.mjs', str(ARTIFACTS)]
+    subprocess.run(command + (['--ai'] if args.ai else []), cwd=ROOT, check=True)
     data = json.loads((ARTIFACTS / 'generation.json').read_text())
     generation = data['records']
     write_json('generation.json', {'measurement': 'performance.now, 15 warmup invocations, 3 samples per case',
                                    'records': generation})
     cpu = re.search(r'^model name\s*:\s*(.+)$', Path('/proc/cpuinfo').read_text(), re.M)
-    env = {'platform': platform.platform(), 'cpu': cpu[1] if cpu else platform.machine(),
+    env = {'pipeline': '本地 AI＋规则回退' if args.ai else '纯规则基线',
+           'platform': platform.platform(), 'cpu': cpu[1] if cpu else platform.machine(),
            'logical_cpus': os.cpu_count(), 'node': data['node'], 'python': platform.python_version(),
            'slicer': version, 'packages': {n: metadata.version(n) for n in ('numpy', 'scipy', 'tetgen', 'meshio', 'scikit-fem')}}
     write_json('environment.json', env)

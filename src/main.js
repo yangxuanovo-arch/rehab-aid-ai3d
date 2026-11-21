@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { binarySTL, families, generateModel } from './generator.js';
+import { generateAIModel } from './ai.js';
+import { binarySTL, families } from './generator.js';
 import { outlineFromWidths, presets } from './samples.js';
 import './style.css';
 
@@ -140,9 +141,25 @@ function node(tag, content, className) {
   return element;
 }
 
+function provenanceDetails(provenance) {
+  const labels = { kind: '类别', side: '侧别', support: '握力辅助', finger: '腕／指模板', length: '长度',
+    diameter: '外径', bore: '孔径', circumference: '周长', wall: '壁厚', profile: '轮廓' };
+  const sections = { text: '文字模型', sketch: '草图模型', rule: '规则回退', default: '模板默认', manual: '手动选择' };
+  const components = Object.entries(provenance).map(([key, value]) => {
+    const score = value.confidence !== undefined ? ' ' + fixed(value.confidence * 100, 0) + '%'
+      : value.coverage !== undefined ? '（采样覆盖 ' + fixed(value.coverage * 100, 0) + '%）' : '';
+    return labels[key] + '：' + sections[value.source] + score;
+  });
+  const details = node('details', '', 'result-text');
+  const aiCount = Object.values(provenance).filter(x => x.source === 'text' || x.source === 'sketch').length;
+  details.append(node('summary', '参数来源：' + aiCount + ' 项由本地模型推断'),
+    node('p', components.join('；') + '。文字百分比为模型分数，非校准准确率；草图覆盖率为有效扫描线比例。'));
+  return details;
+}
+
 function generate(presetKind) {
   const start = performance.now();
-  model = generateModel($('description').value, strokes, $('family').value);
+  model = generateAIModel($('description').value, strokes, $('family').value);
   const elapsed = performance.now() - start;
   const { params, checks, profile } = model;
   const details = params.kind === 'brace' ? (params.finger ? '护指' : '护腕') : families[params.kind].label;
@@ -171,7 +188,8 @@ function generate(presetKind) {
   output.replaceChildren(badges, metrics,
     node('p', nominal + ' · 外包尺寸 ' + size + ' · 下向悬垂面积 ' + fixed(checks.overhangPercent, 2) + '%', 'result-text'),
     node('p', '仿真估算：' + s.model + '，载荷 ' + s.load + ' N，弯曲应力 ' + fixed(s.stress, 2)
-      + ' MPa，参考裕量 ' + fixed(s.factor, 2) + '×（PLA 参考强度 35 MPa）。', 'result-text'));
+      + ' MPa，参考裕量 ' + fixed(s.factor, 2) + '×（PLA 参考强度 35 MPa）。', 'result-text'),
+    provenanceDetails(model.provenance));
   const warnings = [...params.warnings];
   if (strokes.length && !profile) warnings.push('未提取到可用轮廓，改用默认外形。');
   if (!checks.printable) warnings.push('几何筛查未全部通过，建议修改尺寸或轮廓后再导出。');
