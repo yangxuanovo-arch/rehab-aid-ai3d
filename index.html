@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="用手绘草图和文字生成握笔器、餐具手柄及矫形护具的 3D 打印原型。" />
+    <title>适形工坊 · 康复辅具生成器</title>
+    <script type="module" crossorigin src="./assets/index-vxshg68r.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BAxv65ZA.css">
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand"><span class="mark">适</span><div><strong>适形工坊</strong><small>REHAB AID STUDIO</small></div></div>
+      <span class="local">● 本地处理 · 免登录</span>
+    </header>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">AI3D / 个性化辅具设计实验</p>
+        <h1>让草图变成<span>合手的辅具。</span></h1>
+        <p>画个轮廓，写下需求。把握笔器、餐具手柄或矫形护具变成可下载的参数化 3D 打印原型。</p>
+      </section>
+      <nav id="presets" aria-label="一键试用样例"></nav>
+      <div class="workbench">
+        <section class="panel input-panel" aria-labelledby="input-title">
+          <div class="panel-head"><span>01</span><div><h2 id="input-title">输入设计需求</h2><p>样例可以直接生成，也可以从自己的草图开始。</p></div></div>
+          <div class="sketch-head"><label for="sketch">手绘轮廓 <small>选填</small></label><button type="button" id="undo">撤销</button><button type="button" id="clear">清空</button></div>
+          <div class="sketch-box">
+            <canvas id="sketch" width="520" height="260" aria-label="手绘轮廓画布，从上到下画出辅具左右外缘"></canvas>
+            <span id="sketch-hint">画出左右外缘，形成长条轮廓</span>
+          </div>
+          <p class="hint">草图决定沿长度的外形变化；尺寸由文字指定，草图不作为实物测量。</p>
+          <label class="field" for="description">需求描述 <small>支持中英文</small></label>
+          <textarea id="description" rows="3" maxlength="400" placeholder="例如：右手握力弱，握笔器直径 28mm、孔径 10mm"></textarea>
+          <label class="field" for="family">辅助器具类型</label>
+          <select id="family">
+            <option value="auto">从描述自动识别</option>
+            <option value="pen">握笔器</option><option value="utensil">餐具手柄</option><option value="brace">矫形护具（腕／指）</option>
+          </select>
+          <button type="button" id="generate" class="primary">生成 3D 原型 <span>↗</span></button>
+        </section>
+        <section class="panel output-panel" aria-labelledby="output-title">
+          <div class="panel-head"><span>02</span><div><h2 id="output-title">预览与校验</h2><p id="model-label">选择样例，或输入需求后生成。</p></div></div>
+          <div id="preview"><span class="preview-tag">3D / 原型预览</span><p id="preview-error" hidden></p><span class="preview-hint">拖拽旋转 · 滚动缩放</span></div>
+          <div id="results" aria-live="polite"></div>
+          <button type="button" id="download" class="secondary" disabled>下载 STL <span>↓</span></button>
+        </section>
+      </div>
+      <footer><strong>原型仿真 · 非实体打印</strong><p>尺寸识别为规则／关键词解析，不是生成式模型。浏览器检查是几何筛查和简化力学估算，不等于真实切片、实物试验或临床验证；护具仅用于设计展示，不用于医疗佩戴。</p></footer>
+    </main>
+  </body>
+</html>
