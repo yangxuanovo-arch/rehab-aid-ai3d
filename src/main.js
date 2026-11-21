@@ -1,20 +1,23 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { generateAIModel } from './ai.js';
-import { binarySTL, families, updateModelParameters } from './generator.js';
-import { outlineFromWidths, presets } from './samples.js';
+import { binarySTL, updateModelParameters } from './generator.js';
+import { outlineFromWidths } from './samples.js';
+import { aids, conditions, aidById, guideFor } from './care.js';
+import { buildAidModel, customFields } from './aid-models.js';
 import './style.css';
 
 const $ = id => document.getElementById(id);
 const canvas = $('sketch');
 const ctx = canvas.getContext('2d');
 let strokes = [], drawing = null, pointer = null, model = null, hadSketch = false;
+let currentAid = aids[0];
 
 function paint() {
   const rect = canvas.getBoundingClientRect(), dpi = window.devicePixelRatio || 1;
   canvas.width = Math.max(1, Math.round(rect.width * dpi));
   canvas.height = Math.max(1, Math.round(rect.height * dpi));
-  ctx.strokeStyle = '#007867';
+  ctx.strokeStyle = '#2467bd';
   ctx.lineWidth = 2.75 * dpi;
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
@@ -72,15 +75,15 @@ function createPreview() {
   const render = () => renderer.render(scene, camera);
   controls.addEventListener('change', render);
 
-  scene.add(new THREE.HemisphereLight(0xe7fff5, 0x2d4248, 2.1));
-  for (const [color, power, x, y, z] of [[0xffffff, 2.6, 80, 110, 130], [0x74e8ca, 2.2, -85, 10, -60]]) {
+  scene.add(new THREE.HemisphereLight(0xf4faff, 0x6c819b, 2.1));
+  for (const [color, power, x, y, z] of [[0xffffff, 2.6, 80, 110, 130], [0x9ecbff, 2.2, -85, 10, -60]]) {
     const light = new THREE.DirectionalLight(color, power);
     light.position.set(x, y, z);
     scene.add(light);
   }
-  const grid = new THREE.GridHelper(130, 20, 0x457775, 0x335b5a);
+  const grid = new THREE.GridHelper(130, 20, 0xa3b7d2, 0xd3dfec);
   scene.add(grid);
-  const material = new THREE.MeshStandardMaterial({ color: 0x64debb, metalness: 0.15, roughness: 0.37 });
+  const material = new THREE.MeshStandardMaterial({ color: 0x347dc5, metalness: 0.08, roughness: 0.43 });
   let previewMesh;
 
   function fit() {
@@ -177,23 +180,32 @@ function renderEditor() {
       input.type = 'number';
       input.required = true;
       input.step = 'any';
+      if (currentAid.custom) {
+        const [, , min, max] = customFields[currentAid.id][key];
+        input.min = min;
+        input.max = max;
+      }
     }
-    const label = node('label', parameterLabels[key] + (options ? '' : '（mm）'));
+    const label = node('label', (currentAid.custom ? customFields[currentAid.id][key][0] : parameterLabels[key]) + (options ? '' : '（mm）'));
     input.value = params[key];
     label.append(input);
     fields.append(label);
   }
-  add('length');
-  if (params.kind === 'brace') {
-    add('circumference');
-    add('wall');
-    add('finger', { false: '护腕', true: '护指' });
+  if (currentAid.custom) {
+    for (const key of Object.keys(customFields[currentAid.id])) add(key);
   } else {
-    add('diameter');
-    add('bore');
-    add('support', { false: '标准', true: '加粗默认外径' });
+    add('length');
+    if (params.kind === 'brace') {
+      add('circumference');
+      add('wall');
+      add('finger', { false: '护腕', true: '护指' });
+    } else {
+      add('diameter');
+      add('bore');
+      add('support', { false: '标准', true: '加粗默认外径' });
+    }
+    add('side', sideLabels);
   }
-  add('side', sideLabels);
   $('parameter-editor').hidden = false;
 }
 
@@ -204,7 +216,7 @@ function checkRows(checks) {
         : '网格未满足闭合定向要求：异常边 ' + checks.nonManifold + '、异常顶点 ' + checks.badVertices
           + '、退化三角形 ' + checks.degenerate + '；有向体积 ' + fixed(checks.volume / 1000, 3) + ' cm³。' },
     { name: '最小壁厚', status: checks.wallPass ? 'pass' : 'fail',
-      explanation: fixed(checks.minWall, 2) + ' mm；筛查要求至少 1.60 mm。' },
+      explanation: fixed(checks.minWall, 2) + ' mm；筛查要求至少 1.60 mm。' + (checks.wallMethod ? checks.wallMethod + '。' : '') },
     { name: '下向悬垂', status: checks.overhangPass ? 'pass' : 'warn',
       explanation: checks.overhangPass ? '未检测到非底面超过 45° 的下向悬垂。'
         : fixed(checks.overhangPercent, 2) + '% 的表面属于非底面超过 45° 的下向悬垂；请调整朝向或在切片时评估支撑。' },
@@ -232,11 +244,11 @@ function extractedMeasurements(extracted, params) {
   return node('p', '从原始请求提取的尺寸：' + (measurements.join(' · ') || '无'), 'result-text');
 }
 
-function renderModel(elapsed, presetKind) {
+function renderModel(elapsed) {
   const { params, checks, profile, extracted } = model;
-  const details = params.kind === 'brace' ? (params.finger ? '护指' : '护腕') : families[params.kind].label;
+  const details = currentAid.label;
   const side = sideLabels[params.side];
-  $('model-label').textContent = details + ' · ' + side + ' · ' + (profile ? '已应用草图' : '默认轮廓') + ' · ' + fixed(elapsed) + ' ms';
+  $('model-label').textContent = details + ' · ' + side + ' · ' + (currentAid.custom ? '参数化板件' : profile ? '已应用草图' : '默认轮廓') + ' · ' + fixed(elapsed) + ' ms';
   showPreview?.(model);
   const report = node('ul', '', 'check-list');
   for (const { name, status, explanation } of checkRows(checks)) {
@@ -254,7 +266,7 @@ function renderModel(elapsed, presetKind) {
     item.append(node('dt', title), node('dd', value));
     metrics.append(item);
   }
-  const nominal = params.kind === 'brace'
+  const nominal = currentAid.custom ? Object.keys(customFields[currentAid.id]).map(key => customFields[currentAid.id][key][0] + ' ' + params[key] + ' mm').join(' · ') : params.kind === 'brace'
     ? '适配周长 ' + Number(params.circumference.toFixed(2)) + ' mm · 名义壁厚 ' + params.wall + ' mm'
     : '名义外径 ' + Number(params.diameter.toFixed(2)) + ' mm · 孔径 ' + Number(params.bore.toFixed(2))
       + ' mm · 名义壁厚 ' + Number(params.wall.toFixed(2)) + ' mm';
@@ -262,29 +274,59 @@ function renderModel(elapsed, presetKind) {
   output.replaceChildren(node('h3', '校验报告'), report, node('p', notice, 'result-text'), metrics,
     node('p', nominal, 'result-text'),
     extractedMeasurements(extracted, params),
-    node('p', '仿真估算：' + s.model + '，载荷 ' + s.load + ' N，弯曲应力 ' + fixed(s.stress, 2)
-      + ' MPa，参考裕量 ' + fixed(s.factor, 2) + '×（PLA 参考强度 35 MPa）。', 'result-text'),
-    provenanceDetails(model.provenance));
+    node('p', s ? '仿真估算：' + s.model + '，载荷 ' + s.load + ' N，弯曲应力 ' + fixed(s.stress, 2)
+      + ' MPa，参考裕量 ' + fixed(s.factor, 2) + '×（PLA 参考强度 35 MPa）。' : '结构强度未评估：此板件不适用套筒梁模型；未做载荷、疲劳或实体试验。', 'result-text'));
+  if (!currentAid.custom) output.append(provenanceDetails(model.provenance));
   const warnings = modelWarnings(model);
   if (warnings.length) output.append(node('p', warnings.join(' '), 'result-text warnings'));
   $('download').disabled = false;
   $('download-report').disabled = false;
-  document.querySelectorAll('.preset').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.kind === presetKind)));
+  document.querySelectorAll('.preset').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.kind === currentAid.id)));
   renderEditor();
+  renderGuidance();
 }
 
-function generate(presetKind) {
+function generate() {
   if (pointer !== null) return;
   const start = performance.now();
-  hadSketch = strokes.length > 0;
-  model = generateAIModel($('description').value, strokes, $('family').value);
-  renderModel(performance.now() - start, presetKind);
+  const selected = aidById($('family').value);
+  hadSketch = !selected?.custom && strokes.length > 0;
+  if (selected?.custom) model = buildAidModel(selected.id);
+  else {
+    model = generateAIModel($('description').value, strokes, selected?.family ?? 'auto');
+    if (selected?.family === 'brace') model = updateModelParameters(model, { finger: selected.id === 'finger' });
+  }
+  currentAid = selected ?? aidById(model.params.kind === 'brace' ? (model.params.finger ? 'finger' : 'wrist') : model.params.kind);
+  model.aidId = currentAid.id;
+  configureInput();
+  renderModel(performance.now() - start);
 }
 
-for (const preset of presets) {
+function configureInput(custom = Boolean(currentAid.custom)) {
+  $('sketch-section').hidden = custom;
+  $('text-section').hidden = custom;
+  $('generate').hidden = custom;
+  $('input-note').textContent = custom ? '此方案使用专用几何模板。请在下方直接编辑尺寸，不使用文字或草图识别。' : '填写尺寸或绘制轮廓，生成后还可以精细调整。';
+  $('editor-note').textContent = custom ? '单位为毫米；孔洞大小可能为保留材料边距而限制，应用后查看实际建模值。' : '单位为毫米；应用后保留草图并重新筛查。换辅具请使用上方方案库。';
+}
+
+function selectAid(aid) {
+  if (pointer !== null) return;
+  currentAid = aid;
+  $('family').value = aid.id;
+  $('description').value = aid.description ?? '';
+  const profiles = { pen: [0.7, 0.86, 1, 0.91, 0.96, 0.69], utensil: [0.65, 0.8, 1, 0.92, 0.83, 0.69], toothbrush: [0.8, 0.85, 0.91, 1, 0.9, 0.8] };
+  strokes = aid.custom ? [] : outlineFromWidths(profiles[aid.id] ?? [0.75, 0.85, 0.93, 1, 0.95, 0.8]);
+  configureInput();
+  paint();
+  generate();
+}
+
+for (const preset of aids) {
+  const option = node('option', preset.label); option.value = preset.id; $('family').append(option);
   const button = node('button', '', 'preset');
   button.type = 'button';
-  button.dataset.kind = preset.kind;
+  button.dataset.kind = preset.id;
   button.setAttribute('aria-pressed', 'false');
   const copy = node('span', '');
   copy.append(node('strong', preset.label), node('small', preset.note));
@@ -292,16 +334,14 @@ for (const preset of presets) {
   symbol.setAttribute('aria-hidden', 'true');
   arrow.setAttribute('aria-hidden', 'true');
   button.append(symbol, copy, arrow);
-  button.onclick = () => {
-    if (pointer !== null) return;
-    $('description').value = preset.description;
-    $('family').value = 'auto';
-    strokes = outlineFromWidths(preset.profile);
-    paint();
-    generate(preset.kind);
-  };
+  button.onclick = () => selectAid(preset);
   $('presets').append(button);
 }
+$('family').onchange = () => {
+  const aid = aidById($('family').value);
+  if (aid) selectAid(aid);
+  else configureInput(false);
+};
 $('generate').onclick = () => generate();
 $('parameter-editor').onsubmit = event => {
   event.preventDefault();
@@ -309,7 +349,9 @@ $('parameter-editor').onsubmit = event => {
   const edits = Object.fromEntries(Array.from(new FormData(event.currentTarget), ([key, value]) =>
     [key, key === 'side' ? value : ['finger', 'support'].includes(key) ? value === 'true' : Number(value)]));
   const start = performance.now();
-  model = updateModelParameters(model, edits);
+  model = currentAid.custom ? buildAidModel(currentAid.id, edits) : updateModelParameters(model, edits);
+  if (model.params.kind === 'brace') currentAid = aidById(model.params.finger ? 'finger' : 'wrist');
+  model.aidId = currentAid.id;
   renderModel(performance.now() - start);
 };
 function download(data, mime, filename) {
@@ -321,13 +363,55 @@ function download(data, mime, filename) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 $('download').onclick = () => {
-  if (model) download(binarySTL(model), 'model/stl', model.params.kind + '-prototype.stl');
+  if (model) download(binarySTL(model), 'model/stl', currentAid.id + '-prototype.stl');
 };
 $('download-report').onclick = () => {
   if (!model) return;
   const { params, checks, extracted, provenance, profile } = model;
-  const report = { notice, lengthUnit: 'mm', extracted, params, checks, screening: checkRows(checks),
+  const report = { notice, aid: currentAid.id, guide: guideFor(currentAid, params), lengthUnit: 'mm', extracted, params, checks, screening: checkRows(checks),
     warnings: modelWarnings(model), provenance, profile };
   download(JSON.stringify(report, null, 2), 'application/json', params.kind + '-check-report.json');
 };
+
+function renderCondition(condition) {
+  document.querySelectorAll('.condition-tab').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.id === condition.id)));
+  const copy = node('div', '', 'recommendation-copy');
+  copy.append(node('h3', '可以从这些方案开始'), node('p', condition.summary));
+  const choices = node('div', '', 'recommendation-choices');
+  for (const id of condition.choices) {
+    const aid = aidById(id), button = node('button', aid.label + ' →', 'recommendation-choice');
+    button.type = 'button'; button.onclick = () => { selectAid(aid); $('input-title').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+    choices.append(button);
+  }
+  const caution = node('p', condition.caution, 'care-caution');
+  $('recommendations').replaceChildren(copy, choices, caution);
+}
+
+for (const condition of conditions) {
+  const button = node('button', condition.label, 'condition-tab');
+  button.type = 'button'; button.dataset.id = condition.id;
+  button.onclick = () => renderCondition(condition);
+  $('conditions').append(button);
+}
+
+function renderGuidance() {
+  const guide = guideFor(currentAid, model.params), grid = node('div', '', 'guidance-grid');
+  for (const [title, lines] of [['先测量与试配', [guide.measurement]], ['切片与打印准备', guide.print], ['使用边界与检查', guide.use]]) {
+    const section = node('article', '', 'guide-card'), list = node('ol', '');
+    section.append(node('h3', title));
+    for (const line of lines) list.append(node('li', line));
+    section.append(list); grid.append(section);
+  }
+  $('guidance').replaceChildren(node('p', currentAid.label + ' · ' + guide.status, 'guide-context'), grid);
+}
+
+$('download-guide').onclick = () => {
+  if (!model) return;
+  const guide = guideFor(currentAid, model.params);
+  const lines = [guide.aid + ' · 制作准备与使用指导', guide.status, '', '当前建模尺寸（mm）',
+    ...Object.entries(guide.dimensions).map(([key, value]) => (customFields[currentAid.id]?.[key]?.[0] ?? parameterLabels[key] ?? key) + '：' + value),
+    '', '测量与试配', guide.measurement, '', '切片与打印准备', ...guide.print, '', '使用边界与检查', ...guide.use];
+  download(lines.join('\n'), 'text/plain;charset=utf-8', currentAid.id + '-guide.txt');
+};
+renderCondition(conditions[0]);
 $('presets').firstElementChild.click();
