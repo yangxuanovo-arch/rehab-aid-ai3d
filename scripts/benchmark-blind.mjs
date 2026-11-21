@@ -28,6 +28,14 @@ const runs = new Map([
     title: '盲测 3：独立编写的 60 条中英文请求',
     rawSizes: true,
   }],
+  ['4', {
+    evaluatedCommit: '79b270dc4c4587a7c4069c0685eb5873cc4bb6b4',
+    datasetSha256: '5254e981e281f9948a600d8994fc6fc3d306f17cd1f75328c9c0966f9ab70c52',
+    fixturePath: 'blind4/rehab_blind_test_set_4.json',
+    outputName: 'blind4',
+    title: '盲测 4：独立编写的 60 条中英文请求',
+    rawSizes: true,
+  }],
 ]);
 const toleranceMm = 0.5;
 const minSlotConfidence = 0.62;
@@ -184,7 +192,7 @@ function markdown(metadata, summary, { title, fixturePath, outputName }, seconda
 
 function main() {
   const run = runs.get(process.argv[2] ?? '1');
-  if (!run || process.argv.length > 3) throw new Error('Usage: node scripts/benchmark-blind.mjs [1|2|3]');
+  if (!run || process.argv.length > 3) throw new Error('Usage: node scripts/benchmark-blind.mjs [1|2|3|4]');
   const { outputName, evaluatedCommit, datasetSha256, fixturePath, rawSizes } = run;
   const resultJson = new URL(outputName + '.json', out), resultMd = new URL(outputName + '.md', out);
   if (existsSync(resultJson) || existsSync(resultMd)) throw new Error('Blind results already exist; refusing to overwrite');
