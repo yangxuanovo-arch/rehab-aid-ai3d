@@ -9,6 +9,7 @@ const tsv = path => read(path).trimEnd().split('\n').slice(1).map(line => {
 });
 const fields = ['kind', 'side', 'length', 'circumference', 'wall', 'diameter', 'bore'];
 const fixtures = {
+  dev2: tsv('benchmark/cases/dev2/measurement-extraction.tsv'),
   dev: tsv('benchmark/cases/dev/measurement-merge.tsv'),
   authored: tsv('benchmark/cases/author-written.tsv'),
   synthetic: JSON.parse(read('benchmark/artifacts/ai-heldout.json')).text.map(input =>
@@ -52,6 +53,6 @@ const results = Object.fromEntries(Object.entries(fixtures).map(([set, inputs]) 
       return [route, scores];
     }))];
   }));
-  return [set, { summary, rows: set === 'dev' ? rows : undefined }];
+  return [set, { summary, rows: set === 'dev' || set === 'dev2' ? rows : undefined }];
 }));
 console.log(JSON.stringify({ toleranceMm: 0.5, results }, null, 2));

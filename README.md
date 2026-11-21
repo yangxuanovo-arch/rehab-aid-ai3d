@@ -2,7 +2,7 @@
 
 「适形工坊」是一个无需登录、完全在浏览器中运行的设计原型。用户可以生成握笔器、餐具手柄以及开口式腕／指护具，预览模型并下载毫米单位的 STL。输入不上传；无模型 API、账号或后端。
 
-**免登录演示**：[打开适形工坊](https://rawcdn.githack.com/yangxuanovo-arch/rehab-aid-ai3d/0e59464944af5188e0bb0e63a2cdd5aa13f540e2/index.html)。若 RawGitHack 显示外部内容提示，点击 **Open the page** 即可，无需账号。此地址指向公开 `site` 分支上的一个静态构建版本；发布新版本时，将 `npm run build` 生成的 `dist/` 内容更新到该分支，再用新的提交 SHA 更新演示链接。
+**免登录演示**：[打开适形工坊](https://rawcdn.githack.com/yangxuanovo-arch/rehab-aid-ai3d/1c993f2e4ce0d020e2ce1241d3ac9e394a50d797/index.html)。若 RawGitHack 显示外部内容提示，点击 **Open the page** 即可，无需账号。此地址指向公开 `site` 分支上的一个静态构建版本；发布新版本时，将 `npm run build` 生成的 `dist/` 内容更新到该分支，再用新的提交 SHA 更新演示链接。
 
 备用部署：[GitHub Pages](https://yangxuanovo-arch.github.io/rehab-aid-ai3d/) 需先由仓库管理员在 [Settings → Pages](https://github.com/yangxuanovo-arch/rehab-aid-ai3d/settings/pages) 将 Source 设为 **GitHub Actions**。启用后，合并到 `main` 触发 [Deploy GitHub Pages](.github/workflows/pages.yml)；也可在 Actions 手动运行。
 
@@ -88,6 +88,21 @@ STL、G-code、切片日志、有限元表面及 VTU 场数据在 `benchmark/art
 用 `node scripts/benchmark-merge.mjs` 复现；见[开发集](benchmark/cases/dev/measurement-merge.tsv)、[修改前：main 35b6bb5](benchmark/results/measurement-merge-before.json)与[修改后](benchmark/results/measurement-merge-after.json)的分语言、分字段结果。旧盲测原样保留，未复跑。
 
 本轮快速回归：同一套 36 个固定 AI 建模样例全部生成并通过流形／几何筛查；抽取三类各一个继续做 PrusaSlicer 切片，3/3 成功。上面链接的全量切片和有限元为历史结果，本轮未重做全量切片或有限元，亦未做实体打印。
+
+### 尺寸提取开发评估
+
+尺寸提取支持中英文公制量词、英寸及分数；对含两个有序端点和明确单位的闭区间取中点（例如 18–22 mm 取 20 mm）。混合路线优先采用与字段名称关联的数值，区分护具壁厚、柄外宽和孔径，避免把铅笔长度、前臂长度等参考量当作成品尺寸；腕围等适配数值仍可提取。模型权重、类别和侧别分类未改，模型通过同一套尺寸归一化处理新单位。
+
+48 条新编写的[开发请求](benchmark/cases/dev2/measurement-extraction.tsv)专门覆盖这些写法，不是盲测。仅统计有标签的原始提取尺寸（±0.5 mm），不把模板默认或限幅当作提取成功。
+
+| 评估集 | 独立文字模型 | 纯规则 | 混合 |
+|---|---:|---:|---:|
+| 新开发集（48 条） | 25/106 → 39/106 | 21/106 → 106/106 | 34/106 → 106/106 |
+| 原开发集（18 条） | 40/47 → 40/47 | 45/47 → 47/47 | 47/47 → 47/47 |
+| 原人工编写集（72 条） | 31/101 → 31/101 | 47/101 → 74/101 | 59/101 → 76/101 |
+| 原合成留出集（240 条） | 289/486 → 289/486 | 227/486 → 312/486 | 420/486 → 420/486 |
+
+分语言和分字段计数见[修改前（main 270e610）](benchmark/results/measurement-extraction-before.json)和[修改后](benchmark/results/measurement-extraction-after.json)；用 `node scripts/benchmark-merge.mjs` 复现。四组的类别和侧别命中数均未变化。前两轮盲测未复跑；第三轮尚未评估。
 
 ## 独立盲测：60 条中英文请求
 

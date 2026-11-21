@@ -140,7 +140,7 @@ test('extracted dimensions survive geometry limits, template selection, edits an
 
 test('a named measurement owns its numeric span and a default does not become an extracted value', () => {
   const description = 'Pen grip length 42 mm diameter';
-  assert.equal(readRuleIntent(description).diameter, 42);
+  assert.equal(readRuleIntent(description).diameter, undefined);
   const model = generateAIModel(description);
   assert.deepEqual(model.extracted, { kind: 'pen', length: 42 });
   assert.equal(model.provenance.length.source, 'rule');
@@ -153,4 +153,20 @@ test('inner and outer measurements retain distinct spans in mixed phrasing', () 
   const model = generateAIModel('Left spoon handle; internal diameter of 8 mm, outer diameter is 28 mm, 7 cm long.');
   assert.deepEqual(model.extracted, { kind: 'utensil', side: 'left', length: 70, diameter: 28, bore: 8 });
   assert.notDeepEqual(model.provenance.diameter.span, model.provenance.bore.span);
+});
+
+test('extraction normalizes inch fractions and closed metric ranges', () => {
+  const model = generateAIModel('Right pen grip: 1½ inches long, 24–28 mm wide, with a ¼″ bore.');
+  assert.deepEqual(model.extracted, { kind: 'pen', side: 'right', length: 38.1, diameter: 26, bore: 6.35 });
+  assert.equal(generateAIModel('护腕，腕围16到18厘米，壳厚约3毫米').extracted.circumference, 170);
+  assert.equal(generateAIModel('餐具手柄，外径一又二分之一英寸').extracted.diameter, 38.1);
+});
+
+test('object measurements do not replace device dimensions, but wrist girth is a fit measurement', () => {
+  const grip = generateAIModel('Right pen grip; the pencil is 175 mm long. Grip length about 42 mm.');
+  assert.equal(grip.extracted.length, 42);
+  const brace = generateAIModel('Left wrist brace; arm length 240 mm; wrist measures 7 inches around; 4 mm thick shell.');
+  assert.equal(brace.extracted.length, undefined);
+  assert.equal(brace.extracted.circumference, 177.8);
+  assert.equal(brace.extracted.wall, 4);
 });

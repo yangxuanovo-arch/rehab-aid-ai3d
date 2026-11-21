@@ -1,4 +1,4 @@
-import { normalizeMetricText } from './measurements.js';
+import { attributeMeasurements, normalizeMeasurements, normalizeMetricText } from './measurements.js';
 
 export const families = {
   pen: { label: '握笔器', length: 45, diameter: 28, bore: 10, load: 15 },
@@ -29,32 +29,39 @@ function bounded(value, min, max, fallback, warnings, key) {
   return limited;
 }
 
-export function readRuleEvidence(description, extended = true) {
+export function readRuleEvidence(description, selected = 'auto') {
   const text = normalizeMetricText(description);
   const kind = /护具|护腕|护指|支具|矫形|brace|orthos|splint/.test(text) ? 'brace'
     : /餐具|勺|筷|叉|utensil|spoon|fork|cutlery/.test(text) ? 'utensil'
       : /笔|pencil|\bpen\b/.test(text) ? 'pen' : undefined;
   const side = /左手|左腕|左侧|\bleft\b/.test(text) ? 'left' : /右手|右腕|右侧|\bright\b/.test(text) ? 'right' : undefined;
-  const length = '长度|(?<!周)长|\\blength\\b';
-  const dimensions = {
-    length: dimension(text, length, extended, extended ? length + '|\\blong\\b' : length),
-    circumference: dimension(text, '周长|围度|腕围|指围|臂围|circumference|girth', extended),
-    wall: dimension(text, '壁厚|wall thickness|wall', extended),
-    diameter: dimension(text, extended ? '外径|直径|(?<!inner |inner hole |internal )\\bdiameter'
-      : '外径|直径|outer diameter|(?<!inner )\\bdiameter', extended),
-    bore: dimension(text, extended ? '孔径|内径|\\bbore\\b|\\b(?:inner(?: hole)? diameter|internal (?:diameter|opening))\\b'
-      : '孔径|内径|bore|inner diameter', extended),
+  const measurementText = normalizeMeasurements(description);
+  const { dimensions, blocked } = attributeMeasurements(measurementText, selected === 'auto' ? kind : selected);
+  const claimed = new Set(Object.values(dimensions).map(evidence => evidence.span[0]));
+  const fallback = {
+    length: '长度|(?<!周)长|\\blength\\b',
+    circumference: '周长|围度|腕围|指围|臂围|circumference|girth',
+    wall: '壁厚|wall thickness|wall',
+    diameter: '外径|直径|(?<!inner |inner hole |internal |opening )\\bdiameter',
+    bore: '孔径|内径|\\bbore\\b|\\b(?:inner(?: hole)? diameter|internal (?:diameter|opening))\\b',
   };
+  for (const [key, names] of Object.entries(fallback)) {
+    if (dimensions[key]) continue;
+    const evidence = dimension(measurementText, names, true);
+    if (!evidence || claimed.has(evidence.span[0]) || blocked.has(evidence.span[0])) continue;
+    dimensions[key] = evidence;
+    claimed.add(evidence.span[0]);
+  }
   const raw = {
     kind, side, support: /震颤|颤抖|握力弱|tremor|weak\s*grip/.test(text) || undefined,
     finger: /护指|手指|finger/.test(text) || undefined,
     ...Object.fromEntries(Object.entries(dimensions).map(([key, evidence]) => [key, evidence?.mm])),
   };
-  return { raw, dimensions };
+  return { raw, dimensions, blocked };
 }
 
 export function readRuleIntent(description) {
-  return readRuleEvidence(description, false).raw;
+  return readRuleEvidence(description).raw;
 }
 
 export function resolveIntent(raw, selected = 'auto', warnings = new Map()) {
