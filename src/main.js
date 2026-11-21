@@ -107,14 +107,19 @@ function createPreview() {
   }
   new ResizeObserver(resize).observe(container);
 
-  return ({ vertices, faces }) => {
+  return ({ vertices, faces, aidId }) => {
     if (previewMesh) {
       scene.remove(previewMesh);
       previewMesh.geometry.dispose();
     }
-    const geometry = new THREE.BufferGeometry();
+    let geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices.flat(), 3));
     geometry.setIndex(faces.flat());
+    if (customFields[aidId]) {
+      const indexed = geometry;
+      geometry = geometry.toNonIndexed();
+      indexed.dispose();
+    }
     geometry.rotateX(-Math.PI / 2);
     geometry.computeVertexNormals();
     geometry.computeBoundingSphere();
@@ -293,8 +298,8 @@ function generate() {
   hadSketch = !selected?.custom && strokes.length > 0;
   if (selected?.custom) model = buildAidModel(selected.id);
   else {
-    model = generateAIModel($('description').value, strokes, selected?.family ?? 'auto');
-    if (selected?.family === 'brace') model = updateModelParameters(model, { finger: selected.id === 'finger' });
+    model = generateAIModel($('description').value, strokes, selected?.family ?? 'auto',
+      selected?.family === 'brace' ? { finger: selected.id === 'finger' } : {});
   }
   currentAid = selected ?? aidById(model.params.kind === 'brace' ? (model.params.finger ? 'finger' : 'wrist') : model.params.kind);
   model.aidId = currentAid.id;
