@@ -9,6 +9,7 @@ const tsv = path => read(path).trimEnd().split('\n').slice(1).map(line => {
 });
 const fields = ['kind', 'side', 'length', 'circumference', 'wall', 'diameter', 'bore'];
 const fixtures = {
+  dev3: tsv('benchmark/cases/dev3/english-diameter.tsv'),
   dev2: tsv('benchmark/cases/dev2/measurement-extraction.tsv'),
   dev: tsv('benchmark/cases/dev/measurement-merge.tsv'),
   authored: tsv('benchmark/cases/author-written.tsv'),
@@ -19,7 +20,7 @@ const geometry = process.argv.includes('--geometry');
 if (geometry) {
   const categories = { pen_grip: 'pen', utensil_handle: 'utensil', brace: 'brace' };
   for (const [number, name] of [[1, 'blind/rehab_aid_blind_test_set.json'], [2, 'blind2/rehab_aid_blind_test_set_2.json'],
-    [3, 'blind3/rehab_blind_test_set_3.json']]) {
+    [3, 'blind3/rehab_blind_test_set_3.json'], [4, 'blind4/rehab_blind_test_set_4.json']]) {
     fixtures['consumed' + number] = JSON.parse(read('benchmark/cases/' + name)).map(row => ({
       language: row.lang, description: row.text, kind: categories[row.category],
       fields: { side: row.side, length: row.length_mm, circumference: row.circumference_mm,
@@ -72,6 +73,6 @@ const results = Object.fromEntries(Object.entries(fixtures).map(([set, inputs]) 
   }));
   return [set, { summary, ...(geometry ? { stl: [rows.filter(row => row.stl).length, rows.length],
     screened: [rows.filter(row => row.screened).length, rows.length] } : {}),
-  rows: !geometry && (set === 'dev' || set === 'dev2') ? rows : undefined }];
+  rows: !geometry && ['dev', 'dev2', 'dev3'].includes(set) ? rows : undefined }];
 }));
 console.log(JSON.stringify({ toleranceMm: 0.5, results }, null, 2));

@@ -186,6 +186,27 @@ test('brace fitting diameter drives circumference but outside width does not', (
   assert.equal(outer.params.circumference, 60);
 });
 
+test('English diameter shorthand and fractional inches distinguish OD from the bore', () => {
+  const sleeve = generateAIModel('Spoon handle: O.D. 1¼ inches, I.D. 9 mm; length 95 mm.');
+  assert.deepEqual([sleeve.extracted.diameter, sleeve.extracted.bore, sleeve.extracted.length], [31.75, 9, 95]);
+  const measured = readRuleIntent('Pen grip to fit a 7 mm pencil; 28 mm outside dia.');
+  assert.equal(measured.diameter, 28);
+  assert.equal(measured.bore, 7);
+  assert.equal(readRuleIntent('Spoon handle, 1.25 inches diameter').diameter, 31.75);
+  assert.equal(readRuleIntent('Fork handle: 30 mm thick, 3 mm thick walls').diameter, 30);
+  assert.equal(readRuleIntent('Fork handle: 30 mm thick, 3 mm thick walls').wall, 3);
+});
+
+test('finger measurements inform brace fit without turning explicit outer size into fit', () => {
+  const fitted = generateAIModel('Finger splint. Finger measures 19 mm across; wall 2 mm.');
+  assert.equal(fitted.params.diameter, 19);
+  assert.equal(fitted.params.circumference, Math.PI * 19);
+  assert.equal(fitted.extracted.wall, 2);
+  const outside = generateAIModel('Finger splint, O.D. 22 mm; 3 mm wall.');
+  assert.equal(outside.extracted.diameter, 22);
+  assert.equal(outside.params.diameter, undefined);
+});
+
 test('inner and outer measurements retain distinct spans in mixed phrasing', () => {
   const model = generateAIModel('Left spoon handle; internal diameter of 8 mm, outer diameter is 28 mm, 7 cm long.');
   assert.deepEqual(model.extracted, { kind: 'utensil', side: 'left', length: 70, diameter: 28, bore: 8 });
