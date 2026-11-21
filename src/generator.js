@@ -1,3 +1,5 @@
+import { normalizeMetricText } from './measurements.js';
+
 export const families = {
   pen: { label: '握笔器', length: 45, diameter: 28, bore: 10, load: 15 },
   utensil: { label: '餐具手柄', length: 95, diameter: 34, bore: 13, load: 20 },
@@ -24,7 +26,7 @@ function bounded(value, min, max, fallback, warnings, key) {
 }
 
 export function readRuleIntent(description) {
-  const text = description.normalize('NFKC').toLowerCase();
+  const text = normalizeMetricText(description);
   const kind = /护具|护腕|护指|支具|矫形|brace|orthos|splint/.test(text) ? 'brace'
     : /餐具|勺|筷|叉|utensil|spoon|fork|cutlery/.test(text) ? 'utensil'
       : /笔|pencil|\bpen\b/.test(text) ? 'pen' : undefined;

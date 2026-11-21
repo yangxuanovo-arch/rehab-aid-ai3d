@@ -1,4 +1,5 @@
 import { buildModel, profileFromSketch, readRuleIntent, resolveIntent, sampleSketch } from './generator.js';
+import { normalizeMetricText } from './measurements.js';
 import model from './trained-model.js';
 
 const number = /([-+−]?(?:[0-9]+(?:\.[0-9]+)?|\.[0-9]+))[ \t]*(毫米|厘米|mm|cm)?/g;
@@ -42,12 +43,12 @@ function classify(head, input) {
 }
 
 export function predictText(description) {
-  const text = description.normalize('NFKC').toLowerCase();
+  const text = normalizeMetricText(description);
   const masked = text.replace(number, '#');
   const vector = features(masked);
   const han = /\p{Script=Han}/u.test(masked);
   const kindHead = han ? 'kind' : 'kindLatin';
-  const category = han ? features(masked.split(separator, 1)[0], masked) : ngrams(model.categoryWidth, 2, 5, [masked]);
+  const category = han ? ngrams(model.categoryWidth, 1, 3, [masked]) : ngrams(model.categoryWidth, 2, 5, [masked]);
   const intent = Object.fromEntries(intentFields.map(key =>
     [key, key === 'kind' ? classify(kindHead, category) : classify(key, vector)]));
   const matches = Array.from(text.matchAll(number));

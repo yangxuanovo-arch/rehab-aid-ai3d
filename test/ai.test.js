@@ -100,3 +100,25 @@ test('signed negative and zero dimensions are clamped to the lower limits', () =
   assert.deepEqual([zeroAndUnicodeMinus.params.length, zeroAndUnicodeMinus.params.diameter], [22, 16]);
   assert.equal(zeroAndUnicodeMinus.params.warnings.length, 2);
 });
+
+test('Chinese category inference recognizes an object described after the opening clause', () => {
+  const requests = [
+    ['pen', '外形我还没决定，能做个给蜡笔用的握套吗？大概五公分长。'],
+    ['utensil', '麻烦先画一下，喝汤那把匙想装一个不滑的粗手柄。'],
+    ['brace', '先做个开口的样子吧；我需要托住前臂，不让腕关节往下弯。'],
+  ];
+  for (const [kind, description] of requests) {
+    assert.equal(predictText(description).intent.kind.value, kind, description);
+  }
+});
+
+test('written Chinese metric dimensions are shared by rule and learned text paths', () => {
+  const description = '护腕，周长十八公分，长度六点五厘米，壁厚四毫米';
+  const parsed = readRuleIntent(description);
+  assert.deepEqual([parsed.circumference, parsed.length, parsed.wall], [180, 65, 4]);
+  assert.deepEqual(predictText(description).slots.map(slot => slot.mm), [180, 65, 4]);
+  assert.equal(readRuleIntent('握笔器，长度一寸半').length, undefined);
+  assert.equal(readRuleIntent('护腕，周长一百零五毫米').circumference, 105);
+  assert.equal(readRuleIntent('护腕，周长一百二毫米').circumference, undefined);
+  assert.equal(generateAIModel('握笔器，长度负两公分').params.length, 22);
+});

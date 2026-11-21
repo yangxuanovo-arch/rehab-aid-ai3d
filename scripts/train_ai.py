@@ -10,7 +10,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 WIDTH = 768
 KIND_WIDTH = 2048
-NUM = re.compile(r'([-+−]?(?:[0-9]+(?:\.[0-9]+)?|\.[0-9]+))[ \t]*(毫米|厘米|mm|cm)?')
+NUM = re.compile(r'([-+−]?(?:[0-9]+(?:\.[0-9]+)?|\.[0-9]+))[ \t]*(毫米|厘米|公分|mm|cm)?')
+HAN_METRIC = re.compile(r'(?:负|[-+−])?([零〇一二两三四五六七八九十百千]+(?:点[零〇一二两三四五六七八九]+)?)[ \t]*(?:毫米|厘米|公分|mm|cm)(?!半)')
 SEPARATOR = re.compile(r'[,，;；、。!?！？\n]')
 LABELS = {
     'kind': ['pen', 'utensil', 'brace', 'unknown'],
@@ -72,6 +73,36 @@ PROSE = (
      'For my {object}: I want to try something easier to manage, dimensions to follow.',
      'My {object}. Looking for some help using it; please do not assume my size.'),
 )
+HAN_CONTEXT = {
+    'pen': ('在纸上画图时杆太细', '平常记笔记容易打滑', '批作业老得用力捏着', '能用来写字但原来的杆不好抓',
+            '练字时想把笔拿稳点', '做个写写画画时好捏的套', '抄东西的时候手有点累'),
+    'utensil': ('手不太使得上劲，吃饭时老抓不牢', '用餐吃东西时手老抖', '希望喝汤时不容易洒',
+                '在饭桌上夹菜时不容易拿住', '吃饭的时候得把餐柄撑粗点', '给日常进餐试一个能套在柄上的加粗套'),
+    'wrist': ('不想让手腕再往下弯', '想托一托胳膊前面的关节', '要能限制腕子转动', '撑住掌根到小臂这一段',
+              '手腕活动得太多，想做个开口式的支撑', '帮着托住前臂靠近手掌的地方'),
+    'finger': ('有一根手指想保持伸直', '想把一个指关节卡稳', '固定指尖附近的关节', '给某一节手指做个小夹片',
+               '希望能托住弯下来的指头', '要留开口，给手指关节加一层支撑'),
+    'unknown': ('我还没说要做什么', '想给桌面装个盖子', '帮我打个模型能拼起来就行', '试做一个收纳外壳',
+                '网不好，先看看能不能打开', '做个夹住线缆的小夹子'),
+}
+HAN_NAMES = {
+    'pen': '握笔器|笔套|助写握套|笔杆套|描图笔|白板笔|圆珠笔|中性笔|签字笔|笔握',
+    'utensil': '餐把|勺柄|叉柄|汤匙握把|饭匙|叉子|餐具手柄|夹菜夹|喂饭勺|公筷',
+    'wrist': '护腕|腕托|腕关节托板|小臂支架|腕部支具|腕矫形壳|腕固定带',
+    'finger': '指托|指夹板|戒指型支具|手指固定器|指节护套|指骨支架|小指夹板',
+    'unknown': '小盒子|辅助件|助握器|圆套|零件|把手|桌面摆件|杯套',
+}
+HAN_REQUESTS = (
+    '{name}想做个容易用的样子，{scene}',
+    '{scene}。有空帮我弄个{name}不',
+    '麻烦先出个试样。{scene}，我需要的是{name}',
+    '可以先画个外形吗？还没量大小；{scene}，是{name}用的',
+    '先按普通款弄一版。给{name}做的，{scene}',
+    '{scene}，出个小样就好',
+    '{name}这块不太好用，{scene}。简单做一个得了',
+    '帮忙改个{name}。之后我再确认尺寸',
+)
+HAN_TYPOS = str.maketrans('笔勺腕柄指', '比芍碗炳纸')
 SLOTS = {
     'length': [('长度|长|部件长度|轴向长度', '总长度|整体长度|全长'),
                ('length|long|axial length', 'overall length|part length|longitudinal length')],
@@ -181,8 +212,26 @@ def kind_latin_features(text):
 
 
 def kind_features(text):
-    masked = NUM.sub('#', text)
-    return features(SEPARATOR.split(masked)[0], masked)
+    return features(NUM.sub('#', HAN_METRIC.sub('#', text)), width=KIND_WIDTH)
+
+
+def han_requests(rng, count):
+    cases = []
+    for i in range(count):
+        category = list(CATEGORIES)[i % 5]
+        kind = 'brace' if category in ('wrist', 'finger') else category
+        names = HAN_NAMES[category].split('|') + OBJECTS[category][0].split('|')
+        name = pick(rng, names)
+        if rng.random() < .11:
+            name = name.translate(HAN_TYPOS)
+        scene = pick(rng, HAN_CONTEXT[category])
+        request = pick(rng, HAN_REQUESTS).format(name=name, scene=scene)
+        if rng.random() < .31:
+            measure = pick(rng, ('长四公分', '厚零点四厘米', '总长50mm', '周长十八厘米', '围一圈两公分',
+                                 '长一寸半', '外面差不多3cm', '壁厚四毫米', '大概5公分'))
+            request = (measure + '，' + request if rng.random() < .25 else request + '；' + measure)
+        cases.append({'kind': kind, 'description': request})
+    return cases
 
 
 def category_prose(rng, count):
@@ -296,11 +345,14 @@ def main():
     heads = {key: fit_head(text_x, [values.index(row[key]) for row in train], len(values))
              for key, values in LABELS.items() if key not in ('slot', 'kind', 'kindLatin')}
     original_calibration = make_text(np.random.default_rng(6047), 600, False)
-    heads['kind'] = fit_head(np.array([kind_features(t) for t in normalized]),
-                             [LABELS['kind'].index(row['kind']) for row in train], len(LABELS['kind']), 600)
+    han_train = [row for row in train if row['language'] == 'zh'] + han_requests(np.random.default_rng(7624), 5000)
+    han_calibration = [row for row in original_calibration if row['language'] == 'zh'] + han_requests(
+        np.random.default_rng(7941), 600)
+    heads['kind'] = fit_head(np.array([kind_features(normalize(row['description'])) for row in han_train]),
+                             [LABELS['kind'].index(row['kind']) for row in han_train], len(LABELS['kind']), 600)
     heads['kind']['temperature'] = temperature_scale(heads['kind'],
-        np.array([kind_features(normalize(row['description'])) for row in original_calibration]),
-        [LABELS['kind'].index(row['kind']) for row in original_calibration])
+        np.array([kind_features(normalize(row['description'])) for row in han_calibration]),
+        [LABELS['kind'].index(row['kind']) for row in han_calibration])
     kind_train = train + category_prose(np.random.default_rng(16271), 5000)
     kind_targets = [LABELS['kindLatin'].index(row['kind']) for row in kind_train]
     heads['kindLatin'] = fit_head(np.array([kind_latin_features(normalize(row['description'])) for row in kind_train]),
@@ -326,7 +378,8 @@ def main():
     args.test_data.parent.mkdir(parents=True, exist_ok=True)
     args.test_data.write_text(json.dumps(tests, ensure_ascii=False) + '\n')
     print(f'Trained on {len(train)} descriptions, {len(slot_y)} number contexts, 2400 sketches; model {path.stat().st_size} bytes.')
-    print(f'Category: {len(kind_train)} descriptions; {len(calibration)} separate generated calibration descriptions.')
+    print(f'Han category: {len(han_train)} descriptions; {len(han_calibration)} generated calibration descriptions.')
+    print(f'Latin category: {len(kind_train)} descriptions; {len(calibration)} generated calibration descriptions.')
     print(f'Held out {len(tests["text"])} descriptions and {len(tests["sketch"])} sketches.')
 
 
