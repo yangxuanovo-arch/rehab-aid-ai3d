@@ -72,3 +72,17 @@ node scripts/benchmark-ai.mjs
 | 测量环境与版本 | [environment.json](benchmark/results/environment.json) |
 
 STL、G-code、切片日志、有限元表面及 VTU 场数据在 `benchmark/artifacts/`（AI 切片为 `benchmark/artifacts/ai-print/`）中按编号生成，不纳入 Git；运行上述基准即可重建。浏览器耗时和其他机器的离线耗时可能不同。
+
+## 独立盲测：60 条中英文请求
+
+盲测集由未接触本仓库的独立会话编写，中文和英文各 30 条。被测版本：`38cec054a054ebaf0b5eb2dd3fd3283a88888f23`；原始集 SHA-256：`8042e9dd5725af92036bc1e5037b09ac72767f445f9f8e215a042e83c9c28853`。只评测一次，未用盲测集训练、校准或修改应用。
+
+| 路线 | 类别（中文） | 类别（英文） | 类别（合计） | 已标注尺寸 | 已标注侧别 | 整例全对 |
+|---|---:|---:|---:|---:|---:|---:|
+| 独立文字模型 | 24/30 | 21/30 | 45/60 | 33/52 | 14/19 | 26/60 |
+| 纯规则 | 24/30 | 27/30 | 51/60 | 27/52 | 19/19 | 32/60 |
+| 完整混合管线 | 28/30 | 27/30 | 55/60 | 20/52 | 19/19 | 29/60 |
+
+原始标签 `pen_grip`、`utensil_handle`、`brace` 分别对应 `pen`、`utensil`、`brace`；长度、周长、壁厚、直径标签分别对应 `length`、`circumference`、`wall`、`diameter`，已标注尺寸以毫米比较（±0.5 mm）。模型和纯规则评分使用各自提取的字段，混合管线评分使用校正和补默认值后的最终参数。混合管线类别命中最高，但已标注尺寸和整体命中均不是最佳。
+
+混合管线和纯规则生成各有 **60/60** 通过 STL 格式、流形和几何筛查；几何筛查通过不代表理解正确，也不是切片、实体打印或临床验证。详见[分语言、分字段结果](benchmark/results/blind.md)、[逐例预测与筛查记录](benchmark/results/blind.json)、[原始请求与标签](benchmark/cases/blind/rehab_aid_blind_test_set.json)和[评分脚本](scripts/benchmark-blind.mjs)。
