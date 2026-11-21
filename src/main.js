@@ -222,8 +222,18 @@ function modelWarnings(model) {
   return warnings;
 }
 
+function extractedMeasurements(extracted, params) {
+  const measurements = ['length', 'diameter', 'bore', 'circumference', 'wall'].flatMap(key => {
+    if (extracted[key] === undefined) return [];
+    const geometry = params[key] === undefined ? '（不用于当前模板）'
+      : params[key] !== extracted[key] ? '（建模 ' + params[key] + ' mm）' : '';
+    return [parameterLabels[key] + ' ' + extracted[key] + ' mm' + geometry];
+  });
+  return node('p', '从原始请求提取的尺寸：' + (measurements.join(' · ') || '无'), 'result-text');
+}
+
 function renderModel(elapsed, presetKind) {
-  const { params, checks, profile } = model;
+  const { params, checks, profile, extracted } = model;
   const details = params.kind === 'brace' ? (params.finger ? '护指' : '护腕') : families[params.kind].label;
   const side = sideLabels[params.side];
   $('model-label').textContent = details + ' · ' + side + ' · ' + (profile ? '已应用草图' : '默认轮廓') + ' · ' + fixed(elapsed) + ' ms';
@@ -250,6 +260,7 @@ function renderModel(elapsed, presetKind) {
   const s = checks.structure;
   output.replaceChildren(node('h3', '校验报告'), report, node('p', notice, 'result-text'), metrics,
     node('p', nominal, 'result-text'),
+    extractedMeasurements(extracted, params),
     node('p', '仿真估算：' + s.model + '，载荷 ' + s.load + ' N，弯曲应力 ' + fixed(s.stress, 2)
       + ' MPa，参考裕量 ' + fixed(s.factor, 2) + '×（PLA 参考强度 35 MPa）。', 'result-text'),
     provenanceDetails(model.provenance));
@@ -313,8 +324,8 @@ $('download').onclick = () => {
 };
 $('download-report').onclick = () => {
   if (!model) return;
-  const { params, checks, provenance, profile } = model;
-  const report = { notice, lengthUnit: 'mm', params, checks, screening: checkRows(checks),
+  const { params, checks, extracted, provenance, profile } = model;
+  const report = { notice, lengthUnit: 'mm', extracted, params, checks, screening: checkRows(checks),
     warnings: modelWarnings(model), provenance, profile };
   download(JSON.stringify(report, null, 2), 'application/json', params.kind + '-check-report.json');
 };

@@ -11,11 +11,15 @@ const mix = (a, b, t) => a + (b - a) * t;
 const number = '([-+−]?(?:[0-9]+(?:\\.[0-9]+)?|\\.[0-9]+))\\s*(毫米|厘米|mm|cm)?';
 const dimensionLabels = { length: '长度', diameter: '外径', bore: '孔径', circumference: '周长', wall: '壁厚' };
 
-function dimension(text, names) {
-  const forward = text.match(new RegExp('(?:' + names + ')\\s*(?:[:：=为]\\s*)?' + number));
-  const reverse = text.match(new RegExp(number + '\\s*(?:的\\s*)?(?:' + names + ')'));
+function dimension(text, names, extended = false, suffix = names) {
+  const lead = extended ? '[:：=为]|\\b(?:is|of)\\b' : '[:：=为]';
+  const follow = extended ? '的|\\bfor\\b' : '的';
+  const forward = text.match(new RegExp('(?:' + names + ')\\s*(?:(?:' + lead + ')\\s*)?' + number, 'd'));
+  const reverse = text.match(new RegExp(number + '\\s*(?:(?:' + follow + ')\\s*)?(?:' + suffix + ')', 'd'));
   const match = forward ?? (reverse?.[2] ? reverse : null);
-  return match ? Number(match[1].replace('−', '-')) * (['厘米', 'cm'].includes(match[2]) ? 10 : 1) : undefined;
+  if (!match) return undefined;
+  return { mm: Number(match[1].replace('−', '-')) * (['厘米', 'cm'].includes(match[2]) ? 10 : 1),
+    span: match.indices[1], unit: match[2] ?? null, forward: match === forward };
 }
 
 function bounded(value, min, max, fallback, warnings, key) {
@@ -25,21 +29,32 @@ function bounded(value, min, max, fallback, warnings, key) {
   return limited;
 }
 
-export function readRuleIntent(description) {
+export function readRuleEvidence(description, extended = true) {
   const text = normalizeMetricText(description);
   const kind = /护具|护腕|护指|支具|矫形|brace|orthos|splint/.test(text) ? 'brace'
     : /餐具|勺|筷|叉|utensil|spoon|fork|cutlery/.test(text) ? 'utensil'
       : /笔|pencil|\bpen\b/.test(text) ? 'pen' : undefined;
   const side = /左手|左腕|左侧|\bleft\b/.test(text) ? 'left' : /右手|右腕|右侧|\bright\b/.test(text) ? 'right' : undefined;
-  return {
+  const length = '长度|(?<!周)长|\\blength\\b';
+  const dimensions = {
+    length: dimension(text, length, extended, extended ? length + '|\\blong\\b' : length),
+    circumference: dimension(text, '周长|围度|腕围|指围|臂围|circumference|girth', extended),
+    wall: dimension(text, '壁厚|wall thickness|wall', extended),
+    diameter: dimension(text, extended ? '外径|直径|(?<!inner |inner hole |internal )\\bdiameter'
+      : '外径|直径|outer diameter|(?<!inner )\\bdiameter', extended),
+    bore: dimension(text, extended ? '孔径|内径|\\bbore\\b|\\b(?:inner(?: hole)? diameter|internal (?:diameter|opening))\\b'
+      : '孔径|内径|bore|inner diameter', extended),
+  };
+  const raw = {
     kind, side, support: /震颤|颤抖|握力弱|tremor|weak\s*grip/.test(text) || undefined,
     finger: /护指|手指|finger/.test(text) || undefined,
-    length: dimension(text, '长度|(?<!周)长|\\blength\\b'),
-    circumference: dimension(text, '周长|围度|腕围|指围|臂围|circumference|girth'),
-    wall: dimension(text, '壁厚|wall thickness|wall'),
-    diameter: dimension(text, '外径|直径|outer diameter|(?<!inner )\\bdiameter'),
-    bore: dimension(text, '孔径|内径|bore|inner diameter'),
+    ...Object.fromEntries(Object.entries(dimensions).map(([key, evidence]) => [key, evidence?.mm])),
   };
+  return { raw, dimensions };
+}
+
+export function readRuleIntent(description) {
+  return readRuleEvidence(description, false).raw;
 }
 
 export function resolveIntent(raw, selected = 'auto', warnings = new Map()) {
@@ -89,7 +104,7 @@ export function updateModelParameters(model, edits) {
       sources[key] = { source: 'manual' };
     }
   }
-  return { ...buildModel(next, profile), provenance: sources, parameterWarnings: warnings };
+  return { ...buildModel(next, profile), extracted: model.extracted, provenance: sources, parameterWarnings: warnings };
 }
 
 export function sampleSketch(strokes) {

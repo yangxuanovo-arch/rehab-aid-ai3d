@@ -1,0 +1,19 @@
+language	kind	fields	description
+zh	pen	{"length":17,"diameter":26,"bore":8,"side":"left"}	左手用握笔器，长度17毫米，外径2.6厘米，孔径8毫米。
+zh	pen	{"length":49,"diameter":32,"side":"right"}	给右手做个握笔套，49毫米的长度；外径三点二公分。
+zh	pen	{"length":58,"circumference":92}	握笔器，长度58毫米。我想额外记录手指周长92毫米。
+zh	utensil	{"length":150,"diameter":31,"bore":12,"side":"left"}	左手的长勺柄，长度十五公分，3.1厘米的直径，12毫米的孔径。
+zh	utensil	{"length":88,"diameter":37,"side":"right"}	右手拿的餐具手柄，长度88，外径37。
+zh	utensil	{"length":76,"diameter":27}	叉子手柄，长度76毫米，外径27毫米，我有2把叉子。
+zh	brace	{"length":160,"circumference":197,"wall":9,"side":"right"}	右腕护具，腕围19.7公分，长度16厘米，壁厚9毫米。
+zh	brace	{"length":53,"circumference":165,"wall":3.2,"side":"left"}	左手的护腕，长度5.3公分；一百六十五毫米的腕围，壁厚3.2毫米。
+zh	brace	{"length":47,"circumference":61,"wall":2.8}	护指，长度47毫米，指围61毫米，壁厚2.8毫米。
+en	pen	{"length":53,"diameter":29,"bore":7,"side":"right"}	A right pen grip, length 5.3 cm, outer diameter 29 mm, bore 7 mm.
+en	pen	{"length":18,"diameter":20,"bore":16,"side":"left"}	Left pencil grip: 18 mm length, 20 mm outer diameter, 16 mm inner diameter.
+en	pen	{"length":43,"diameter":25}	Pen grip for 3 pencils. Length 43 mm; diameter 25 mm.
+en	utensil	{"length":42,"diameter":35,"side":"right"}	Right spoon handle: 42 mm length, diameter 3.5 cm.
+en	utensil	{"length":91,"diameter":38,"bore":14,"side":"left"}	Left fork handle, length 91 mm, 38 mm outer diameter, 14 mm internal opening.
+en	utensil	{"length":72,"diameter":63}	A spoon handle, outer diameter 63 mm; make it 7.2 cm long.
+en	brace	{"length":144,"circumference":183,"wall":1.2,"side":"right"}	Right wrist brace: circumference 18.3 cm; length 144 mm; wall thickness 1.2 mm.
+en	brace	{"length":65,"circumference":151,"wall":4.6,"side":"left"}	Left wrist brace with 151 mm girth, 65 mm length and 4.6 mm wall.
+en	brace	{"length":35,"circumference":52,"wall":2.6}	Finger splint, length 35 mm, circumference 52 mm, wall thickness 2.6 mm.

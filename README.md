@@ -2,7 +2,7 @@
 
 「适形工坊」是一个无需登录、完全在浏览器中运行的设计原型。用户可以生成握笔器、餐具手柄以及开口式腕／指护具，预览模型并下载毫米单位的 STL。输入不上传；无模型 API、账号或后端。
 
-**免登录演示**：[打开适形工坊](https://rawcdn.githack.com/yangxuanovo-arch/rehab-aid-ai3d/ced2177072fb444a31eec14b69361c97949091fd/index.html)。若 RawGitHack 显示外部内容提示，点击 **Open the page** 即可，无需账号。此地址指向公开 `site` 分支上的一个静态构建版本；发布新版本时，将 `npm run build` 生成的 `dist/` 内容更新到该分支，再用新的提交 SHA 更新演示链接。
+**免登录演示**：[打开适形工坊](https://rawcdn.githack.com/yangxuanovo-arch/rehab-aid-ai3d/0e59464944af5188e0bb0e63a2cdd5aa13f540e2/index.html)。若 RawGitHack 显示外部内容提示，点击 **Open the page** 即可，无需账号。此地址指向公开 `site` 分支上的一个静态构建版本；发布新版本时，将 `npm run build` 生成的 `dist/` 内容更新到该分支，再用新的提交 SHA 更新演示链接。
 
 备用部署：[GitHub Pages](https://yangxuanovo-arch.github.io/rehab-aid-ai3d/) 需先由仓库管理员在 [Settings → Pages](https://github.com/yangxuanovo-arch/rehab-aid-ai3d/settings/pages) 将 Source 设为 **GitHub Actions**。启用后，合并到 `main` 触发 [Deploy GitHub Pages](.github/workflows/pages.yml)；也可在 Actions 手动运行。
 
@@ -72,6 +72,22 @@ node scripts/benchmark-ai.mjs
 | 测量环境与版本 | [environment.json](benchmark/results/environment.json) |
 
 STL、G-code、切片日志、有限元表面及 VTU 场数据在 `benchmark/artifacts/`（AI 切片为 `benchmark/artifacts/ai-print/`）中按编号生成，不纳入 Git；运行上述基准即可重建。浏览器耗时和其他机器的离线耗时可能不同。
+
+### 尺寸合并开发评估
+
+混合路线优先使用明确标注字段的文本数值；模型只对尚未归属的公制数值补缺。原始请求提取结果（报告 JSON 的 `extracted`，单位 mm）与实际建模参数（`params`）分开：若超出模板范围，只限制建模参数并保留警告；若尺寸不适用于当前模板，仍显示提取值。手动修改建模参数不改写原始提取记录。
+
+新编写的 18 条中英文开发请求不属于盲测。按已标注字段、±0.5 mm 比较提取值，尺寸命中如下：
+
+| 评估集 | 独立文字模型 | 纯规则 | 混合（修改前 → 修改后） |
+|---|---:|---:|---:|
+| 新开发集 | 40/47 | 45/47 | 45/47 → 47/47 |
+| 原人工编写集 | 31/101 | 47/101 | 52/101 → 59/101 |
+| 原合成留出集 | 289/486 | 227/486 | 402/486 → 420/486 |
+
+用 `node scripts/benchmark-merge.mjs` 复现；见[开发集](benchmark/cases/dev/measurement-merge.tsv)、[修改前：main 35b6bb5](benchmark/results/measurement-merge-before.json)与[修改后](benchmark/results/measurement-merge-after.json)的分语言、分字段结果。旧盲测原样保留，未复跑。
+
+本轮快速回归：同一套 36 个固定 AI 建模样例全部生成并通过流形／几何筛查；抽取三类各一个继续做 PrusaSlicer 切片，3/3 成功。上面链接的全量切片和有限元为历史结果，本轮未重做全量切片或有限元，亦未做实体打印。
 
 ## 独立盲测：60 条中英文请求
 
